@@ -92,21 +92,16 @@
                 <div class="cont_feedback_form_holder">
                     <div class="cnt_map_head_contr hidden-xs">
                         <div class="cnt_map_head">
-                            find us on map <hr class="cnt_map_hr">
+                            @Umbraco.GetDictionaryValue("FindUsOnMap") 
+                        <hr class="cnt_map_hr">
                         </div>
                     </div>
                     <div class='cont_feedback_form'>
-                        <h3>LEAVE YOUR FEEDBACK</h3>
+                        <h3>@Umbraco.GetDictionaryValue("LeaveFeedback")</h3>
                         <p>
-                            Want to give us a feedback? Let me know by filling the below form.
+                            @Umbraco.GetDictionaryValue("letUsKnow")
                         </p>
-                        <div class="umbraco-forms-container col-md-12">
-                            <div class="col-sm-6 field form-group  umbraco-forms-field name shortanswer mandatory">
-                                <div class="col-sm-6 field form-group  umbraco-forms-field name shortanswer mandatory">
-                                    @Umbraco.RenderMacro("renderUmbracoForm", new { FormGuid = Model.ContactForm.ToString(), ExcludeScripts="0" })
-                                </div>
-                            </div>
-                        </div>
+                        @Umbraco.RenderMacro("renderUmbracoForm", new { FormGuid = Model.ContactForm.ToString(), ExcludeScripts="0" })
                         <div class="clearfix"></div>
                     </div>
                 </div>
