@@ -19,7 +19,7 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "a062cea48cb2f642")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "b1ea06ca238328bb")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.7")]
 
 namespace Umbraco.Web.PublishedModels
@@ -402,7 +402,7 @@ namespace Umbraco.Web.PublishedModels
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("contactForm")]
-		public string ContactForm => this.Value<string>("contactForm");
+		public object ContactForm => this.Value("contactForm");
 
 		///<summary>
 		/// Contact Form Header
@@ -417,6 +417,27 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("contactIntro")]
 		public IHtmlString ContactIntro => this.Value<IHtmlString>("contactIntro");
+
+		///<summary>
+		/// Contact Us Background Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("contactUsBackgroundImage")]
+		public Umbraco.Core.Models.MediaWithCrops ContactUsBackgroundImage => this.Value<Umbraco.Core.Models.MediaWithCrops>("contactUsBackgroundImage");
+
+		///<summary>
+		/// Contact Us Description
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("contactUsDescription")]
+		public IHtmlString ContactUsDescription => this.Value<IHtmlString>("contactUsDescription");
+
+		///<summary>
+		/// Contact Us Main Banner
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("contactUsMainBanner")]
+		public Umbraco.Core.Models.MediaWithCrops ContactUsMainBanner => this.Value<Umbraco.Core.Models.MediaWithCrops>("contactUsMainBanner");
 
 		///<summary>
 		/// Map Coordinates
@@ -1335,60 +1356,6 @@ namespace Umbraco.Web.PublishedModels
 		public bool UmbracoNavihide => NavigationBase.GetUmbracoNavihide(this);
 	}
 
-	/// <summary>Contact Us</summary>
-	[PublishedModel("contactUs")]
-	public partial class ContactUs : PublishedContentModel
-	{
-		// helpers
-#pragma warning disable 0109 // new is redundant
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		public new const string ModelTypeAlias = "contactUs";
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		public new static IPublishedContentType GetModelContentType()
-			=> PublishedModelUtility.GetModelContentType(ModelItemType, ModelTypeAlias);
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<ContactUs, TValue>> selector)
-			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-#pragma warning restore 0109
-
-		// ctor
-		public ContactUs(IPublishedContent content)
-			: base(content)
-		{ }
-
-		// properties
-
-		///<summary>
-		/// Contact Us Background Image
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("contactUsBackgroundImage")]
-		public Umbraco.Core.Models.MediaWithCrops ContactUsBackgroundImage => this.Value<Umbraco.Core.Models.MediaWithCrops>("contactUsBackgroundImage");
-
-		///<summary>
-		/// Contact Us Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("contactUsDescription")]
-		public IHtmlString ContactUsDescription => this.Value<IHtmlString>("contactUsDescription");
-
-		///<summary>
-		/// Contact Us Main Banner
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("contactUsMainBanner")]
-		public Umbraco.Core.Models.MediaWithCrops ContactUsMainBanner => this.Value<Umbraco.Core.Models.MediaWithCrops>("contactUsMainBanner");
-
-		///<summary>
-		/// Contact Us Title
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("contactUsTitle")]
-		public IHtmlString ContactUsTitle => this.Value<IHtmlString>("contactUsTitle");
-	}
-
 	/// <summary>Shop Details</summary>
 	[PublishedModel("shopDetails")]
 	public partial class ShopDetails : PublishedContentModel
@@ -1868,6 +1835,39 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("contentTitle")]
 		public string ContentTitle => this.Value<string>("contentTitle");
+	}
+
+	/// <summary>Thank You</summary>
+	[PublishedModel("thankYouDoc")]
+	public partial class ThankYouDoc : PublishedContentModel
+	{
+		// helpers
+#pragma warning disable 0109 // new is redundant
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new const string ModelTypeAlias = "thankYouDoc";
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new static IPublishedContentType GetModelContentType()
+			=> PublishedModelUtility.GetModelContentType(ModelItemType, ModelTypeAlias);
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<ThankYouDoc, TValue>> selector)
+			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+#pragma warning restore 0109
+
+		// ctor
+		public ThankYouDoc(IPublishedContent content)
+			: base(content)
+		{ }
+
+		// properties
+
+		///<summary>
+		/// Thank You
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("thankYouField")]
+		public Umbraco.Core.Models.MediaWithCrops ThankYouField => this.Value<Umbraco.Core.Models.MediaWithCrops>("thankYouField");
 	}
 
 	/// <summary>Folder</summary>

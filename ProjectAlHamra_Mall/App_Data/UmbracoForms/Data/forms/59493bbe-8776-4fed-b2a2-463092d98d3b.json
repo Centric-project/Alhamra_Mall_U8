@@ -1,0 +1,241 @@
+{
+  "name": "Contact Form",
+  "created": "2023-12-08T15:03:32.7570693+05:00",
+  "pages": [
+    {
+      "fieldSets": [
+        {
+          "caption": null,
+          "sortOrder": 0,
+          "id": "0f81acc3-e8e1-43a6-9ce4-968162d8b654",
+          "page": "00000000-0000-0000-0000-000000000000",
+          "containers": [
+            {
+              "caption": null,
+              "width": 6,
+              "fields": [
+                {
+                  "caption": "Name",
+                  "tooltip": null,
+                  "placeholder": null,
+                  "cssClass": null,
+                  "alias": "fullName",
+                  "id": "4755afa9-a437-4ea5-abac-21c16aa0f182",
+                  "fieldTypeId": "3f92e01b-29e2-4a30-bf33-9df5580ed52c",
+                  "prevalueSourceId": "00000000-0000-0000-0000-000000000000",
+                  "dataSourceFieldKey": null,
+                  "containsSensitiveData": false,
+                  "mandatory": true,
+                  "regex": null,
+                  "requiredErrorMessage": "Please Fill The Field",
+                  "invalidErrorMessage": null,
+                  "condition": {
+                    "id": "db88211c-4ebf-4fe7-aa8a-ae9f444ce87b",
+                    "enabled": false,
+                    "actionType": "Show",
+                    "logicType": "All",
+                    "rules": []
+                  },
+                  "settings": {
+                    "DefaultValue": "",
+                    "Placeholder": "",
+                    "ShowLabel": "",
+                    "MaximumLength": "",
+                    "FieldType": "text",
+                    "AutocompleteAttribute": ""
+                  },
+                  "preValues": [],
+                  "parsedPreValues": [],
+                  "allowedUploadTypes": null,
+                  "allowMultipleFileUploads": true
+                },
+                {
+                  "caption": "Email",
+                  "tooltip": null,
+                  "placeholder": null,
+                  "cssClass": null,
+                  "alias": "email",
+                  "id": "ff66de61-08b5-4ff0-c24e-8a0cd5332760",
+                  "fieldTypeId": "3f92e01b-29e2-4a30-bf33-9df5580ed52c",
+                  "prevalueSourceId": "00000000-0000-0000-0000-000000000000",
+                  "dataSourceFieldKey": null,
+                  "containsSensitiveData": false,
+                  "mandatory": true,
+                  "regex": "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$",
+                  "requiredErrorMessage": "Please Fill the Field",
+                  "invalidErrorMessage": "Invalid Email",
+                  "condition": {
+                    "id": "0364e48f-63d5-4c93-a013-f11fd9ebd4ba",
+                    "enabled": false,
+                    "actionType": "Show",
+                    "logicType": "All",
+                    "rules": []
+                  },
+                  "settings": {
+                    "DefaultValue": "",
+                    "Placeholder": "",
+                    "ShowLabel": "",
+                    "MaximumLength": "",
+                    "FieldType": "email",
+                    "AutocompleteAttribute": ""
+                  },
+                  "preValues": [],
+                  "parsedPreValues": [],
+                  "allowedUploadTypes": null,
+                  "allowMultipleFileUploads": true
+                },
+                {
+                  "caption": "Address",
+                  "tooltip": null,
+                  "placeholder": null,
+                  "cssClass": null,
+                  "alias": "address",
+                  "id": "7d6e1ebc-3aaf-4f8a-d087-882e236ea1d7",
+                  "fieldTypeId": "3f92e01b-29e2-4a30-bf33-9df5580ed52c",
+                  "prevalueSourceId": "00000000-0000-0000-0000-000000000000",
+                  "dataSourceFieldKey": null,
+                  "containsSensitiveData": false,
+                  "mandatory": false,
+                  "regex": null,
+                  "requiredErrorMessage": null,
+                  "invalidErrorMessage": null,
+                  "condition": {
+                    "id": "c063350f-7879-4900-bb16-53056e75483e",
+                    "enabled": false,
+                    "actionType": "Show",
+                    "logicType": "All",
+                    "rules": []
+                  },
+                  "settings": {
+                    "DefaultValue": "",
+                    "Placeholder": "",
+                    "ShowLabel": "",
+                    "MaximumLength": "",
+                    "FieldType": "",
+                    "AutocompleteAttribute": ""
+                  },
+                  "preValues": [],
+                  "parsedPreValues": [],
+                  "allowedUploadTypes": null,
+                  "allowMultipleFileUploads": true
+                }
+              ]
+            },
+            {
+              "caption": "",
+              "width": 6,
+              "fields": [
+                {
+                  "caption": "Nationality",
+                  "tooltip": null,
+                  "placeholder": null,
+                  "cssClass": null,
+                  "alias": "nationality",
+                  "id": "3cfc7c09-340e-42a0-b6c8-5948a9a5c37b",
+                  "fieldTypeId": "3f92e01b-29e2-4a30-bf33-9df5580ed52c",
+                  "prevalueSourceId": "00000000-0000-0000-0000-000000000000",
+                  "dataSourceFieldKey": null,
+                  "containsSensitiveData": false,
+                  "mandatory": true,
+                  "regex": null,
+                  "requiredErrorMessage": "Please Fill the Field",
+                  "invalidErrorMessage": null,
+                  "condition": {
+                    "id": "9afcc945-4aad-49a3-a028-9b83b761200c",
+                    "enabled": false,
+                    "actionType": "Show",
+                    "logicType": "All",
+                    "rules": []
+                  },
+                  "settings": {
+                    "DefaultValue": "",
+                    "Placeholder": "",
+                    "ShowLabel": "",
+                    "MaximumLength": "",
+                    "FieldType": "text",
+                    "AutocompleteAttribute": ""
+                  },
+                  "preValues": [],
+                  "parsedPreValues": [],
+                  "allowedUploadTypes": null,
+                  "allowMultipleFileUploads": true
+                },
+                {
+                  "caption": "Contact",
+                  "tooltip": null,
+                  "placeholder": null,
+                  "cssClass": null,
+                  "alias": "contact",
+                  "id": "fa830fae-55a1-42a1-a15a-8446544ff4c1",
+                  "fieldTypeId": "3f92e01b-29e2-4a30-bf33-9df5580ed52c",
+                  "prevalueSourceId": "00000000-0000-0000-0000-000000000000",
+                  "dataSourceFieldKey": null,
+                  "containsSensitiveData": false,
+                  "mandatory": true,
+                  "regex": "^[0-9]*$",
+                  "requiredErrorMessage": "Please Fill the Field",
+                  "invalidErrorMessage": "Invalid Contact Number",
+                  "condition": {
+                    "id": "f65c2ef5-3284-422b-b368-5b45ebd40252",
+                    "enabled": false,
+                    "actionType": "Show",
+                    "logicType": "All",
+                    "rules": []
+                  },
+                  "settings": {
+                    "DefaultValue": "",
+                    "Placeholder": "",
+                    "ShowLabel": "",
+                    "MaximumLength": "11",
+                    "FieldType": "number",
+                    "AutocompleteAttribute": ""
+                  },
+                  "preValues": [],
+                  "parsedPreValues": [],
+                  "allowedUploadTypes": null,
+                  "allowMultipleFileUploads": true
+                }
+              ]
+            }
+          ],
+          "condition": {
+            "id": "229c7f1a-2f03-4c80-937e-54e5c2757be8",
+            "enabled": false,
+            "actionType": "Show",
+            "logicType": "All",
+            "rules": []
+          }
+        }
+      ],
+      "caption": "Contact Form",
+      "sortOrder": 0,
+      "id": "4512064f-6397-4a6f-be53-b67dcb1b7a86",
+      "form": "00000000-0000-0000-0000-000000000000",
+      "buttonCondition": null
+    }
+  ],
+  "id": "59493bbe-8776-4fed-b2a2-463092d98d3b",
+  "fieldIndicationType": "MarkMandatoryFields",
+  "indicator": "*",
+  "showValidationSummary": false,
+  "hideFieldValidation": false,
+  "requiredErrorMessage": "Please provide a value for {0}",
+  "invalidErrorMessage": "Please provide a valid value for {0}",
+  "messageOnSubmit": "Thank you",
+  "goToPageOnSubmit": 1315,
+  "xPathOnSubmit": null,
+  "manualApproval": false,
+  "storeRecordsLocally": true,
+  "autocompleteAttribute": "",
+  "cssClass": null,
+  "disableDefaultStylesheet": false,
+  "useClientDependency": false,
+  "workflows": [
+    "cd506b82-7df2-4e17-b9c6-b46c191a2108"
+  ],
+  "datasource": null,
+  "submitLabel": "Submit",
+  "nextLabel": "Next",
+  "prevLabel": "Previous",
+  "folderId": null
+}
