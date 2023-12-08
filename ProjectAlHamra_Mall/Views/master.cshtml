@@ -19,7 +19,7 @@
     {
         { "Shop", culture == "ar" ? "تسوق" : "Shop" },
         { "Dine", culture == "ar" ? "المطاعم والمقاهي" : "Dine" },
-        { "Entertainment", culture == "ar" ? "الترفيه" : "Entertainment" },
+        { "Entertain", culture == "ar" ? "ترفيه" : "Entertain"},
         { "About Us", culture == "ar" ? "عن الحمراء" : "About Us" },
         { "Contact Us", culture == "ar" ? "اتصل بنا" : "Contact Us" },
         { "Media Center", culture == "ar" ? "المركز الاعلامي" : "Media Center" },
@@ -199,16 +199,14 @@
                     </form>
                 </div>
             </div>
-            @if (uiCurrentCulture.ToString() == "en-US")
+            @if (currLang == "ar")
             {
-                <div class="col-sm-12 aside_footer_dt">Privacy Policy | Copyright<span id="curr_year"></span> Al Hamra mall. All rights reserved </div>
+                <div class="col-sm-12 aside_footer_dt">@Umbraco.GetDictionaryValue("pageCopyRights")</div>
             }
             else
             {
                 <div class="col-sm-12 aside_footer_dt">
-                    Privacy Policy | Copyright<span id="curr_year"></span>  الحمرا مول
-
-                    . All rights reserved
+                    @Umbraco.GetDictionaryValue("pageCopyRights")
                 </div>
             }
         </aside>
@@ -224,12 +222,16 @@
 
                             <ul class="top_br_linksright" style="display:block; width:100%; text-align:center">
                                 <li>
-                                    <a href="JavaScript:Void(0);" onclick="openNav()">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451" width="18" height="18">
-                                            <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"
-                                                  fill="#646464" />
-                                        </svg>
-                                    </a>
+                                    <!--Start Search Box-->
+                                    <div class="search-field">
+                                        <input type="text" name="topSearchMain" id="topSearchMain" placeholder="@Umbraco.GetDictionaryValue("Search")" class="form-control" autocomplete="off" />
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </div>
+                                    <div id="SearchMainDiv" class="search-popup">
+                                        <h4>@Umbraco.GetDictionaryValue("QuickLinks")</h4>
+                                        <ul id="topSearchMainUL"></ul>
+                                    </div>
+                                    <!--End Search Box-->
                                 </li>
                                 <li>
                                     <a href="tel:+97172432594" class="tooltip1">
@@ -516,167 +518,167 @@
 
         </header>
     </div>
-        <main>
-            @RenderBody()
-        </main>
+    <main>
+        @RenderBody()
+    </main>
 
-        <footer class="footer-bg bg-opacity footer-border pt-70 pb-20  " style="background:#f3f3f3">
-            <div class="footer-area-2">
-                <div class="container">
-                    <div class="row pb-40">
-                        <div class='col-sm-4'>
-                            <ul class="footer_menu_linnk">
-                                @foreach (var item in selection)
+    <footer class="footer-bg bg-opacity footer-border pt-70 pb-20  " style="background:#f3f3f3">
+        <div class="footer-area-2">
+            <div class="container">
+                <div class="row pb-40">
+                    <div class='col-sm-4'>
+                        <ul class="footer_menu_linnk">
+                            @foreach (var item in selection)
+                            {
+                                var itemName = translations.ContainsKey(item.Name) ? translations[item.Name] : item.Name;
+                                if (item.Name == "Category" || item.Name == "Home" || item.Name == "Dine Category" || item.Name == "Shop Category" || item.Name == "More" || item.Name == "Indulge Your Senses" || item.Name == "WHATS NEW" || item.Name == "Thank You")
                                 {
-                                    var itemName = translations.ContainsKey(item.Name) ? translations[item.Name] : item.Name;
-                                    if (item.Name == "Category" || item.Name == "Home" || item.Name == "Dine Category" || item.Name == "Shop Category" || item.Name == "More" || item.Name == "Indulge Your Senses" || item.Name == "WHATS NEW" || item.Name == "Thank You")
-                                    {
-                                        <!--<li>
-                                            <a class="nav-link @(item.IsAncestorOrSelf(Model) ? "nav-link--active" : null)" href="@item.Url">@itemName</a>
-                                        </li>-->
-                                    }
-                                    else
-                                    {
-                                        <li>
-                                            <a class="nav-link @(item.IsAncestorOrSelf(Model) ? "nav-link--active" : null)" href="@item.Url">@itemName</a>
-                                        </li>
-                                    }
+                                    <!--<li>
+                                        <a class="nav-link @(item.IsAncestorOrSelf(Model) ? "nav-link--active" : null)" href="@item.Url">@itemName</a>
+                                    </li>-->
                                 }
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <ul>
-                                <li><strong>@Umbraco.GetDictionaryValue("section3Subtitle1")</strong><br></li>
-                                <li>@Umbraco.GetDictionaryValue("Phone")</li>
-                                <li>@Umbraco.GetDictionaryValue("Email")</li>
-                            </ul>
-                            @if (uiCurrentCulture.ToString() == "en-US")
-                            {
-
-                                <p>
-                                    <strong>@Umbraco.GetDictionaryValue("Social_Media")</strong><br />
-                                    @Umbraco.GetDictionaryValue("Follow")
-                                </p>
+                                else
+                                {
+                                    <li>
+                                        <a class="nav-link @(item.IsAncestorOrSelf(Model) ? "nav-link--active" : null)" href="@item.Url">@itemName</a>
+                                    </li>
+                                }
                             }
-                            else
-                            {
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <ul>
+                            <li><strong>@Umbraco.GetDictionaryValue("section3Subtitle1")</strong><br></li>
+                            <li>@Umbraco.GetDictionaryValue("Phone")</li>
+                            <li>@Umbraco.GetDictionaryValue("Email")</li>
+                        </ul>
+                        @if (uiCurrentCulture.ToString() == "en-US")
+                        {
 
-                                <p>
-                                    <strong>
-                                        @Umbraco.GetDictionaryValue("Social_Media")
-                                    </strong><br />
-                                    @Umbraco.GetDictionaryValue("Follow")
-                                </p>
-                            }
+                            <p>
+                                <strong>@Umbraco.GetDictionaryValue("Social_Media")</strong><br />
+                                @Umbraco.GetDictionaryValue("Follow")
+                            </p>
+                        }
+                        else
+                        {
 
-                            <ul class="social_links">
-                                <li>
-                                    <a rel="canonical" href="@Model.GetProperty(" facebookLink")" target="_blank">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 96.124 96.123">
-                                            <path d="M72.089.02L59.624 0C45.62 0 36.57 9.285 36.57 23.656v10.907H24.037a1.96 1.96 0 0 0-1.96 1.961v15.803a1.96 1.96 0 0 0 1.96 1.96H36.57v39.876a1.96 1.96 0 0 0 1.96 1.96h16.352a1.96 1.96 0 0 0 1.96-1.96V54.287h14.654a1.96 1.96 0 0 0 1.96-1.96l.006-15.803a1.963 1.963 0 0 0-1.961-1.961H56.842v-9.246c0-4.444 1.059-6.7 6.848-6.7l8.397-.003a1.96 1.96 0 0 0 1.959-1.96V1.98A1.96 1.96 0 0 0 72.089.02z" />
+                            <p>
+                                <strong>
+                                    @Umbraco.GetDictionaryValue("Social_Media")
+                                </strong><br />
+                                @Umbraco.GetDictionaryValue("Follow")
+                            </p>
+                        }
+
+                        <ul class="social_links">
+                            <li>
+                                <a rel="canonical" href="@Model.GetProperty(" facebookLink")" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 96.124 96.123">
+                                        <path d="M72.089.02L59.624 0C45.62 0 36.57 9.285 36.57 23.656v10.907H24.037a1.96 1.96 0 0 0-1.96 1.961v15.803a1.96 1.96 0 0 0 1.96 1.96H36.57v39.876a1.96 1.96 0 0 0 1.96 1.96h16.352a1.96 1.96 0 0 0 1.96-1.96V54.287h14.654a1.96 1.96 0 0 0 1.96-1.96l.006-15.803a1.963 1.963 0 0 0-1.961-1.961H56.842v-9.246c0-4.444 1.059-6.7 6.848-6.7l8.397-.003a1.96 1.96 0 0 0 1.959-1.96V1.98A1.96 1.96 0 0 0 72.089.02z" />
+                                    </svg>
+                                </a>
+                            </li>
+                            @*<li>
+                                    <a rel="canonical" href="@Model.GetProperty(" twitterLink")" target="_blank">
+                                        <svg viewBox="0 -47 512.002 512" width="18" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M191.012 419.043c-22.14 0-44.93-1.793-67.856-5.387-40.379-6.336-81.254-27.457-92.82-33.781L0 363.289l32.844-10.8c35.902-11.805 57.742-19.13 84.777-30.598-27.07-13.11-47.933-36.692-57.976-67.176l-7.641-23.195 6.266.957A113.939 113.939 0 0 1 44 214.883c-12.934-19.645-19.781-43.649-18.324-64.219l1.437-20.246 12.121 4.695a113.316 113.316 0 0 1-10.98-30.777c-5.293-26.36-.863-54.363 12.476-78.852L51.29 6.102l14.12 16.96c44.66 53.649 101.227 85.473 168.363 94.79-2.742-18.903-.687-37.145 6.114-53.497 7.918-19.039 22.004-35.183 40.722-46.69 20.79-12.778 46-18.97 70.989-17.435 26.511 1.63 50.582 11.563 69.699 28.747 9.336-2.426 16.215-5.016 25.512-8.516 5.593-2.106 11.937-4.496 19.875-7.23l29.25-10.079-19.075 54.477a96.355 96.355 0 0 1 3.91-.254l31.235-1.414-18.461 25.23c-1.059 1.446-1.328 1.856-1.703 2.422-1.488 2.242-3.34 5.032-28.68 38.867-6.344 8.473-9.512 19.508-8.922 31.079 2.246 43.968-3.148 83.75-16.043 118.234-12.195 32.625-31.093 60.617-56.164 83.2-31.023 27.937-70.582 47.066-117.582 56.847-23.054 4.797-47.812 7.203-73.437 7.203zm0 0" />
                                         </svg>
                                     </a>
-                                </li>
-                                @*<li>
-                                        <a rel="canonical" href="@Model.GetProperty(" twitterLink")" target="_blank">
-                                            <svg viewBox="0 -47 512.002 512" width="18" xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M191.012 419.043c-22.14 0-44.93-1.793-67.856-5.387-40.379-6.336-81.254-27.457-92.82-33.781L0 363.289l32.844-10.8c35.902-11.805 57.742-19.13 84.777-30.598-27.07-13.11-47.933-36.692-57.976-67.176l-7.641-23.195 6.266.957A113.939 113.939 0 0 1 44 214.883c-12.934-19.645-19.781-43.649-18.324-64.219l1.437-20.246 12.121 4.695a113.316 113.316 0 0 1-10.98-30.777c-5.293-26.36-.863-54.363 12.476-78.852L51.29 6.102l14.12 16.96c44.66 53.649 101.227 85.473 168.363 94.79-2.742-18.903-.687-37.145 6.114-53.497 7.918-19.039 22.004-35.183 40.722-46.69 20.79-12.778 46-18.97 70.989-17.435 26.511 1.63 50.582 11.563 69.699 28.747 9.336-2.426 16.215-5.016 25.512-8.516 5.593-2.106 11.937-4.496 19.875-7.23l29.25-10.079-19.075 54.477a96.355 96.355 0 0 1 3.91-.254l31.235-1.414-18.461 25.23c-1.059 1.446-1.328 1.856-1.703 2.422-1.488 2.242-3.34 5.032-28.68 38.867-6.344 8.473-9.512 19.508-8.922 31.079 2.246 43.968-3.148 83.75-16.043 118.234-12.195 32.625-31.093 60.617-56.164 83.2-31.023 27.937-70.582 47.066-117.582 56.847-23.054 4.797-47.812 7.203-73.437 7.203zm0 0" />
-                                            </svg>
-                                        </a>
-                                    </li>*@
-                                <li>
-                                    <a rel="canonical" href="@Model.GetProperty(" instagramLink")" target="_blank">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 512 512">
-                                            <path d="M352 0H160C71.648 0 0 71.648 0 160v192c0 88.352 71.648 160 160 160h192c88.352 0 160-71.648 160-160V160C512 71.648 440.352 0 352 0zm112 352c0 61.76-50.24 112-112 112H160c-61.76 0-112-50.24-112-112V160C48 98.24 98.24 48 160 48h192c61.76 0 112 50.24 112 112v192z" />
-                                            <path d="M256 128c-70.688 0-128 57.312-128 128s57.312 128 128 128 128-57.312 128-128-57.312-128-128-128zm0 208c-44.096 0-80-35.904-80-80 0-44.128 35.904-80 80-80s80 35.872 80 80c0 44.096-35.904 80-80 80z" />
-                                            <circle cx="393.6" cy="118.4" r="17.056" />
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                </li>*@
+                            <li>
+                                <a rel="canonical" href="@Model.GetProperty(" instagramLink")" target="_blank">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 512 512">
+                                        <path d="M352 0H160C71.648 0 0 71.648 0 160v192c0 88.352 71.648 160 160 160h192c88.352 0 160-71.648 160-160V160C512 71.648 440.352 0 352 0zm112 352c0 61.76-50.24 112-112 112H160c-61.76 0-112-50.24-112-112V160C48 98.24 98.24 48 160 48h192c61.76 0 112 50.24 112 112v192z" />
+                                        <path d="M256 128c-70.688 0-128 57.312-128 128s57.312 128 128 128 128-57.312 128-128-57.312-128-128-128zm0 208c-44.096 0-80-35.904-80-80 0-44.128 35.904-80 80-80s80 35.872 80 80c0 44.096-35.904 80-80 80z" />
+                                        <circle cx="393.6" cy="118.4" r="17.056" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                        <div class="">
                             <div class="">
-                                <div class="">
-                                    <ul>
-                                        <p style="font-size:18px; font-weight:800;">
-                                            FOR MORE FOOD &amp; BEVERAGES OPTIONS
-                                        </p>
-                                        <li>
-                                            @Html.Raw(Model.Value("mallTiming"))
-                                            @Html.Raw(Model.Value("openingClosingHours"))
-                                        </li>
-                                        <hr />
-                                        <li></li>
-                                    </ul>
-                                </div>
+                                <ul>
+                                    <p style="font-size:18px; font-weight:800;">
+                                        FOR MORE FOOD &amp; BEVERAGES OPTIONS
+                                    </p>
+                                    <li>
+                                        @Html.Raw(Model.Value("mallTiming"))
+                                        @Html.Raw(Model.Value("openingClosingHours"))
+                                    </li>
+                                    <hr />
+                                    <li></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <hr style=" border-top: 1px solid #a5a5a5;">
-                    <div class="col-md-12 col-sm-12 col-xs-12 ptb-30">
-                        <div class="footer-2-logo">
-                            <p style="color:#a5a5a5"> @Umbraco.GetDictionaryValue("pageCopyRights") </p>
-                        </div>
+                <hr style=" border-top: 1px solid #a5a5a5;">
+                <div class="col-md-12 col-sm-12 col-xs-12 ptb-30">
+                    <div class="footer-2-logo">
+                        <p style="color:#a5a5a5"> @Umbraco.GetDictionaryValue("pageCopyRights") </p>
                     </div>
                 </div>
             </div>
-        </footer>
-
-
-
-        <!-- start scrollUp  -->
-        <div id="toTop">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 284.929 284.929">
-                <path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z"
-                      fill="#FFF" />
-            </svg>
         </div>
+    </footer>
 
 
 
-        <script src="~/js/jquery.min.js"></script>
-        <script src="~/js/bootstrap.min.js"></script>
-        <script src="~/js/isotope.pkgd.min.js"></script>
-        <script src="~/js/owl.carousel.min.js"></script>
-        <script src="~/js/jquery.meanmenu.js"></script>
-        <script src="~/js/plugins.js"></script>
-        <script src="~/js/main.js"></script>
-        <script src="~/js/classie.js"></script>
-        <script src="~/js/jquery.matchHeight-min.js"></script>
-        <script src="~/js/jquery.nice-select.js"></script>
-        @*
-            <script src="~/js/jquery.validate.min.js"></script>*@
+    <!-- start scrollUp  -->
+    <div id="toTop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 284.929 284.929">
+            <path d="M282.082 195.285L149.028 62.24c-1.901-1.903-4.088-2.856-6.562-2.856s-4.665.953-6.567 2.856L2.856 195.285C.95 197.191 0 199.378 0 201.853c0 2.474.953 4.664 2.856 6.566l14.272 14.271c1.903 1.903 4.093 2.854 6.567 2.854s4.664-.951 6.567-2.854l112.204-112.202 112.208 112.209c1.902 1.903 4.093 2.848 6.563 2.848 2.478 0 4.668-.951 6.57-2.848l14.274-14.277c1.902-1.902 2.847-4.093 2.847-6.566.001-2.476-.944-4.666-2.846-6.569z"
+                  fill="#FFF" />
+        </svg>
+    </div>
 
-        <!--Slider -->
-        <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
-        <script src="~/js/jquery.themepunch.plugins.min.js"></script>
-        <script src="~/js/jquery.themepunch.revolution.min.js"></script>
-        <script src="~/js/custome_js.js"></script>
 
-        <script src="~/js/slick.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script>
-        <script type="text/javascript">
-            $().ready(function () {
-                $('.slick-carousel').slick({
-                    arrows: true,
-                    centerPadding: "0px",
-                    dots: true,
-                    slidesToShow: 1,
-                    autoplay: true
-                });
-                $('.whatsNew-slider').slick({
-                    arrows: false,
-                    centerPadding: "0px",
-                    dots: true,
-                    slidesToShow: 1,
-                    autoplay: true
-                });
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/isotope.pkgd.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.meanmenu.js"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/classie.js"></script>
+    <script src="~/js/jquery.matchHeight-min.js"></script>
+    <script src="~/js/jquery.nice-select.js"></script>
+    @*
+        <script src="~/js/jquery.validate.min.js"></script>*@
+
+    <!--Slider -->
+    <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+    <script src="~/js/jquery.themepunch.plugins.min.js"></script>
+    <script src="~/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/js/custome_js.js"></script>
+
+    <script src="~/js/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script>
+    <script type="text/javascript">
+        $().ready(function () {
+            $('.slick-carousel').slick({
+                arrows: true,
+                centerPadding: "0px",
+                dots: true,
+                slidesToShow: 1,
+                autoplay: true
             });
-        </script>
-        <script>
+            $('.whatsNew-slider').slick({
+                arrows: false,
+                centerPadding: "0px",
+                dots: true,
+                slidesToShow: 1,
+                autoplay: true
+            });
+        });
+    </script>
+    <script>
         function gtmGetDlBase() {
             var l_lang = ('@currLang' == "en" ? "EN" : "AR");
             //debugger;
@@ -805,6 +807,24 @@
             data.p_clickURL = href;
             window.dataLayer.push(data);
         }
+        function gtmTrackEvent_HeaderDeskSearchClick(objbtn) {
+            console.log("[GTM-DL]", "Track event Header Desktop Search Click", objbtn.attr("name"));
+            var data = gtmGetDlBase();
+            data.p_event = 'e_headersearchclicks';
+            data.p_buttonname = objbtn.attr("name");
+            data.p_searchquery = $("#topSearchMain").val();
+            window.dataLayer.push(data);
+            debugger;
+        }
+        function gtmTrackEvent_HeaderMobSearchClick(objbtn) {
+            console.log("[GTM-DL]", "Track event Header Mobile Search Click", objbtn.attr("name"));
+            var data = gtmGetDlBase();
+            data.p_event = 'e_headersearchclicks';
+            data.p_buttonname = objbtn.attr("name");
+            data.p_searchquery = $("#topSearchMainMob").val();
+            window.dataLayer.push(data);
+            debugger;
+        }
 
         $(document).ready(function () {
             $('#slick-images').on('init', function (e, slick) {
@@ -860,382 +880,382 @@
 
         });
 
-        </script>
-        <!-- popup -->
-        <script src="~/js/classie2.js"></script>
-        <!-- popup -->
-        <script>
+    </script>
+    <!-- popup -->
+    <script src="~/js/classie2.js"></script>
+    <!-- popup -->
+    <script>
 
-            var vid = document.getElementById("myVideo");
+        var vid = document.getElementById("myVideo");
 
-            var ctn = 1;
-            $(window).on('scroll', function () {
-                if (checkVisible($('.info_div'))) {
-                    if (ctn == 1) {
-                        vid.play();
+        var ctn = 1;
+        $(window).on('scroll', function () {
+            if (checkVisible($('.info_div'))) {
+                if (ctn == 1) {
+                    vid.play();
 
-                        vid.loop = false;
-                        // $(window).off('scroll');
-                    }
-                    ctn = ctn + 1;
-
+                    vid.loop = false;
+                    // $(window).off('scroll');
                 }
+                ctn = ctn + 1;
 
-
-            });
-            function checkVisible(elm, eval) {
-                eval = eval || "object visible";
-                var viewportHeight = $(window).height(), // Viewport Height
-                    scrolltop = $(window).scrollTop(), // Scroll Top
-                    y = $(elm).offset().top,
-                    elementHeight = $(elm).height();
-
-                if (eval == "object visible") return ((y < (viewportHeight + scrolltop)) && (y > (scrolltop - elementHeight)));
-                if (eval == "above") return ((y < (viewportHeight + scrolltop)));
             }
-        </script>
-        <script>
 
 
-            $(document).ready(function () {
-                $('#slick-images').on('init', function (e, slick) {
-                    var $firstAnimatingElements = $('div.hero-slide:first-child').find('[data-animation]');
-                    doAnimations($firstAnimatingElements);
-                });
-                $('#slick-images').on('beforeChange', function (e, slick, currentSlide, nextSlide) {
-                    var $animatingElements = $('div.img_contr_parnt[data-slick-index="' + nextSlide + '"]').find('[data-animation]');
-                    doAnimations($animatingElements);
-                });
-                $('#slick-images').slick({
-                    dots: true,
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    arrows: false,
-                    draggable: false,
-                    autoplaySpeed: 10000,
-                    speed: 600,
-                    vertical: true,
-                });
-                function doAnimations(elements) {
-                    var animationEndEvents = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-                    elements.each(function () {
-                        var $this = $(this);
-                        var $animationDelay = $this.data('delay');
-                        var $animationType = 'animated ' + $this.data('animation');
-                        $this.css({
-                            'animation-delay': $animationDelay,
-                            '-webkit-animation-delay': $animationDelay
-                        });
-                        $this.addClass($animationType).one(animationEndEvents, function () {
-                            $this.removeClass($animationType);
-                        });
-                    });
-                }
+        });
+        function checkVisible(elm, eval) {
+            eval = eval || "object visible";
+            var viewportHeight = $(window).height(), // Viewport Height
+                scrolltop = $(window).scrollTop(), // Scroll Top
+                y = $(elm).offset().top,
+                elementHeight = $(elm).height();
+
+            if (eval == "object visible") return ((y < (viewportHeight + scrolltop)) && (y > (scrolltop - elementHeight)));
+            if (eval == "above") return ((y < (viewportHeight + scrolltop)));
+        }
+    </script>
+    <script>
+
+
+        $(document).ready(function () {
+            $('#slick-images').on('init', function (e, slick) {
+                var $firstAnimatingElements = $('div.hero-slide:first-child').find('[data-animation]');
+                doAnimations($firstAnimatingElements);
             });
-        </script>
-
-
-        @*entertain*@
-        <script>
-            $(document).ready(function () {
-                // Declare Carousel jquery object
-                var owl = $('.movie_carasual');
-                // Carousel initialization
-                owl.owlCarousel({
-                    loop: true,
-                    margin: 0,
-                    navSpeed: 0,
-                    nav: false,
-                    autoplay: true,
-                    rewind: true,
-                    singleItem: true,
-                    items: 1,
-                    rtl: false,
-                    dots: true,
-                    mouseDrag: false,
-                    touchDrag: false,
-                    navigation: false,
-                    animateIn: 'slideInUp',
-                    animateOut: 'slideOutUp',
-                });
-                // add animate.css class(es) to the elements to be animated
-                function setAnimation(_elem, _InOut) {
-
-                    var animationEndEvent = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-                    _elem.each(function () {
-                        var $elem = $(this);
-                        var $animationType = 'animated ' + $elem.data('animation-' + _InOut);
-                        $elem.addClass($animationType).one(animationEndEvent, function () {
-                            $elem.removeClass($animationType);
-                        });
-                    });
-                }
-                owl.on('change.owl.carousel', function (event) {
-                    var $currentItem = $('.owl-item', owl).eq(event.item.index);
-                    var $elemsToanim = $currentItem.find("[data-animation-out]");
-                    setAnimation($elemsToanim, 'slideOutUp');
-                });
-
-                var round = 0;
-                owl.on('changed.owl.carousel', function (event) {
-                    var $currentItem = $('.owl-item', owl).eq(event.item.index);
-                    var $elemsToanim = $currentItem.find("[data-animation-in]");
-                    setAnimation($elemsToanim, 'slideInUp');
-                })
-                owl.on('translated.owl.carousel', function (event) {
-                    console.log(event.item.index, event.page.count);
-                    if (event.item.index == (event.page.count - 1)) {
-                        if (round < 1) {
-                            round++
-                            console.log(round);
-                        } else {
-                            owl.trigger('stop.owl.autoplay');
-                            var owlData = owl.data('owl.carousel');
-                            owlData.settings.autoplay = false;
-                            owlData.options.autoplay = false;
-                            owl.trigger('refresh.owl.carousel');
-                        }
-                    }
-                });
+            $('#slick-images').on('beforeChange', function (e, slick, currentSlide, nextSlide) {
+                var $animatingElements = $('div.img_contr_parnt[data-slick-index="' + nextSlide + '"]').find('[data-animation]');
+                doAnimations($animatingElements);
             });
-        </script>
-        <script>
-            //owl2row plugin
-            ; (function ($, window, document, undefined) {
-                Owl2row = function (scope) {
-                    this.owl = scope;
-                    this.owl.options = $.extend({}, Owl2row.Defaults, this.owl.options);
-                    //link callback events with owl carousel here
-                    this.handlers = {
-                        'initialize.owl.carousel': $.proxy(function (e) {
-                            if (this.owl.settings.owl2row) {
-                                this.build2row(this);
-                            }
-                        }, this)
-                    };
-                    this.owl.$element.on(this.handlers);
-                };
-                Owl2row.Defaults = {
-                    owl2row: false,
-                    owl2rowTarget: 'item',
-                    owl2rowContainer: 'owl2row-item',
-                    owl2rowDirection: 'utd' // ltr
-                };
-                //mehtods:
-                Owl2row.prototype.build2row = function (thisScope) {
-                    var carousel = $(thisScope.owl.$element);
-                    var carouselItems = carousel.find('.' + thisScope.owl.options.owl2rowTarget);
-                    var aEvenElements = [];
-                    var aOddElements = [];
-                    $.each(carouselItems, function (index, item) {
-                        if (index % 2 === 0) {
-                            aEvenElements.push(item);
-                        } else {
-                            aOddElements.push(item);
-                        }
-                    });
-                    carousel.empty();
-                    switch (thisScope.owl.options.owl2rowDirection) {
-                        case 'ltr':
-                            thisScope.leftToright(thisScope, carousel, carouselItems);
-                            break;
-                        default:
-                            thisScope.upTodown(thisScope, aEvenElements, aOddElements, carousel);
-                    }
-                };
-                Owl2row.prototype.leftToright = function (thisScope, carousel, carouselItems) {
-                    var o2wContainerClass = thisScope.owl.options.owl2rowContainer;
-                    var owlMargin = thisScope.owl.options.margin;
-                    var carouselItemsLength = carouselItems.length;
-                    var firsArr = [];
-                    var secondArr = [];
-                    //console.log(carouselItemsLength);
-                    if (carouselItemsLength % 2 === 1) {
-                        carouselItemsLength = ((carouselItemsLength - 1) / 2) + 1;
-                    } else {
-                        carouselItemsLength = carouselItemsLength / 2;
-                    }
-                    //console.log(carouselItemsLength);
-                    $.each(carouselItems, function (index, item) {
-                        if (index < carouselItemsLength) {
-                            firsArr.push(item);
-                        } else {
-                            secondArr.push(item);
-                        }
-                    });
-                    $.each(firsArr, function (index, item) {
-                        var rowContainer = $('<div class="' + o2wContainerClass + '"/>');
-                        var firstRowElement = firsArr[index];
-                        firstRowElement.style.marginBottom = owlMargin + 'px';
-                        rowContainer
-                            .append(firstRowElement)
-                            .append(secondArr[index]);
-                        carousel.append(rowContainer);
-                    });
-                };
-                Owl2row.prototype.upTodown = function (thisScope, aEvenElements, aOddElements, carousel) {
-                    var o2wContainerClass = thisScope.owl.options.owl2rowContainer;
-                    var owlMargin = thisScope.owl.options.margin;
-                    $.each(aEvenElements, function (index, item) {
-                        var rowContainer = $('<div class="' + o2wContainerClass + '"/>');
-                        var evenElement = aEvenElements[index];
-                        evenElement.style.marginBottom = owlMargin + 'px';
-                        rowContainer
-                            .append(evenElement)
-                            .append(aOddElements[index]);
-                        carousel.append(rowContainer);
-                    });
-                };
-                /**
-                * Destroys the plugin.
-                */
-                Owl2row.prototype.destroy = function () {
-                    var handler, property;
-                    for (handler in this.handlers) {
-                        this.owl.dom.$el.off(handler, this.handlers[handler]);
-                    }
-                    for (property in Object.getOwnPropertyNames(this)) {
-                        typeof this[property] !== 'function' && (this[property] = null);
-                    }
-                };
-                $.fn.owlCarousel.Constructor.Plugins['owl2row'] = Owl2row;
-            })(window.Zepto || window.jQuery, window, document);
-            //end of owl2row plugin
-            //init carousel
-            $(".movie_list").owlCarousel({
-                loop: true,
-                autoplay: true,
-                owl2row: true,
-                nav: true,
-                items: 4,
-                margin: 30,
-                navText: ["&#x3c; Prev", "Next &#x3e;"],
-                responsiveClass: true,
-                responsive: {
-
-                    0: {
-                        items: 2
-                    },
-                    480: {
-                        items: 3
-                    },
-
-                    560: {
-                        items: 3
-                    },
-
-
-                    768: {
-                        items: 4
-                    }
-
-
-                }
-            });
-        </script>
-        <script>
-            $(".disable-owl-swipe").on("drop mousedown", function (e) {
-                // Prevent carousel swipe
-                e.preventDefault();
-            })
-        </script>
-
-
-        @*end*@
-
-
-
-        @*offers*@
-
-        <script src="~/js/salvattore.min.js"></script>
-        <script src="~/js/jquery.nice-select.js"></script>
-        <script>
-            $(document).ready(function () {
-
-                $(".category_select").change(function () {
-
-                    $(this).find("option:selected").each(function () {
-                        var optionValue = $(this).attr("value");
-                        if (optionValue) {
-                            $(".evt_grid").not("." + optionValue).hide();
-                            $("." + optionValue).fadeIn(600);
-                            $("." + optionValue).show();
-
-                        } else {
-                            $(".evt_grid").fadeOut(600);
-                            $(".evt_grid").hide();
-                        }
-                    });
-                }).change();
-            });
-        </script>
-
-
-
-
-        @*end*@
-
-
-
-
-        @*about us*@
-
-        <script src="~/js/jquery.nice-select.js"></script>
-        <script src="~/js/slick.min.js"></script>
-        <script>
-            $slideshow = $('.slider-for').slick({
+            $('#slick-images').slick({
+                dots: true,
                 slidesToShow: 1,
                 slidesToScroll: 1,
+                autoplay: true,
                 arrows: false,
-                fade: false,
                 draggable: false,
-                swipeToSlide: false,
-                touchMove: false,
-                asNavFor: '.slider-nav, .slider-for'
+                autoplaySpeed: 10000,
+                speed: 600,
+                vertical: true,
             });
-            $('.nt_btn').click(function () {
-                $slideshow.slick('slickNext');
+            function doAnimations(elements) {
+                var animationEndEvents = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+                elements.each(function () {
+                    var $this = $(this);
+                    var $animationDelay = $this.data('delay');
+                    var $animationType = 'animated ' + $this.data('animation');
+                    $this.css({
+                        'animation-delay': $animationDelay,
+                        '-webkit-animation-delay': $animationDelay
+                    });
+                    $this.addClass($animationType).one(animationEndEvents, function () {
+                        $this.removeClass($animationType);
+                    });
+                });
+            }
+        });
+    </script>
+
+
+    @*entertain*@
+    <script>
+        $(document).ready(function () {
+            // Declare Carousel jquery object
+            var owl = $('.movie_carasual');
+            // Carousel initialization
+            owl.owlCarousel({
+                loop: true,
+                margin: 0,
+                navSpeed: 0,
+                nav: false,
+                autoplay: true,
+                rewind: true,
+                singleItem: true,
+                items: 1,
+                rtl: false,
+                dots: true,
+                mouseDrag: false,
+                touchDrag: false,
+                navigation: false,
+                animateIn: 'slideInUp',
+                animateOut: 'slideOutUp',
             });
-            $('.pr_btn').click(function () {
-                $slideshow.slick('slickPrev');
+            // add animate.css class(es) to the elements to be animated
+            function setAnimation(_elem, _InOut) {
+
+                var animationEndEvent = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+                _elem.each(function () {
+                    var $elem = $(this);
+                    var $animationType = 'animated ' + $elem.data('animation-' + _InOut);
+                    $elem.addClass($animationType).one(animationEndEvent, function () {
+                        $elem.removeClass($animationType);
+                    });
+                });
+            }
+            owl.on('change.owl.carousel', function (event) {
+                var $currentItem = $('.owl-item', owl).eq(event.item.index);
+                var $elemsToanim = $currentItem.find("[data-animation-out]");
+                setAnimation($elemsToanim, 'slideOutUp');
             });
 
-            $('.slider-nav').slick({
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                asNavFor: '.slider-for',
-                dots: false,
-                centerMode: false,
-                focusOnSelect: true,
-                autoplay: false,
-                arrows: false,
-
+            var round = 0;
+            owl.on('changed.owl.carousel', function (event) {
+                var $currentItem = $('.owl-item', owl).eq(event.item.index);
+                var $elemsToanim = $currentItem.find("[data-animation-in]");
+                setAnimation($elemsToanim, 'slideInUp');
+            })
+            owl.on('translated.owl.carousel', function (event) {
+                console.log(event.item.index, event.page.count);
+                if (event.item.index == (event.page.count - 1)) {
+                    if (round < 1) {
+                        round++
+                        console.log(round);
+                    } else {
+                        owl.trigger('stop.owl.autoplay');
+                        var owlData = owl.data('owl.carousel');
+                        owlData.settings.autoplay = false;
+                        owlData.options.autoplay = false;
+                        owl.trigger('refresh.owl.carousel');
+                    }
+                }
             });
+        });
+    </script>
+    <script>
+        //owl2row plugin
+        ; (function ($, window, document, undefined) {
+            Owl2row = function (scope) {
+                this.owl = scope;
+                this.owl.options = $.extend({}, Owl2row.Defaults, this.owl.options);
+                //link callback events with owl carousel here
+                this.handlers = {
+                    'initialize.owl.carousel': $.proxy(function (e) {
+                        if (this.owl.settings.owl2row) {
+                            this.build2row(this);
+                        }
+                    }, this)
+                };
+                this.owl.$element.on(this.handlers);
+            };
+            Owl2row.Defaults = {
+                owl2row: false,
+                owl2rowTarget: 'item',
+                owl2rowContainer: 'owl2row-item',
+                owl2rowDirection: 'utd' // ltr
+            };
+            //mehtods:
+            Owl2row.prototype.build2row = function (thisScope) {
+                var carousel = $(thisScope.owl.$element);
+                var carouselItems = carousel.find('.' + thisScope.owl.options.owl2rowTarget);
+                var aEvenElements = [];
+                var aOddElements = [];
+                $.each(carouselItems, function (index, item) {
+                    if (index % 2 === 0) {
+                        aEvenElements.push(item);
+                    } else {
+                        aOddElements.push(item);
+                    }
+                });
+                carousel.empty();
+                switch (thisScope.owl.options.owl2rowDirection) {
+                    case 'ltr':
+                        thisScope.leftToright(thisScope, carousel, carouselItems);
+                        break;
+                    default:
+                        thisScope.upTodown(thisScope, aEvenElements, aOddElements, carousel);
+                }
+            };
+            Owl2row.prototype.leftToright = function (thisScope, carousel, carouselItems) {
+                var o2wContainerClass = thisScope.owl.options.owl2rowContainer;
+                var owlMargin = thisScope.owl.options.margin;
+                var carouselItemsLength = carouselItems.length;
+                var firsArr = [];
+                var secondArr = [];
+                //console.log(carouselItemsLength);
+                if (carouselItemsLength % 2 === 1) {
+                    carouselItemsLength = ((carouselItemsLength - 1) / 2) + 1;
+                } else {
+                    carouselItemsLength = carouselItemsLength / 2;
+                }
+                //console.log(carouselItemsLength);
+                $.each(carouselItems, function (index, item) {
+                    if (index < carouselItemsLength) {
+                        firsArr.push(item);
+                    } else {
+                        secondArr.push(item);
+                    }
+                });
+                $.each(firsArr, function (index, item) {
+                    var rowContainer = $('<div class="' + o2wContainerClass + '"/>');
+                    var firstRowElement = firsArr[index];
+                    firstRowElement.style.marginBottom = owlMargin + 'px';
+                    rowContainer
+                        .append(firstRowElement)
+                        .append(secondArr[index]);
+                    carousel.append(rowContainer);
+                });
+            };
+            Owl2row.prototype.upTodown = function (thisScope, aEvenElements, aOddElements, carousel) {
+                var o2wContainerClass = thisScope.owl.options.owl2rowContainer;
+                var owlMargin = thisScope.owl.options.margin;
+                $.each(aEvenElements, function (index, item) {
+                    var rowContainer = $('<div class="' + o2wContainerClass + '"/>');
+                    var evenElement = aEvenElements[index];
+                    evenElement.style.marginBottom = owlMargin + 'px';
+                    rowContainer
+                        .append(evenElement)
+                        .append(aOddElements[index]);
+                    carousel.append(rowContainer);
+                });
+            };
+            /**
+            * Destroys the plugin.
+            */
+            Owl2row.prototype.destroy = function () {
+                var handler, property;
+                for (handler in this.handlers) {
+                    this.owl.dom.$el.off(handler, this.handlers[handler]);
+                }
+                for (property in Object.getOwnPropertyNames(this)) {
+                    typeof this[property] !== 'function' && (this[property] = null);
+                }
+            };
+            $.fn.owlCarousel.Constructor.Plugins['owl2row'] = Owl2row;
+        })(window.Zepto || window.jQuery, window, document);
+        //end of owl2row plugin
+        //init carousel
+        $(".movie_list").owlCarousel({
+            loop: true,
+            autoplay: true,
+            owl2row: true,
+            nav: true,
+            items: 4,
+            margin: 30,
+            navText: ["&#x3c; Prev", "Next &#x3e;"],
+            responsiveClass: true,
+            responsive: {
+
+                0: {
+                    items: 2
+                },
+                480: {
+                    items: 3
+                },
+
+                560: {
+                    items: 3
+                },
+
+
+                768: {
+                    items: 4
+                }
+
+
+            }
+        });
+    </script>
+    <script>
+        $(".disable-owl-swipe").on("drop mousedown", function (e) {
+            // Prevent carousel swipe
+            e.preventDefault();
+        })
+    </script>
+
+
+    @*end*@
+
+
+
+    @*offers*@
+
+    <script src="~/js/salvattore.min.js"></script>
+    <script src="~/js/jquery.nice-select.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $(".category_select").change(function () {
+
+                $(this).find("option:selected").each(function () {
+                    var optionValue = $(this).attr("value");
+                    if (optionValue) {
+                        $(".evt_grid").not("." + optionValue).hide();
+                        $("." + optionValue).fadeIn(600);
+                        $("." + optionValue).show();
+
+                    } else {
+                        $(".evt_grid").fadeOut(600);
+                        $(".evt_grid").hide();
+                    }
+                });
+            }).change();
+        });
+    </script>
 
 
 
 
-        </script>
-        <script>
-            $('.zoom_btn').click(function (e) {
-                $('#myDiv').toggleClass('fullscreen');
-                $('.parking_info').toggleClass('manage_info');
-            });
-        </script>
-
-
-
-        @*end*@
+    @*end*@
 
 
 
 
-        @*contactus*@
+    @*about us*@
 
-        <script src="~/js/jquery.nice-select.js"></script>
+    <script src="~/js/jquery.nice-select.js"></script>
+    <script src="~/js/slick.min.js"></script>
+    <script>
+        $slideshow = $('.slider-for').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: false,
+            draggable: false,
+            swipeToSlide: false,
+            touchMove: false,
+            asNavFor: '.slider-nav, .slider-for'
+        });
+        $('.nt_btn').click(function () {
+            $slideshow.slick('slickNext');
+        });
+        $('.pr_btn').click(function () {
+            $slideshow.slick('slickPrev');
+        });
 
-        <script>
+        $('.slider-nav').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: '.slider-for',
+            dots: false,
+            centerMode: false,
+            focusOnSelect: true,
+            autoplay: false,
+            arrows: false,
+
+        });
+
+
+
+
+    </script>
+    <script>
+        $('.zoom_btn').click(function (e) {
+            $('#myDiv').toggleClass('fullscreen');
+            $('.parking_info').toggleClass('manage_info');
+        });
+    </script>
+
+
+
+    @*end*@
+
+
+
+
+    @*contactus*@
+
+    <script src="~/js/jquery.nice-select.js"></script>
+
+    <script>
         //$('#nxt_btn').hide();
         //$("#nxt_btn").click(function () {
         $('.required').keyup(function () {
@@ -1333,309 +1353,309 @@
                 }
             }
         });
-        </script>
+    </script>
 
-        @*Fullname : $("#1").val(),
-            Nationality : $("#2").val(),
-            Email : $("#3").val(),
-            Contact : $("#4").val(),
-            Address : $("#5").val(),
-            remark : $("#area").val(),
+    @*Fullname : $("#1").val(),
+        Nationality : $("#2").val(),
+        Email : $("#3").val(),
+        Contact : $("#4").val(),
+        Address : $("#5").val(),
+        remark : $("#area").val(),
 
-            r1 : $("#r1").val(),
-            r2 : $("#r2").val(),
-            r3 : $("#r3").val(),
-            r4 : $("#r4").val(),
-            r5 : $("#r5").val(),
-            r6 : $("#r6").val(),
-            r7 : $("#r7").val(),
-            r8 : $("#r8").val(),
-            r9 : $("#r9").val(),
-            r10 : $("#r10").val(),
-            r11 : $("#r11").val(),
-            r12 : $("#r12").val(),
-            r13 : $("#r13").val(),
-            r14 : $("#r14").val(),
-            r15 : $("#r15").val(),
-            r16 : $("#r16").val(),
-            r17 : $("#r17").val(),
-            r18 : $("#r18").val(),
-            r19 : $("#r19").val(),
-            r20 : $("#r20").val(),
-            r21 : $("#r21").val(),
-            r22 : $("#r22").val(),
-            r23 : $("#r23").val(),
-            r24 : $("#r24").val(),*@
+        r1 : $("#r1").val(),
+        r2 : $("#r2").val(),
+        r3 : $("#r3").val(),
+        r4 : $("#r4").val(),
+        r5 : $("#r5").val(),
+        r6 : $("#r6").val(),
+        r7 : $("#r7").val(),
+        r8 : $("#r8").val(),
+        r9 : $("#r9").val(),
+        r10 : $("#r10").val(),
+        r11 : $("#r11").val(),
+        r12 : $("#r12").val(),
+        r13 : $("#r13").val(),
+        r14 : $("#r14").val(),
+        r15 : $("#r15").val(),
+        r16 : $("#r16").val(),
+        r17 : $("#r17").val(),
+        r18 : $("#r18").val(),
+        r19 : $("#r19").val(),
+        r20 : $("#r20").val(),
+        r21 : $("#r21").val(),
+        r22 : $("#r22").val(),
+        r23 : $("#r23").val(),
+        r24 : $("#r24").val(),*@
 
-        <script>
-            var currentTab = 0; // Current tab is set to be the first tab (0)
-            showTab(currentTab); // Display the current tab
+    <script>
+        var currentTab = 0; // Current tab is set to be the first tab (0)
+        showTab(currentTab); // Display the current tab
 
-            function showTab(n) {
-                // This function will display the specified tab of the form ...
-                var x = document.getElementsByClassName("tab");
-                x[n].style.display = "block";
-                // ... and fix the Previous/Next buttons:
-                if (n == 0) {
-                    document.getElementById("prevBtn").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" width="25" ><path d="M88.6 121.3c.8.8 1.8 1.2 2.9 1.2s2.1-.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8 0l-54 53.9c-1.6 1.6-1.6 4.2 0 5.8l54 53.9z" fill="#464646"/></svg>';
+        function showTab(n) {
+            // This function will display the specified tab of the form ...
+            var x = document.getElementsByClassName("tab");
+            x[n].style.display = "block";
+            // ... and fix the Previous/Next buttons:
+            if (n == 0) {
+                document.getElementById("prevBtn").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" width="25" ><path d="M88.6 121.3c.8.8 1.8 1.2 2.9 1.2s2.1-.4 2.9-1.2c1.6-1.6 1.6-4.2 0-5.8l-51-51 51-51c1.6-1.6 1.6-4.2 0-5.8s-4.2-1.6-5.8 0l-54 53.9c-1.6 1.6-1.6 4.2 0 5.8l54 53.9z" fill="#464646"/></svg>';
 
-                } else {
-                    document.getElementById("prevBtn").style.display = "inline";
+            } else {
+                document.getElementById("prevBtn").style.display = "inline";
+            }
+            if (n == (x.length - 1)) {
+                //document.getElementById("nextBtn").innerHTML = "Submit";
+
+            } else {
+                document.getElementById("nextBtn").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" width="25"><path d="M40.4 121.3c-.8.8-1.8 1.2-2.9 1.2s-2.1-.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8 0l53.9 53.9c1.6 1.6 1.6 4.2 0 5.8l-53.9 53.9z" fill="#464646"/></svg>';
+            }
+            // ... and run a function that displays the correct step indicator:
+            fixStepIndicator(n)
+        };
+
+        function nextPrev(n) {
+            // This function will figure out which tab to display
+            var x = document.getElementsByClassName("tab");
+            // Exit the function if any field in the current tab is invalid:
+            if (n == 1 && !validateForm()) return false;
+            // Hide the current tab:
+            x[currentTab].style.display = "none";
+            // Increase or decrease the current tab by 1:
+            currentTab = currentTab + n;
+            // if you have reached the end of the form... :
+            if (currentTab < x.length) { var mtb = currentTab + 1; }
+
+            document.getElementById("curr_tb").innerHTML = mtb;
+
+
+            if (currentTab >= x.length) {
+                //...the form gets submitted:
+                document.getElementById("regForm").submit();
+                return false;
+            }
+            // Otherwise, display the correct tab:
+            showTab(currentTab);
+        };
+
+        function validateForm() {
+            // This function deals with validation of the form fields
+            var x, y, i, valid = true;
+            x = document.getElementsByClassName("tab");
+            y = x[currentTab].getElementsByTagName("input");
+            // A loop that checks every input field in the current tab:
+            for (i = 0; i < y.length; i++) {
+                // If a field is empty...
+                if (y[i].value == "") {
+                    // add an "invalid" class to the field:
+                    y[i].className += " invalid";
+                    // and set the current valid status to false:
+                    valid = false;
                 }
-                if (n == (x.length - 1)) {
-                    //document.getElementById("nextBtn").innerHTML = "Submit";
+            }
+            // If the valid status is true, mark the step as finished and valid:
+            if (valid) {
+                document.getElementsByClassName("step")[currentTab].className += " finish";
+            }
+            return valid; // return the valid status
+        };
 
-                } else {
-                    document.getElementById("nextBtn").innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" width="25"><path d="M40.4 121.3c-.8.8-1.8 1.2-2.9 1.2s-2.1-.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8 0l53.9 53.9c1.6 1.6 1.6 4.2 0 5.8l-53.9 53.9z" fill="#464646"/></svg>';
-                }
-                // ... and run a function that displays the correct step indicator:
-                fixStepIndicator(n)
-            };
-
-            function nextPrev(n) {
-                // This function will figure out which tab to display
-                var x = document.getElementsByClassName("tab");
-                // Exit the function if any field in the current tab is invalid:
-                if (n == 1 && !validateForm()) return false;
-                // Hide the current tab:
-                x[currentTab].style.display = "none";
-                // Increase or decrease the current tab by 1:
-                currentTab = currentTab + n;
-                // if you have reached the end of the form... :
-                if (currentTab < x.length) { var mtb = currentTab + 1; }
-
-                document.getElementById("curr_tb").innerHTML = mtb;
+        /*hide and show*/
 
 
-                if (currentTab >= x.length) {
-                    //...the form gets submitted:
-                    document.getElementById("regForm").submit();
-                    return false;
-                }
-                // Otherwise, display the correct tab:
-                showTab(currentTab);
-            };
-
-            function validateForm() {
-                // This function deals with validation of the form fields
-                var x, y, i, valid = true;
-                x = document.getElementsByClassName("tab");
-                y = x[currentTab].getElementsByTagName("input");
-                // A loop that checks every input field in the current tab:
-                for (i = 0; i < y.length; i++) {
-                    // If a field is empty...
-                    if (y[i].value == "") {
-                        // add an "invalid" class to the field:
-                        y[i].className += " invalid";
-                        // and set the current valid status to false:
-                        valid = false;
-                    }
-                }
-                // If the valid status is true, mark the step as finished and valid:
-                if (valid) {
-                    document.getElementsByClassName("step")[currentTab].className += " finish";
-                }
-                return valid; // return the valid status
-            };
-
-            /*hide and show*/
-
-
-            /*hide and show*/
-        </script>
+        /*hide and show*/
+    </script>
 
 
 
 
-        @*end*@
+    @*end*@
 
 
 
-        @*shopdetails*@
-        <script>
-            $('.sp_interior_slider').owlCarousel({
-                loop: true,
-                margin: 0,
-                nav: true,
-                autoHeight: true,
+    @*shopdetails*@
+    <script>
+        $('.sp_interior_slider').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            autoHeight: true,
+            items: 1,
+            navText: ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.494 31.494" width="19" ><path d="M10.273 5.009a1.112 1.112 0 0 1 1.587 0 1.12 1.12 0 0 1 0 1.571l-8.047 8.047h26.554c.619 0 1.127.492 1.127 1.111s-.508 1.127-1.127 1.127H3.813l8.047 8.032c.429.444.429 1.159 0 1.587a1.112 1.112 0 0 1-1.587 0L.321 16.532a1.12 1.12 0 0 1 0-1.571l9.952-9.952z" fill="#FFF"/></svg>', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.49 31.49" width="19" ><path d="M21.205 5.007a1.112 1.112 0 0 0-1.587 0 1.12 1.12 0 0 0 0 1.571l8.047 8.047H1.111A1.106 1.106 0 0 0 0 15.737c0 .619.492 1.127 1.111 1.127h26.554l-8.047 8.032c-.429.444-.429 1.159 0 1.587a1.112 1.112 0 0 0 1.587 0l9.952-9.952a1.093 1.093 0 0 0 0-1.571l-9.952-9.953z" fill="#FFF"/></svg>']
+        });
+
+
+
+        $(function () {
+            var owl = $('.sp_custm_slider');
+            owl.owlCarousel({
+                autoplay: 2000,
                 items: 1,
-                navText: ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.494 31.494" width="19" ><path d="M10.273 5.009a1.112 1.112 0 0 1 1.587 0 1.12 1.12 0 0 1 0 1.571l-8.047 8.047h26.554c.619 0 1.127.492 1.127 1.111s-.508 1.127-1.127 1.127H3.813l8.047 8.032c.429.444.429 1.159 0 1.587a1.112 1.112 0 0 1-1.587 0L.321 16.532a1.12 1.12 0 0 1 0-1.571l9.952-9.952z" fill="#FFF"/></svg>', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.49 31.49" width="19" ><path d="M21.205 5.007a1.112 1.112 0 0 0-1.587 0 1.12 1.12 0 0 0 0 1.571l8.047 8.047H1.111A1.106 1.106 0 0 0 0 15.737c0 .619.492 1.127 1.111 1.127h26.554l-8.047 8.032c-.429.444-.429 1.159 0 1.587a1.112 1.112 0 0 0 1.587 0l9.952-9.952a1.093 1.093 0 0 0 0-1.571l-9.952-9.953z" fill="#FFF"/></svg>']
+                loop: true,
+                onInitialized: counter,
+                onTranslated: counter
             });
 
-
-
-            $(function () {
-                var owl = $('.sp_custm_slider');
-                owl.owlCarousel({
-                    autoplay: 2000,
-                    items: 1,
-                    loop: true,
-                    onInitialized: counter,
-                    onTranslated: counter
-                });
-
-                function counter(event) {
-                    var element = event.target;
-                    var slds = event.item.count;
-                    var sld = event.item.index;
-                    if (sld > slds) {
-                        sld = sld - slds
-                    }
-
-                    if (sld < slds) {
-                        sld1 = sld + 1;
-
-                    }
-                    else { sld1 = slds - 1; }
-
-
-                    if (sld < 9) {
-                        sld = '0' + sld;
-                    }
-                    if (slds < 9) { slds = '0' + slds; }
-
-                    if (sld1 < 9) { sld1 = '0' + sld1; }
-
-                    $('#counter2').html("<span class='cntr_no animated   slideInDown   '>" + sld + "" + "</span> <hr> <span class='cntr_no animated   slideInUp '>" + sld1 + "</span>")
+            function counter(event) {
+                var element = event.target;
+                var slds = event.item.count;
+                var sld = event.item.index;
+                if (sld > slds) {
+                    sld = sld - slds
                 }
 
+                if (sld < slds) {
+                    sld1 = sld + 1;
 
-            });
-            /*slider counter*/
-        </script>
-
-
-
-        @*end*@
+                }
+                else { sld1 = slds - 1; }
 
 
+                if (sld < 9) {
+                    sld = '0' + sld;
+                }
+                if (slds < 9) { slds = '0' + slds; }
 
-        @*storelocator*@
-        <script>
-            $slideshow = $('.slider-for').slick({
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                arrows: false,
-                fade: false,
-                asNavFor: '.slider-nav, .slider-for'
-            });
-            $('.nt_btn').click(function () {
-                $slideshow.slick('slickNext');
-            });
+                if (sld1 < 9) { sld1 = '0' + sld1; }
 
-            $('.slider-nav').slick({
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                asNavFor: '.slider-for',
-                dots: false,
-                centerMode: false,
-                focusOnSelect: true,
-                autoplay: false,
-                arrows: false,
-
-            });
-
-
-
-
-        </script>
-        <script>
-            $('.zoom_btn').click(function (e) {
-                $('#myDiv').toggleClass('fullscreen');
-                $('.parking_info').toggleClass('manage_info');
-            });
-        </script>
-        <!-- map -->
-        <script>
-            function myMap() {
-                var mapProp = {
-                    center: new google.maps.LatLng(51.508742, -0.120850),
-                    zoom: 5,
-                    disableDefaultUI: true
-                };
-                var map = new google.maps.Map(document.getElementById("cp"), mapProp);
-                var mapProp2 = {
-                    center: new google.maps.LatLng(51.508742, -0.120850),
-                    zoom: 5,
-                    disableDefaultUI: true
-                };
-                var map = new google.maps.Map(document.getElementById("bp"), mapProp2);
-                var mapProp3 = {
-                    center: new google.maps.LatLng(51.508742, -0.120850),
-                    zoom: 5,
-                    disableDefaultUI: true
-                };
-                var map = new google.maps.Map(document.getElementById("sp"), mapProp3);
-                var marker = new google.maps.Marker({
-                    position: map.getCenter(),
-                    icon: 'img/location.png',
-                    map: map
-                });
+                $('#counter2').html("<span class='cntr_no animated   slideInDown   '>" + sld + "" + "</span> <hr> <span class='cntr_no animated   slideInUp '>" + sld1 + "</span>")
             }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkr4m8chQdLrP-bLqx6bR2zeX_q3QT3Xc&callback=myMap"
-                async defer></script>
-        <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkr4m8chQdLrP-bLqx6bR2zeX_q3QT3Xc&callback=initMap" async defer></script> -->
-        <!-- map -->
-        <script src="~/js/jquery-ui.min.js"></script>
-        <script src="~/js/imgViewer2.js"></script>
 
-        <script src="~/js/leaflet.js"></script>
 
-        <script>
-            ; (function ($) {
-                $(document).ready(function () {
-                    var $img = $("#image1").imgViewer2(
-                        {
-                            zoomMax: 10,
-                            onReady: function () {
-                                this.setZoom(4).panTo(0.6, 0.5);
-                            }
+        });
+        /*slider counter*/
+    </script>
+
+
+
+    @*end*@
+
+
+
+    @*storelocator*@
+    <script>
+        $slideshow = $('.slider-for').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: false,
+            asNavFor: '.slider-nav, .slider-for'
+        });
+        $('.nt_btn').click(function () {
+            $slideshow.slick('slickNext');
+        });
+
+        $('.slider-nav').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: '.slider-for',
+            dots: false,
+            centerMode: false,
+            focusOnSelect: true,
+            autoplay: false,
+            arrows: false,
+
+        });
+
+
+
+
+    </script>
+    <script>
+        $('.zoom_btn').click(function (e) {
+            $('#myDiv').toggleClass('fullscreen');
+            $('.parking_info').toggleClass('manage_info');
+        });
+    </script>
+    <!-- map -->
+    <script>
+        function myMap() {
+            var mapProp = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 5,
+                disableDefaultUI: true
+            };
+            var map = new google.maps.Map(document.getElementById("cp"), mapProp);
+            var mapProp2 = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 5,
+                disableDefaultUI: true
+            };
+            var map = new google.maps.Map(document.getElementById("bp"), mapProp2);
+            var mapProp3 = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 5,
+                disableDefaultUI: true
+            };
+            var map = new google.maps.Map(document.getElementById("sp"), mapProp3);
+            var marker = new google.maps.Marker({
+                position: map.getCenter(),
+                icon: 'img/location.png',
+                map: map
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkr4m8chQdLrP-bLqx6bR2zeX_q3QT3Xc&callback=myMap"
+            async defer></script>
+    <!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkr4m8chQdLrP-bLqx6bR2zeX_q3QT3Xc&callback=initMap" async defer></script> -->
+    <!-- map -->
+    <script src="~/js/jquery-ui.min.js"></script>
+    <script src="~/js/imgViewer2.js"></script>
+
+    <script src="~/js/leaflet.js"></script>
+
+    <script>
+        ; (function ($) {
+            $(document).ready(function () {
+                var $img = $("#image1").imgViewer2(
+                    {
+                        zoomMax: 10,
+                        onReady: function () {
+                            this.setZoom(4).panTo(0.6, 0.5);
                         }
-                    );
-                });
-            })(jQuery);
-        </script>
-
-        <script>
-            $('.mob_btn_disp1').click(function () {
-                if (!$('.strl_left').hasClass('done')) {
-                    $('.strl_left').addClass('done');
-                    $('.strl_left').stop().animate({
-                        marginLeft: '-270px'
-                    }, 500);
-                } else {
-                    $('.strl_left').removeClass('done');
-                    $('.strl_left').stop().animate({
-                        marginLeft: '0px'
-                    }, 500);
-                }
-
-            });
-        </script>
-
-
-
-        @*end*@
-
-        @*Event*@
-        <script>
-            document.getElementById("box").oninput = function () {
-                var matcher = new RegExp(document.getElementById("box").value, "gi");
-                for (var i = 0; i < document.getElementsByClassName("connect-cat").length; i++) {
-                    if (matcher.test(document.getElementsByClassName("name")[i].innerHTML) || matcher.test(document.getElementsByClassName("category")[i].innerHTML)) {
-                        document.getElementsByClassName("connect-cat")[i].style.display = "inline-block";
-                    } else {
-                        document.getElementsByClassName("connect-cat")[i].style.display = "none";
                     }
+                );
+            });
+        })(jQuery);
+    </script>
 
-                }
+    <script>
+        $('.mob_btn_disp1').click(function () {
+            if (!$('.strl_left').hasClass('done')) {
+                $('.strl_left').addClass('done');
+                $('.strl_left').stop().animate({
+                    marginLeft: '-270px'
+                }, 500);
+            } else {
+                $('.strl_left').removeClass('done');
+                $('.strl_left').stop().animate({
+                    marginLeft: '0px'
+                }, 500);
             }
-        </script>
-        @*end*@
 
-        @*Leasing*@
-        <script>
+        });
+    </script>
+
+
+
+    @*end*@
+
+    @*Event*@
+    <script>
+        document.getElementById("box").oninput = function () {
+            var matcher = new RegExp(document.getElementById("box").value, "gi");
+            for (var i = 0; i < document.getElementsByClassName("connect-cat").length; i++) {
+                if (matcher.test(document.getElementsByClassName("name")[i].innerHTML) || matcher.test(document.getElementsByClassName("category")[i].innerHTML)) {
+                    document.getElementsByClassName("connect-cat")[i].style.display = "inline-block";
+                } else {
+                    document.getElementsByClassName("connect-cat")[i].style.display = "none";
+                }
+
+            }
+        }
+    </script>
+    @*end*@
+
+    @*Leasing*@
+    <script>
         $("#btnleasingsubmit").click(function (e) {
             var obj = {
                 Name: $("#1").val(),
@@ -1716,459 +1736,459 @@
             });
         });
 
-        </script>
-        <script>
+    </script>
+    <script>
 
 
-            var lFollowX = 0,
-                lFollowY = 0,
-                x = 0,
-                y = 0,
-                x2 = 0,
-                y2 = 0,
-                friction = 1 / 30;
-            friction2 = 0.020;
+        var lFollowX = 0,
+            lFollowY = 0,
+            x = 0,
+            y = 0,
+            x2 = 0,
+            y2 = 0,
+            friction = 1 / 30;
+        friction2 = 0.020;
 
-            function moveBackground() {
-                x += (lFollowX - x) * friction;
-                y += (lFollowY - y) * friction;
+        function moveBackground() {
+            x += (lFollowX - x) * friction;
+            y += (lFollowY - y) * friction;
 
-                x2 += (lFollowX - x2) * friction2;
-                y2 += (lFollowY - y2) * friction2;
+            x2 += (lFollowX - x2) * friction2;
+            y2 += (lFollowY - y2) * friction2;
 
-                translate = 'translate(' + x + 'px, ' + y + 'px)';
-                translate2 = 'translate(' + x + 'px, ' + y + 'px)';
-                translate5 = 'translate(' + x + 'px, ' + y + 'px)';
-                translate6 = 'translate(' + x + 'px, ' + y + 'px)';
-                translate3 = 'translate(' + (x + 10) + 'px, ' + (y + 10) + 'px)';
-                translate7 = 'translate(' + (x2 + 5) + 'px, ' + (y2 + 5) + 'px)';
-                translate4 = 'translate(' + (x2 + 5) + 'px, ' + (y2 + 5) + 'px)';
-
-
-                $('.first_top_star').css({
-                    '-webit-transform': translate,
-                    '-moz-transform': translate,
-                    'transform': translate
-                });
-                $('.second_top_star').css({
-                    '-webit-transform': translate2,
-                    '-moz-transform': translate2,
-                    'transform': translate2
-                });
-                /* $('.bg_leady').css({
-                   '-webit-transform': translate3,
-                   '-moz-transform': translate3,
-                   'transform': translate3
-                 });*/
-
-                $('.bg_name_txt').css({
-                    '-webit-transform': translate4,
-                    '-moz-transform': translate4,
-                    'transform': translate4
-                });
-
-                $('.internal_first_star').css({
-                    '-webit-transform': translate5,
-                    '-moz-transform': translate5,
-                    'transform': translate5
-                });
-                $('.internal_second_star').css({
-                    '-webit-transform': translate6,
-                    '-moz-transform': translate6,
-                    'transform': translate6
-                });
-                /*$('.inner_banner_item').css({
-                  '-webit-transform': translate7,
-                  '-moz-transform': translate7,
-                  'transform': translate7
-                });*/
+            translate = 'translate(' + x + 'px, ' + y + 'px)';
+            translate2 = 'translate(' + x + 'px, ' + y + 'px)';
+            translate5 = 'translate(' + x + 'px, ' + y + 'px)';
+            translate6 = 'translate(' + x + 'px, ' + y + 'px)';
+            translate3 = 'translate(' + (x + 10) + 'px, ' + (y + 10) + 'px)';
+            translate7 = 'translate(' + (x2 + 5) + 'px, ' + (y2 + 5) + 'px)';
+            translate4 = 'translate(' + (x2 + 5) + 'px, ' + (y2 + 5) + 'px)';
 
 
-                window.requestAnimationFrame(moveBackground);
-            }
+            $('.first_top_star').css({
+                '-webit-transform': translate,
+                '-moz-transform': translate,
+                'transform': translate
+            });
+            $('.second_top_star').css({
+                '-webit-transform': translate2,
+                '-moz-transform': translate2,
+                'transform': translate2
+            });
+            /* $('.bg_leady').css({
+               '-webit-transform': translate3,
+               '-moz-transform': translate3,
+               'transform': translate3
+             });*/
 
-            $('.main-banner').on('mousemove', function (e) {
-
-                var lMouseX = Math.max(-100, Math.min(100, $('.main-banner').width() / 2 - e.clientX));
-                var lMouseY = Math.max(-100, Math.min(100, $('.main-banner').height() / 2 - e.clientY));
-                lFollowX = (20 * lMouseX) / 100; // 100 : 12 = lMouxeX : lFollow
-                lFollowY = (10 * lMouseY) / 100;
-
+            $('.bg_name_txt').css({
+                '-webit-transform': translate4,
+                '-moz-transform': translate4,
+                'transform': translate4
             });
 
-            $('.main-banner').on('mousedown', function (e) {
-                e.preventDefault();
+            $('.internal_first_star').css({
+                '-webit-transform': translate5,
+                '-moz-transform': translate5,
+                'transform': translate5
             });
-
-            moveBackground();
-
-
-
-        </script>
-
-        <script>
-            window.fbAsyncInit = function () {
-                FB.init({
-                    appId: '196586578204561',
-                    cookie: true,
-                    xfbml: true,
-                    version: 'v5.0'
-                });
-
-                FB.AppEvents.logPageView();
-
-            };
-
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) { return; }
-                js = d.createElement(s); js.id = id;
-                js.src = "https://connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-
-            function submitAndShare(title, description, image) {
-                // var image = 'https://www.svenskttenn.se/filtered/5043/rszww1600h1000-83/svenskt_tennkategoribild_tapeter-1699026363-rszww1600h1000-83.jpg';
-                shareOverrideOGMeta(window.location.href,
-                    title,
-                    description,
-                    image);
-
-                return false;
-            }
-
-            function shareOverrideOGMeta(overrideLink, overrideTitle, overrideDescription, overrideImage) {
-                FB.ui({
-                    method: 'share_open_graph',
-                    action_type: 'og.likes',
-                    action_properties: JSON.stringify({
-                        object: {
-                            'og:url': overrideLink,
-                            'og:title': overrideTitle,
-                            'og:description': overrideDescription,
-                            'og:image': overrideImage
-                        }
-                    })
-                },
-                    function (response) {
-                        // Action after response
-                    });
-            }
-
-            function shareOriginal() {
-                FB.ui({
-                    method: 'share',
-                    href: window.location.href
-                },
-                    function (response) {
-                        // Action after response
-                    });
-
-                return false;
-            }
-        </script>
-        <script src='//platform-api.sharethis.com/js/sharethis.js#property=5c74d47e312f9c0011357f4b&product=sticky-share-buttons'
-                async='async'></script>
-
-        <!-- Facebook Pixel Code -->
-        <script>
-            !function (f, b, e, v, n, t, s) {
-                if (f.fbq) return; n = f.fbq = function () {
-                    n.callMethod ?
-                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-                };
-                if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '5.0';
-                n.queue = []; t = b.createElement(e); t.async = !0;
-                t.src = v; s = b.getElementsByTagName(e)[0];
-                s.parentNode.insertBefore(t, s)
-            }(window, document, 'script',
-                'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '196586578204561');
-            fbq('track', 'PageView');
-        </script>
-        <noscript>
-            <img height="1" width="1" style="display:none" alt="AlhamraMall"
-                 src="https://www.facebook.com/tr?id=196586578204561&ev=PageView&noscript=1" />
-        </noscript>
-        <!-- End Facebook Pixel Code -->
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91120721-2"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-
-            gtag('config', 'UA-91120721-2');
-        </script>
-
-        <!-- Search Start -->
-        @*
-            <script>
-
-                $("#search_btn2").click(function (e) {
-
-                    var value = '1090';
-                    var value2 = 'en';
-                    var data1 = value + "~" + value2;
-                    var obj = { send1: data1 };
-                    $.ajax({
-                        url: "@Url.Action("GetClient", "NewsSettlerSurface")",
-                        type: "POST",
-                        //data: { "send": "" + data + "" },
-                        dataType: "json",
-                        contentType: "application/json; charset=utf-8",
-                        data: JSON.stringify(obj),
-                        success: function (data) {
-                            console.log(data);
-                        }
-                    });
-                    debugger;
-                });
-
-            </script>*@
-        <script>
-            $(document).click(function () { $('.searchresults2').hide(); });
-            $('#txtsearch').keyup(function () {
-                var searchField = $('#txtsearch').val();
-                var myExp = new RegExp(searchField, "i");
-                $.getJSON('/data.json', function (data) {
-                    var output = '<ul class="searchresults">';
-                    $.each(data, function (key, val) {
-                        if (val.name.search(myExp) != -1) {
-                            output += '<li>';
-                            output += '<a href="' + val.reknown + '"><span>' + val.bio + '</span>';
-                            output += ' <i> -(' + val.shortname + ')</i>';
-                            output += '</a></li>';
-                        }
-                    });
-                    output += '</ul>';
-                    if (searchField != '') { $('#result2').html(output); }
-                    else { $('#result2').html('<span style="color:#fbfbfb; margin-top:50px;">No result found</span>'); }
-                }); debugger;
+            $('.internal_second_star').css({
+                '-webit-transform': translate6,
+                '-moz-transform': translate6,
+                'transform': translate6
             });
-            $('.searchresults2').hide();
-
-            $('#txtsearch2').keyup(function () {
-
-                var searchField = $('#txtsearch2').val();
-
-                var myExp = new RegExp(searchField, "i");
-
-                $.getJSON('/data.json', function (data) {
-                    var output = '<ul class="searchresults2">';
-                    $.each(data, function (key, val) {
-                        if (val.name.search(myExp) != -1) {
-                            console.log(val.bio);
-                            output += '<li>';
-                            output += '<a href="' + val.reknown + '"><span>' + val.bio + '</span>';
-                            output += ' <i> -(' + val.shortname + ')</i>';
-                            output += '</a></li>';
-                        }
-                    });
-                    output += '</ul>';
-                    if (searchField != '') {
-
-                        $('#result3').html(output);
-                        $('.searchresults2').show();
-                    }
-
-                    else {
-                        $('#result3').html(); $('.searchresults2').hide();
-                    }
-
-                }); debugger;
-            });
-
-            $('#txtsearch4').keyup(function () {
-
-                var searchField = $('#txtsearch4').val();
-
-                var myExp = new RegExp(searchField, "i");
-
-                $.getJSON('/data.json', function (data) {
-                    var output = '<ul class="searchresults2">';
-                    $.each(data, function (key, val) {
-                        if (val.name.search(myExp) != -1) {
-                            console.log(val.bio);
-                            output += '<li>';
-                            output += '<a href="' + val.reknown + '"><span>' + val.bio + '</span>';
-                            output += ' <i> -(' + val.shortname + ')</i>';
-                            output += '</a></li>';
-                        }
-                    });
-                    output += '</ul>';
-                    if (searchField != '') {
-
-                        $('.result5').html(output);
-                        $('.searchresults2').show();
-                    }
-
-                    else {
-                        $('.result5').html(); $('.searchresults2').hide();
-                    }
-
-                }); debugger;
-            });
-
-            $('#search3').keyup(function () {
-                var searchField = $('#search3').val();
-
-                var myExp = new RegExp(searchField, "i");
-
-                $.getJSON('/data.json', function (data) {
-                    var output = '<ul class="searchresults2">';
-                    $.each(data, function (key, val) {
-                        if (val.name.search(myExp) != -1) {
-                            output += '<li>';
-                            output += '<a href="' + val.reknown + '"><span>' + val.bio + '</span>';
-                            output += ' <i> -(' + val.shortname + ')</i>';
-                            output += '</a></li>';
-                        }
-                    });
-                    output += '</ul>';
-                    if (searchField != '') {
-                        $('.searchresults2').show();
-                        $('#result4').html(output);
-
-                    }
-                    else { $('#result4').html(); $('.searchresults2').hide(); }
-
-                });
-            });
-        </script>
-
-        <script>
-            function activaTab(tabID) {
-
-                $('.links_tabs a[href="#' + tabID + '"]').tab('show');
-            };
-            activaTab('tab2');
-        </script>
-
-        <script>
-            $(".tb_link").click(function () {
-                var value = 'url("' +
-                    $(this).data("value") + '")'; $("#div_img_cont").css("background-image", value);
-            });
-        </script>
-        <!-- Search End -->
-        <!--Dine to storeLocator-->
-        <script>
-            $(document).ready(function () {
-                $(document).ready(function () {
-                    var ur_id = window.location.hash;
-                    activaTab(ur_id.substring(1, ur_id.length));
-                });
-
-                function activaTab(tab) {
-                    $('.links_tabs a[href="#' + tab + '"]').tab('show');
-                };
-            });
-        </script>
-        <script>
-
-            $("#dine1").click(function () {
-
-                $("#shop_logo").show();
-                $('html, body').animate({
-                    scrollTop: $("#shop_main_logo").offset().top
-                }, 400);
-            });
-            $("#dine2").click(function () {
-
-                $("#shop_logo").show();
-                $('html, body').animate({
-                    scrollTop: $("#shop_main_logo").offset().top
-                }, 400);
-            });
-            $("#dine3").click(function () {
-
-                $("#shop_logo").show();
-                $('html, body').animate({
-                    scrollTop: $("#shop_main_logo").offset().top
-                }, 400);
-            });
-            $("#dine4").click(function () {
-
-                $("#shop_logo").show();
-                $('html, body').animate({
-                    scrollTop: $("#shop_main_logo").offset().top
-                }, 400);
-            });
-            $("#dine5").click(function () {
-
-                $("#shop_logo").show();
-                $('html, body').animate({
-                    scrollTop: $("#shop_main_logo").offset().top
-                }, 400);
-            });
+            /*$('.inner_banner_item').css({
+              '-webit-transform': translate7,
+              '-moz-transform': translate7,
+              'transform': translate7
+            });*/
 
 
-
-        </script>
-        @*end*@
-
-        <script src="~/js/jquery.validationEngine.js"></script>
-        <script src="~/js/jquery.validationEngine.min.js"></script>
-        <script>
-            $(".like_btn_bottom").click(function () {
-
-                $(this).addClass("likedbtn");
-            });
-        </script>
-
-        @*
-            <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.js"></script>*@
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
-        <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
-        @if (TempData["UmbracoForms"] != null)
-        {
-            foreach (var form in (List<Guid>)TempData["UmbracoForms"])
-            {
-                Html.RenderAction("RenderFormScripts", "UmbracoForms", new { formid = form, theme = "yourTheme" });
-            }
+            window.requestAnimationFrame(moveBackground);
         }
 
-        <script>
-            jQuery.get('/en?json=true', function (msg) {
-                entirePage = JSON.parse(msg);
-                console.log(msg)
-            })
-            $(document).on('click', '.option1', function () {
-                //var d = this.attr("data-value");
-                var d = $(this).attr("data-value")
+        $('.main-banner').on('mousemove', function (e) {
 
-                var url = window.location.href;
-                var pathname = new URL(url).pathname;
-                if (pathname.includes("/en")) {
-                    var lang = pathname.replace("/en", "/ar");
-                    window.location.href = lang;
+            var lMouseX = Math.max(-100, Math.min(100, $('.main-banner').width() / 2 - e.clientX));
+            var lMouseY = Math.max(-100, Math.min(100, $('.main-banner').height() / 2 - e.clientY));
+            lFollowX = (20 * lMouseX) / 100; // 100 : 12 = lMouxeX : lFollow
+            lFollowY = (10 * lMouseY) / 100;
 
-                }
-                else if (pathname.includes("/ar")) {
-                    var lang = pathname.replace("/ar", "/en");
-                    window.location.href = lang;
+        });
 
-                }
+        $('.main-banner').on('mousedown', function (e) {
+            e.preventDefault();
+        });
 
-                else if (d == "English" || d == "en") {
-                    var lang = url + "en";
-                    window.location.href = lang;
+        moveBackground();
 
-                }
-                else if (d == "Arabic" || d == "ar") {
-                    var lang = url + "ar";
-                    window.location.href = lang;
 
-                }
-                else {
-                    window.location.href = url;
-                }
+
+    </script>
+
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '196586578204561',
+                cookie: true,
+                xfbml: true,
+                version: 'v5.0'
             });
-            //$('.selectpicker').on('change', function () {
-            //    alert(this.value);
-            //});
-        </script>
+
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function submitAndShare(title, description, image) {
+            // var image = 'https://www.svenskttenn.se/filtered/5043/rszww1600h1000-83/svenskt_tennkategoribild_tapeter-1699026363-rszww1600h1000-83.jpg';
+            shareOverrideOGMeta(window.location.href,
+                title,
+                description,
+                image);
+
+            return false;
+        }
+
+        function shareOverrideOGMeta(overrideLink, overrideTitle, overrideDescription, overrideImage) {
+            FB.ui({
+                method: 'share_open_graph',
+                action_type: 'og.likes',
+                action_properties: JSON.stringify({
+                    object: {
+                        'og:url': overrideLink,
+                        'og:title': overrideTitle,
+                        'og:description': overrideDescription,
+                        'og:image': overrideImage
+                    }
+                })
+            },
+                function (response) {
+                    // Action after response
+                });
+        }
+
+        function shareOriginal() {
+            FB.ui({
+                method: 'share',
+                href: window.location.href
+            },
+                function (response) {
+                    // Action after response
+                });
+
+            return false;
+        }
+    </script>
+    <script src='//platform-api.sharethis.com/js/sharethis.js#property=5c74d47e312f9c0011357f4b&product=sticky-share-buttons'
+            async='async'></script>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '5.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '196586578204561');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none" alt="AlhamraMall"
+             src="https://www.facebook.com/tr?id=196586578204561&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91120721-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-91120721-2');
+    </script>
+
+    <!-- Search Start -->
+    @*
+        <script>
+
+            $("#search_btn2").click(function (e) {
+
+                var value = '1090';
+                var value2 = 'en';
+                var data1 = value + "~" + value2;
+                var obj = { send1: data1 };
+                $.ajax({
+                    url: "@Url.Action("GetClient", "NewsSettlerSurface")",
+                    type: "POST",
+                    //data: { "send": "" + data + "" },
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(obj),
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
+                debugger;
+            });
+
+        </script>*@
+    <script>
+        $(document).click(function () { $('.searchresults2').hide(); });
+        $('#txtsearch').keyup(function () {
+            var searchField = $('#txtsearch').val();
+            var myExp = new RegExp(searchField, "i");
+            $.getJSON('/data.json', function (data) {
+                var output = '<ul class="searchresults">';
+                $.each(data, function (key, val) {
+                    if (val.name.search(myExp) != -1) {
+                        output += '<li>';
+                        output += '<a href="' + val.reknown + '"><span>' + val.bio + '</span>';
+                        output += ' <i> -(' + val.shortname + ')</i>';
+                        output += '</a></li>';
+                    }
+                });
+                output += '</ul>';
+                if (searchField != '') { $('#result2').html(output); }
+                else { $('#result2').html('<span style="color:#fbfbfb; margin-top:50px;">No result found</span>'); }
+            }); debugger;
+        });
+        $('.searchresults2').hide();
+
+        $('#txtsearch2').keyup(function () {
+
+            var searchField = $('#txtsearch2').val();
+
+            var myExp = new RegExp(searchField, "i");
+
+            $.getJSON('/data.json', function (data) {
+                var output = '<ul class="searchresults2">';
+                $.each(data, function (key, val) {
+                    if (val.name.search(myExp) != -1) {
+                        console.log(val.bio);
+                        output += '<li>';
+                        output += '<a href="' + val.reknown + '"><span>' + val.bio + '</span>';
+                        output += ' <i> -(' + val.shortname + ')</i>';
+                        output += '</a></li>';
+                    }
+                });
+                output += '</ul>';
+                if (searchField != '') {
+
+                    $('#result3').html(output);
+                    $('.searchresults2').show();
+                }
+
+                else {
+                    $('#result3').html(); $('.searchresults2').hide();
+                }
+
+            }); debugger;
+        });
+
+        $('#txtsearch4').keyup(function () {
+
+            var searchField = $('#txtsearch4').val();
+
+            var myExp = new RegExp(searchField, "i");
+
+            $.getJSON('/data.json', function (data) {
+                var output = '<ul class="searchresults2">';
+                $.each(data, function (key, val) {
+                    if (val.name.search(myExp) != -1) {
+                        console.log(val.bio);
+                        output += '<li>';
+                        output += '<a href="' + val.reknown + '"><span>' + val.bio + '</span>';
+                        output += ' <i> -(' + val.shortname + ')</i>';
+                        output += '</a></li>';
+                    }
+                });
+                output += '</ul>';
+                if (searchField != '') {
+
+                    $('.result5').html(output);
+                    $('.searchresults2').show();
+                }
+
+                else {
+                    $('.result5').html(); $('.searchresults2').hide();
+                }
+
+            }); debugger;
+        });
+
+        $('#search3').keyup(function () {
+            var searchField = $('#search3').val();
+
+            var myExp = new RegExp(searchField, "i");
+
+            $.getJSON('/data.json', function (data) {
+                var output = '<ul class="searchresults2">';
+                $.each(data, function (key, val) {
+                    if (val.name.search(myExp) != -1) {
+                        output += '<li>';
+                        output += '<a href="' + val.reknown + '"><span>' + val.bio + '</span>';
+                        output += ' <i> -(' + val.shortname + ')</i>';
+                        output += '</a></li>';
+                    }
+                });
+                output += '</ul>';
+                if (searchField != '') {
+                    $('.searchresults2').show();
+                    $('#result4').html(output);
+
+                }
+                else { $('#result4').html(); $('.searchresults2').hide(); }
+
+            });
+        });
+    </script>
+
+    <script>
+        function activaTab(tabID) {
+
+            $('.links_tabs a[href="#' + tabID + '"]').tab('show');
+        };
+        activaTab('tab2');
+    </script>
+
+    <script>
+        $(".tb_link").click(function () {
+            var value = 'url("' +
+                $(this).data("value") + '")'; $("#div_img_cont").css("background-image", value);
+        });
+    </script>
+    <!-- Search End -->
+    <!--Dine to storeLocator-->
+    <script>
+        $(document).ready(function () {
+            $(document).ready(function () {
+                var ur_id = window.location.hash;
+                activaTab(ur_id.substring(1, ur_id.length));
+            });
+
+            function activaTab(tab) {
+                $('.links_tabs a[href="#' + tab + '"]').tab('show');
+            };
+        });
+    </script>
+    <script>
+
+        $("#dine1").click(function () {
+
+            $("#shop_logo").show();
+            $('html, body').animate({
+                scrollTop: $("#shop_main_logo").offset().top
+            }, 400);
+        });
+        $("#dine2").click(function () {
+
+            $("#shop_logo").show();
+            $('html, body').animate({
+                scrollTop: $("#shop_main_logo").offset().top
+            }, 400);
+        });
+        $("#dine3").click(function () {
+
+            $("#shop_logo").show();
+            $('html, body').animate({
+                scrollTop: $("#shop_main_logo").offset().top
+            }, 400);
+        });
+        $("#dine4").click(function () {
+
+            $("#shop_logo").show();
+            $('html, body').animate({
+                scrollTop: $("#shop_main_logo").offset().top
+            }, 400);
+        });
+        $("#dine5").click(function () {
+
+            $("#shop_logo").show();
+            $('html, body').animate({
+                scrollTop: $("#shop_main_logo").offset().top
+            }, 400);
+        });
+
+
+
+    </script>
+    @*end*@
+
+    <script src="~/js/jquery.validationEngine.js"></script>
+    <script src="~/js/jquery.validationEngine.min.js"></script>
+    <script>
+        $(".like_btn_bottom").click(function () {
+
+            $(this).addClass("likedbtn");
+        });
+    </script>
+
+    @*
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.0.0.min.js"></script>*@
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
+    @if (TempData["UmbracoForms"] != null)
+    {
+        foreach (var form in (List<Guid>)TempData["UmbracoForms"])
+        {
+            Html.RenderAction("RenderFormScripts", "UmbracoForms", new { formid = form, theme = "yourTheme" });
+        }
+    }
+
+    <script>
+        jQuery.get('/en?json=true', function (msg) {
+            entirePage = JSON.parse(msg);
+            console.log(msg)
+        })
+        $(document).on('click', '.option1', function () {
+            //var d = this.attr("data-value");
+            var d = $(this).attr("data-value")
+
+            var url = window.location.href;
+            var pathname = new URL(url).pathname;
+            if (pathname.includes("/en")) {
+                var lang = pathname.replace("/en", "/ar");
+                window.location.href = lang;
+
+            }
+            else if (pathname.includes("/ar")) {
+                var lang = pathname.replace("/ar", "/en");
+                window.location.href = lang;
+
+            }
+
+            else if (d == "English" || d == "en") {
+                var lang = url + "en";
+                window.location.href = lang;
+
+            }
+            else if (d == "Arabic" || d == "ar") {
+                var lang = url + "ar";
+                window.location.href = lang;
+
+            }
+            else {
+                window.location.href = url;
+            }
+        });
+        //$('.selectpicker').on('change', function () {
+        //    alert(this.value);
+        //});
+    </script>
 </body>
 
 </html>

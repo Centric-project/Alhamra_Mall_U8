@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "b1ea06ca238328bb")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "9c86fec0d99021bc")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.9")]
 
 
 // FILE: models.generated.cs
@@ -921,7 +921,7 @@ namespace Umbraco.Web.PublishedModels
 
 	/// <summary>Category</summary>
 	[PublishedModel("category")]
-	public partial class Category : PublishedContentModel
+	public partial class Category : PublishedContentModel, INavigationBase
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -945,18 +945,25 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
-		/// Category Banner
+		/// Keywords: Keywords that describe the content of the page. This is considered optional since most modern search engines don't use this anymore
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("categoryBannerImg")]
-		public Umbraco.Core.Models.MediaWithCrops CategoryBannerImg => this.Value<Umbraco.Core.Models.MediaWithCrops>("categoryBannerImg");
+		[ImplementPropertyType("keywords")]
+		public IEnumerable<string> Keywords => NavigationBase.GetKeywords(this);
 
 		///<summary>
-		/// Title
+		/// Description: A brief description of the content on your page. This text is shown below the title in a google search result and also used for Social Sharing Cards. The ideal length is between 130 and 155 characters
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("categoryTitle")]
-		public string CategoryTitle => this.Value<string>("categoryTitle");
+		[ImplementPropertyType("seoMetaDescription")]
+		public string SeoMetaDescription => NavigationBase.GetSeoMetaDescription(this);
+
+		///<summary>
+		/// Hide in Navigation: If you don't want this page to appear in the navigation, check this box
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("umbracoNavihide")]
+		public bool UmbracoNavihide => NavigationBase.GetUmbracoNavihide(this);
 	}
 
 	/// <summary>Shop Category</summary>
@@ -983,6 +990,20 @@ namespace Umbraco.Web.PublishedModels
 		{ }
 
 		// properties
+
+		///<summary>
+		/// Category Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("categoryImage")]
+		public Umbraco.Core.Models.MediaWithCrops CategoryImage => this.Value<Umbraco.Core.Models.MediaWithCrops>("categoryImage");
+
+		///<summary>
+		/// Category Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("categoryTitle")]
+		public string CategoryTitle => this.Value<string>("categoryTitle");
 
 		///<summary>
 		/// Keywords: Keywords that describe the content of the page. This is considered optional since most modern search engines don't use this anymore
@@ -1351,6 +1372,20 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
+		/// Category Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("categoryImage")]
+		public Umbraco.Core.Models.MediaWithCrops CategoryImage => this.Value<Umbraco.Core.Models.MediaWithCrops>("categoryImage");
+
+		///<summary>
+		/// Category Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("categoryTitle")]
+		public string CategoryTitle => this.Value<string>("categoryTitle");
+
+		///<summary>
 		/// Keywords: Keywords that describe the content of the page. This is considered optional since most modern search engines don't use this anymore
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
@@ -1433,7 +1468,7 @@ namespace Umbraco.Web.PublishedModels
 		public string ShopTitle => this.Value<string>("shopTitle");
 	}
 
-	/// <summary>Entertainment</summary>
+	/// <summary>Entertain</summary>
 	[PublishedModel("entertainment")]
 	public partial class Entertainment : PublishedContentModel
 	{
@@ -1480,11 +1515,39 @@ namespace Umbraco.Web.PublishedModels
 		public Umbraco.Core.Models.MediaWithCrops EntertainmentMainBanner => this.Value<Umbraco.Core.Models.MediaWithCrops>("entertainmentMainBanner");
 
 		///<summary>
-		/// Entertainment Main Heading
+		/// Fun Ville Description
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("entertainmentMainHeading")]
-		public string EntertainmentMainHeading => this.Value<string>("entertainmentMainHeading");
+		[ImplementPropertyType("funVilleDescription")]
+		public IHtmlString FunVilleDescription => this.Value<IHtmlString>("funVilleDescription");
+
+		///<summary>
+		/// Fun Ville Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("funVilleImage")]
+		public Umbraco.Core.Models.MediaWithCrops FunVilleImage => this.Value<Umbraco.Core.Models.MediaWithCrops>("funVilleImage");
+
+		///<summary>
+		/// Fun Ville Main Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("funVilleMainImage")]
+		public Umbraco.Core.Models.MediaWithCrops FunVilleMainImage => this.Value<Umbraco.Core.Models.MediaWithCrops>("funVilleMainImage");
+
+		///<summary>
+		/// Mall Train Description
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("mallTrainDescription")]
+		public IHtmlString MallTrainDescription => this.Value<IHtmlString>("mallTrainDescription");
+
+		///<summary>
+		/// Mall Train Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("mallTrainImage")]
+		public Umbraco.Core.Models.MediaWithCrops MallTrainImage => this.Value<Umbraco.Core.Models.MediaWithCrops>("mallTrainImage");
 
 		///<summary>
 		/// Movie Banner
@@ -1494,11 +1557,11 @@ namespace Umbraco.Web.PublishedModels
 		public IEnumerable<Umbraco.Core.Models.MediaWithCrops> MovieBanner => this.Value<IEnumerable<Umbraco.Core.Models.MediaWithCrops>>("movieBanner");
 
 		///<summary>
-		/// Share Heading
+		/// Now Showing Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("shareHeading")]
-		public string ShareHeading => this.Value<string>("shareHeading");
+		[ImplementPropertyType("nowShowingImage")]
+		public Umbraco.Core.Models.MediaWithCrops NowShowingImage => this.Value<Umbraco.Core.Models.MediaWithCrops>("nowShowingImage");
 
 		///<summary>
 		/// Upcoming Movie Banner
@@ -1884,6 +1947,81 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("thankYouField")]
 		public Umbraco.Core.Models.MediaWithCrops ThankYouField => this.Value<Umbraco.Core.Models.MediaWithCrops>("thankYouField");
+	}
+
+	/// <summary>Shop Category Detail Landing</summary>
+	[PublishedModel("shopCategoryDetailLanding")]
+	public partial class ShopCategoryDetailLanding : PublishedContentModel
+	{
+		// helpers
+#pragma warning disable 0109 // new is redundant
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new const string ModelTypeAlias = "shopCategoryDetailLanding";
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new static IPublishedContentType GetModelContentType()
+			=> PublishedModelUtility.GetModelContentType(ModelItemType, ModelTypeAlias);
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<ShopCategoryDetailLanding, TValue>> selector)
+			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+#pragma warning restore 0109
+
+		// ctor
+		public ShopCategoryDetailLanding(IPublishedContent content)
+			: base(content)
+		{ }
+
+		// properties
+
+		///<summary>
+		/// Contact Us
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("contactUs")]
+		public IHtmlString ContactUs => this.Value<IHtmlString>("contactUs");
+
+		///<summary>
+		/// Floor Name
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("floorName")]
+		public string FloorName => this.Value<string>("floorName");
+
+		///<summary>
+		/// Opening & Closing Hours
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("openingClosingHours")]
+		public IHtmlString OpeningClosingHours => this.Value<IHtmlString>("openingClosingHours");
+
+		///<summary>
+		/// Shop Category
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("shopCategory")]
+		public IPublishedContent ShopCategory => this.Value<IPublishedContent>("shopCategory");
+
+		///<summary>
+		/// Shop Category Main Banner
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("shopCategoryMainBanner")]
+		public Umbraco.Core.Models.MediaWithCrops ShopCategoryMainBanner => this.Value<Umbraco.Core.Models.MediaWithCrops>("shopCategoryMainBanner");
+
+		///<summary>
+		/// Shop Logo
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("shopLogo")]
+		public Umbraco.Core.Models.MediaWithCrops ShopLogo => this.Value<Umbraco.Core.Models.MediaWithCrops>("shopLogo");
+
+		///<summary>
+		/// Shop Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("shopTitle")]
+		public string ShopTitle => this.Value<string>("shopTitle");
 	}
 
 	/// <summary>Folder</summary>
