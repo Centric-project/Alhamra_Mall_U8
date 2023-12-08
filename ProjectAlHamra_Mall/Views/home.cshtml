@@ -1,0 +1,523 @@
+﻿@using Umbraco.Web;
+@using System;
+@using ContentModels = Umbraco.Web.PublishedModels;
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Home>
+@{
+    Layout = "master.cshtml";
+    var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+
+
+}
+<style>
+
+
+    .slick-prev,
+    .slick-next {
+        position: absolute;
+        /*right: 10%;
+        background: #777;
+        border: none;
+        color: transparent;
+        width: 30px;
+        height: 30px;*/
+        z-index: 3;
+        transform: translateY(-50%);
+        width: 36px;
+        height: 36px;
+    }
+
+        .slick-prev:before,
+        .slick-next:before {
+            content: "";
+            width: 36px;
+            height: 36px;
+            display: block;
+            /*color: #fff;
+    font-size: 25px;*/
+        }
+
+        .slick-next:before {
+            background-image: url('/media/fkhhuqp3/right-icon.png');
+        }
+
+    .slick-next {
+        right: 40px;
+    }
+
+    .slick-prev {
+        left: 40px;
+    }
+
+        .slick-prev:before {
+            content: "";
+            background-image: url('/media/c2gbrfhj/left-icon.png');
+        }
+
+    .slick-dots {
+        list-style: none;
+        margin: 0 auto;
+        text-align: center;
+        bottom: 20px;
+    }
+
+        .slick-dots li {
+            display: inline-block;
+            margin: 0 0px;
+        }
+
+            .slick-dots li button:before {
+                font-size: 10px;
+                color: #ffffff;
+                opacity: 1;
+            }
+
+            .slick-dots li.slick-active button:before {
+                color: #B42B30;
+                opacity: 1;
+            }
+
+    .mt-80 {
+        margin-top: 80px;
+    }
+
+    .whatsNew-holder.container.header-container,
+    .main-banner.container.header-container {
+        max-width: 1400px;
+    }
+</style>
+<style type="text/css">
+
+    #surveyModal .modal-dialog .survey-wrap {
+        background-color: #FACDC8 !important;
+    }
+
+    @@media screen and (max-width: 767px) {
+        .whatsNew-slider .whatsNew-box .whatsNew-content-box .whatsNew-holder span.span-content {
+            height: 340px;
+        }
+
+        .whatsNew-slider .whatsNew-box .whatsNew-content-box .whatsNew-holder .btn-primary {
+            position: absolute;
+        }
+    }
+
+    .whatsNew-slider .slick-slide img {
+        width: 100%;
+    }
+
+    .whatsnew-btn {
+        text-align: center;
+    }
+
+    .timeModal {
+        wha max-width: 80%;
+        border-radius: 0;
+        top: 5%;
+        margin: 0 auto;
+    }
+
+
+    #timingModal .modal-dialog .modal-content button.close {
+        position: absolute;
+        right: 0;
+        top: -24px;
+        background-color: #fff;
+        opacity: 2;
+        width: 30px;
+    }
+
+    .btn-primary, .btn.btn-primary, .btn-default, .btn.btn-default {
+        background: transparent;
+        border: 0px;
+        text-transform: uppercase;
+        font-family: "dubai-regular";
+        padding: 10px 20px;
+        min-width: auto;
+        line-height: unset;
+        color: #B42B30;
+    }
+
+    .main-banner .slide img, .main-banner .slide video {
+        height: auto;
+    }
+
+    .download__card .choice__box {
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        color: #fff;
+    }
+
+        .download__card .choice__box p {
+            margin-bottom: 0px;
+        }
+
+    .download__card .clickDown {
+        width: 200px;
+    }
+
+    .download__card .gtm-track-app-event img {
+        width: 155px;
+    }
+
+    .download__card .scan-icon img {
+        max-width: 150px;
+    }
+
+    .clickDown, .clickQr {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        text-align: center;
+    }
+
+    .download__card h4 {
+        font-size: 18px;
+        font-family: "Gotham-Medium";
+        margin: 15px 0;
+    }
+
+    .download__card {
+        border: 3px solid #707070;
+        border-radius: 10px !important;
+        margin: 0 0 40px;
+        width: 75%;
+    }
+    .sub-heading {
+        font-family: 'dubai_regular';
+        text-align: center;
+        font-size: 36px;
+        padding-bottom: 30px;
+        font-weight: 400;
+        color: #2A2A2A;
+    }
+    .whatsNew-slider .whatsNew-box .whatsNew-content-box .whatsNew-holder h4 {
+        font-size: 30px;
+        margin-bottom: 25px;
+        font-family: "Gotham-Medium";
+    }
+    .whatsNew-slider .whatsNew-box .whatsNew-content-box .whatsNew-holder span.span-content {
+        display: block;
+        height: 340px;
+        overflow: hidden;
+    }
+    @@media screen and (max-width: 1024px) {
+        .download__card {
+            margin: auto;
+            margin-bottom: 30px;
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+
+    @@media screen and (max-width: 992.99px) {
+        .download__card .card-body .d-flex.justify-content-around.align-items-center {
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .download__card .card-body {
+            padding: 0 0 30px;
+        }
+
+        .clickDown, .clickQr {
+            height: auto;
+        }
+
+        .download__card .choice__box {
+            margin: 20px 0;
+        }
+    }
+
+    @@media screen and (max-width: 768x) {
+        .download__card {
+            margin: auto;
+            margin-bottom: 30px;
+            max-width: 360px;
+            width: 100%;
+        }
+    }
+
+    @@media (max-width: 400px) {
+        .download__card .scan-icon {
+            margin: 0 5px;
+        }
+    }
+
+
+    @@media screen and (max-width: 1300px) and (min-width: 768px) {
+        .whatsNew-slider .whatsNew-box .whatsNew-content-box .whatsNew-holder span.span-content {
+            height: auto;
+        }
+
+        .whatsNew-slider .slick-slide img {
+            height: 100%;
+        }
+
+        .whatsNew-slider .whatsNew-box .whatsNewVideo-holder {
+            height: 100%;
+        }
+    }
+</style>
+
+<section class="main-banner container header-container mt-80">
+    <div class="">
+        <div class="slick-carousel">
+            @{
+                var bannerItems = Model.AncestorOrSelf(1).DescendantsOfType("homeSlider")
+                .OrderBy(x => x.Value<int>("sortOrder")).ToList();
+                int currIndex = 0;
+
+                foreach (ContentModels.HomeSlider hSlide in bannerItems)
+                {
+                    DateTime currDate = DateTime.Today;
+                    var campaignDate = hSlide.Value<DateTime>("bannerEndDate");
+                    if (campaignDate.Date >= currDate.Date)
+                    {
+                        currIndex++;
+                        if (hSlide.SliderVideo != null && !string.IsNullOrEmpty(hSlide.SliderVideo.Url))
+                        {
+                            <div class="slide video-slide slick-carousel">
+                                <div class="slide-content">
+                                    @if (lang == "ar")
+                                    {
+                                        <a href="https://www.yasmall.ae/ar/events/uae-union-day-at-yas-mall">
+                                            <video id="slider_video" class="tv_video hide-for-small-only"
+                                                   name="@hSlide.ButtonText-VideoPlay" poster="@hSlide.SliderImage.Url()" loop
+                                                   muted autoplay>
+                                                <source src="@hSlide.SliderVideo.Url()" type="video/mp4" />
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </a>
+                                    }
+                                    @if (lang == "en")
+                                    {
+                                        <a href="https://www.yasmall.ae/en/events/uae-union-day-at-yas-mall">
+                                            <video id="slider_video" class="tv_video hide-for-small-only"
+                                                   name="@hSlide.ButtonText-VideoPlay" poster="@hSlide.SliderImage.Url()" loop
+                                                   muted autoplay>
+                                                <source src="@hSlide.SliderVideo.Url()" type="video/mp4" />
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        </a>
+                                    }
+                                </div>
+                                @if (!hSlide.ShowLinkText)
+                                {
+                                    <div class="caption">
+                                        <h3>@hSlide.SliderHeading</h3>
+                                        <a href="@hSlide.ButtonLink" class="btn btn-primary  gtm-track-more-event"
+                                           name="@hSlide-WatchVideos">@hSlide.ButtonText</a>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        else if (hSlide.SliderImage != null && !string.IsNullOrEmpty(hSlide.SliderImage.Url))
+                        {
+                            string btnLinkURL = "#";
+                            bool flag = false;
+                            if (hSlide.ButtonLink != null)
+                            {
+                                if (lang == "ar")
+                                {
+                                    btnLinkURL =
+                                    "https://www.aljimimall.com/media/vbbcpghe/jimi-mall-digital-guide-arabic-final.pdf";
+                                    flag = true;
+                                }
+                                else if (lang == "en")
+                                {
+                                    btnLinkURL =
+                                    "https://www.aljimimall.com/media/br2hdbbp/jimi-mall-digital-guide-english-final.pdf";
+                                    flag = true;
+                                }
+                                else
+                                {
+
+                                    btnLinkURL = hSlide.ButtonLink.Url;
+
+                                }
+                            }
+
+                            <div class="slide slide-content">
+                                <a href="@hSlide.ButtonLink.Url">
+                                    <img src="@hSlide.SliderImage.Url()" class="img-fluid" alt="@hSlide.SliderHeading" />
+                                </a>
+                                <div class="caption" style="display: none">
+                                    <h3>@hSlide.SliderHeading</h3>
+                                    @if (!hSlide.ShowLinkText)
+                                    {
+                                        <a href="@hSlide.ButtonLink" class="btn btn-primary gtm-track-button-event"
+                                           name="@hSlide.Value(" ButtonText", "en-US")">@hSlide.ButtonText</a>
+                                    }
+                                </div>
+                            </div>
+
+                        }
+
+                    }
+                }
+
+                if (currIndex == 0)
+                {
+                    currIndex++;
+                    var videoBanner = Model.Value<IPublishedContent>("defaultVideoBanner");
+                    <div class="slide video-slide">
+                        <div class="clearfix sliderVideo-holder">
+                            <video id="slider_video" class="tv_video hide-for-small-only" controls="controls"
+                                   autoplay loop muted>
+                                <source src="@videoBanner.Url()" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+    </div>
+</section>
+<!--Start  Whats New-->
+
+@{
+    var whatsNew = Model.AncestorOrSelf(1).DescendantsOfType("whatsNewSlider").FirstOrDefault();
+    //var darnaRewards = mallReDevList.Where(x => x.Id == 1870).FirstOrDefault(); //Get The Darna Rewards Content By Id
+
+    if (whatsNew != null)
+    {
+        <section class="box-holder lp-box  whatsNew-holder container header-container">
+            <!--Start Heading-->
+            <div class="heading-holder">
+                <h2 class="sub-heading">@Umbraco.GetDictionaryValue("WhatsNew")</h2>
+            </div>
+            <!--End Heading-->
+            <!--Start Event Slider-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="custom-slider whatsNew-slider">
+                        @{
+                            IEnumerable<IPublishedContent> whatsNewItem = whatsNew.Children().Where(x => x.IsVisible());
+                            foreach (var whatsNewItems in whatsNewItem)
+                            {
+                                <div class="slide">
+                                    <div class="whatsNew-box">
+                                        <div class="row">
+                                            <div class="col-lg-8 col-md-8 pr-none main-event">
+                                                <div class="clearfix whatsNewVideo-holder">
+                                                    @{
+                                                        var whatsNewVideo = whatsNewItems.Value<IPublishedContent>("video");
+                                                        var whatsNewImg = whatsNewItems.Value<IPublishedContent>("thumbImage");
+                                                        if (whatsNewVideo != null)
+                                                        {
+                                                            if (whatsNewImg != null)
+                                                            {
+                                                                <video id="darna_video" class="tv_video hide-for-small-only" controls="controls"
+                                                                       poster="@whatsNewImg.Url()">
+                                                                    <source src="@whatsNewVideo.Url()" type="video/mp4" />
+                                                                    Your browser does not support the video tag.
+                                                                </video>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            if (whatsNewImg != null)
+                                                            {
+                                                                <img src="@whatsNewImg.Url()" class="img-fluid">
+                                                            }
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 pl-none whatsNew-content-box" data-aos="fade-down" data-aos-duration="1500">
+                                                <div class="clearfix whatsNew-holder">
+                                                    <span class="span-content">
+                                                        <h4>@whatsNewItems.Value("whatsNewTitle")</h4>
+                                                        @Html.Raw(whatsNewItems.Value("whatsNewDetails"))
+                                                    </span>
+                                                    @{
+                                                        var wNPageLink = whatsNewItems.Value<IPublishedContent>("redirectToPage");
+                                                        var wNPageLinkURL = wNPageLink == null ? "" : wNPageLink.Url();
+                                                        if (wNPageLinkURL != "")
+                                                        {
+                                                            <a href="@wNPageLinkURL" class="btn btn-primary">@whatsNewItems.Value("buttonText")</a>
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!--End Event Slider-->
+        </section>
+    }
+}
+<!--End Whats New-->
+<!--Start Ultimate Experince-->
+@{
+    var Indulge = Model.AncestorOrSelf(1).DescendantsOfType("indulge").FirstOrDefault();
+
+    if (Indulge != null)
+    {
+        <section class="box-holder">
+            <!--Start Heading-->
+            <div class="heading-holder">
+                <h3 class="heading-border">@Model.Value("indulgeYourSenses")</h3>
+            </div>
+            <!--End Heading-->
+            <div class="container-fluid custom-container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="ultimate-listing gtm-mainsec" data-section="ultimate-listing">
+                            @{
+                                var indulgeImageShop = Model.Value<IPublishedContent>("indulgeYourSensesShop");
+                                if (indulgeImageShop != null)
+                                {
+                                    <div class="ultimate-holder" data-aos="fade-up">
+                                        <figure>
+                                            <img src="@indulgeImageShop.Url()" class="img-fluid" alt="" />
+                                            <div class="clearfix info-holder">
+                                                <a href="@indulgeImageShop.Url()" class="link gtm-track-tile-event" name=""><span>@Html.Raw("indulgeYourSensesShopHead")</span></a>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                }
+                                var indulgeImageDine = Model.Value<IPublishedContent>("indulgeYourSensesDine");
+                                if (indulgeImageDine != null)
+                                {
+                                    <div class="ultimate-holder" data-aos="fade-up">
+                                        <figure>
+                                            <img src="@indulgeImageDine.Url()" class="img-fluid" alt="" />
+                                            <div class="clearfix info-holder">
+                                                <a href="@indulgeImageDine.Url()" class="link gtm-track-tile-event" name=""><span>@Html.Raw("indulgeYourSensesDineHead")</span></a>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                }
+                                var indulgeImageEntertainment = Model.Value<IPublishedContent>("indulgeYourSensesEntertainment");
+                                if (indulgeImageEntertainment != null)
+                                {
+                                    <div class="ultimate-holder" data-aos="fade-up">
+                                        <figure>
+                                            <img src="@indulgeImageEntertainment.Url()" class="img-fluid" alt="" />
+                                            <div class="clearfix info-holder">
+                                                <a href="@indulgeImageEntertainment.Url()" class="link gtm-track-tile-event" name=""><span>@Html.Raw("indulgeYourSensesEntertainmentHead")</span></a>
+                                            </div>
+                                        </figure>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}
+
+<!--End Ultimate Experince-->

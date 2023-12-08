@@ -1,0 +1,61 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using Umbraco.Web;
+@{
+    var site = Model.Root();
+    var selection = site.Children.Where(x => x.IsVisible());
+    var moreItems = selection.Where(x => x.Name == "About Us" || x.Name == "Contact Us" || x.Name == "Media Center");
+    var mainItems = selection.Except(moreItems);
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLower();
+    var translations = new Dictionary<string, string>
+    {
+        { "Shop", culture == "ar" ? "تسوق" : "Shop" },
+        { "Dine", culture == "ar" ? "المطاعم والمقاهي" : "Dine" },
+        { "Entertainment", culture == "ar" ? "الترفيه" : "Entertainment" },
+        { "About Us", culture == "ar" ? "عن الحمراء" : "About Us" },
+        { "Contact Us", culture == "ar" ? "اتصل بنا" : "Contact Us" },
+        { "Media Center", culture == "ar" ? "المركز الاعلامي" : "Media Center" },
+        { "More", culture == "ar" ? "المزيد" : "More" }
+    };
+}
+<!-- comment out the following line if you want to remove the root node name from the top navigation -->
+<!--<a class="nav-link @Html.Raw(Model.Id == site.Id ? "navi-link--active" : "")" href="@site.Url">@site.Name</a>-->
+
+<ul class="menu">
+    @foreach (var item in mainItems)
+    {
+        var itemName = translations.ContainsKey(item.Name) ? translations[item.Name] : item.Name;
+        if (item.Name == "Category" || item.Name == "Home" || item.Name == "Dine Category" || item.Name == "Shop Category")
+        {
+            <!--<li>
+                <a class="nav-link @(item.IsAncestorOrSelf(Model) ? "nav-link--active" : null)" href="@item.Url">@itemName</a>
+            </li>-->
+        }
+        else
+        {
+            <li>
+                <a class="nav-link @(item.IsAncestorOrSelf(Model) ? "nav-link--active" : null)" href="@item.Url">@itemName</a>
+            </li>
+        }
+    }
+
+    @if (moreItems.Any())
+    {
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @translations["More"]
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" width="12" height="12">
+                    <path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z" fill="#555" />
+                </svg>
+            </a>
+            <ul>
+                @foreach (var moreItem in moreItems)
+                {
+                    var moreItemName = translations.ContainsKey(moreItem.Name) ? translations[moreItem.Name] : moreItem.Name;
+                    <li>
+                        <a class="nav-link @(moreItem.IsAncestorOrSelf(Model) ? "nav-link--active" : null)" href="@moreItem.Url">@moreItemName</a>
+                    </li>
+                }
+            </ul>
+        </li>
+    }
+</ul>

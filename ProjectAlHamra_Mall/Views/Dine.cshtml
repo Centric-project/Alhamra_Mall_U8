@@ -1,0 +1,258 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Dine>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "master.cshtml";
+
+}
+
+@* the fun starts here *@
+
+@{
+    var dineMainBanner = Model.Value<IPublishedContent>("dineMainBanner");
+    if (dineMainBanner != null)
+    {
+        <div class="container-fluid slider-main ">
+            <div class="row">
+
+                <div class="main-banner">
+
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item" style="   background: url('@dineMainBanner.Url()') center top no-repeat;background-size:100%;">
+
+                        </div>
+                        @*<div class="item_img1 rellax internal_first_star" style="background:  url('/img/Design Element 2.png')no-repeat  right center; background-size:contain;"></div>
+                            <div class="item_img1 rellax internal_second_star" style="background:  url('/img/Design Element 1.png')no-repeat; background-size:contain;"></div>*@
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+}
+<section class="container-fluid dine">
+    <div class="container">
+        <div class="row">
+            <div class="dine_info">
+                <a id="dine3" href="#shop_logo_Restro">
+                    @Html.Raw(Model.Value("dineHeading"))
+                </a>
+                @*<p>*@
+                @Html.Raw(Model.Value("dineMainDescription"))
+                @*</p>*@
+            </div>
+        </div>
+    </div>
+    <div class="container  dine_section_links">
+        <ul>
+            @{
+                var dineBrands = Model.Value<IEnumerable<IPublishedContent>>("dineBrands");
+                if (dineBrands != null && dineBrands.Any())
+                {
+                    foreach (var image in dineBrands)
+                    {
+                        <li class="shadow-md">
+                            <a rel="canonical" href="@image.Url()"><img src="@image.Url()" class="img-fluid" /></a>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <p>No images selected.</p>
+                }
+            }
+        </ul>
+    </div>
+</section>
+<section class="container-fluid  restrn_cafe">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                <div class="row ">
+                    <div class="restaurants_info">
+
+                        <a class="headH1" id="dine1" href="#shop_logo_Restro">
+                            @Html.Raw(Model.Value("restaurantTitle"))
+                        </a>
+
+
+                        @Html.Raw(Model.Value("restaurantDescription"))
+
+                        <hr class="heading_hr">
+
+                    </div>
+                    @{
+                        var restaurantsImage = Model.Value<IPublishedContent>("restaurantsImage");
+                        if (restaurantsImage != null)
+                        {
+                            <div class="restaurants_img" style="background: url(@restaurantsImage.Url())   center no-repeat; background-size: cover;"></div>
+                        }
+                    }
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="row cafe_info">
+
+                    @*<div class="cafe_info_heading">
+                            <hr class="heading_hr" align="center">
+                            <a id="dine2" href="#shop_logo_Cafe">
+                                <h2>
+
+                                    @Model.Value("dineHeading")
+
+                                </h2>
+                            </a>
+                            <hr class="heading_hr" align="center">
+                            <span class="downarrow"><svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 451.847 451.847"><path d="M225.923 354.706c-8.098 0-16.195-3.092-22.369-9.263L9.27 151.157c-12.359-12.359-12.359-32.397 0-44.751 12.354-12.354 32.388-12.354 44.748 0l171.905 171.915 171.906-171.909c12.359-12.354 32.391-12.354 44.744 0 12.365 12.354 12.365 32.392 0 44.751L248.292 345.449c-6.177 6.172-14.274 9.257-22.369 9.257z" fill="#2b2b2b" /></svg></span>
+
+                        </div>*@
+
+
+                    @{
+                        var cafeImage = Model.Value<IPublishedContent>("cafeImage");
+                        if (cafeImage != null)
+                        {
+                            <div class="cafe_img" style="background: url(@cafeImage.Url())   center no-repeat; background-size: cover;"></div>
+                        }
+
+                    }
+
+
+                    <div class="cafe_info_heading">
+                        <hr class="heading_hr">
+                        <a id="dine2" href="#shop_logo_Cafe">
+                            @Html.Raw(Model.Value("cafeTitle"))
+                        </a>
+                        <hr class="heading_hr">
+                        <span class="downarrow"><svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 451.847 451.847"><path d="M225.923 354.706c-8.098 0-16.195-3.092-22.369-9.263L9.27 151.157c-12.359-12.359-12.359-32.397 0-44.751 12.354-12.354 32.388-12.354 44.748 0l171.905 171.915 171.906-171.909c12.359-12.354 32.391-12.354 44.744 0 12.365 12.354 12.365 32.392 0 44.751L248.292 345.449c-6.177 6.172-14.274 9.257-22.369 9.257z" fill="#2b2b2b" /></svg></span>
+
+                    </div>
+
+                    <div class="cafe_desc">
+                        @Html.Raw(Model.Value("cafeDescription"))
+                        <hr class="footer_lines">
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="container-fluid court_speciality">
+    <div class="container">
+        <div class="row">
+            @{
+                var foodCourtImage = Model.Value<IPublishedContent>("foodCourtImage");
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <div class="row ">
+
+                        @if (foodCourtImage != null)
+                        {
+                            <div class="seciality_img" style="background: url(@foodCourtImage.Url())   center no-repeat; background-size: cover;"></div>
+                        }
+
+                    </div>
+                </div>
+            }
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <div class="row ">
+                    <div class="speciality_info">
+                        <a id="dine4" href="#shop_logo_Food">
+                            @Html.Raw(Model.Value("foodCourtTitle"))
+                        </a>
+                        <hr>
+                        @Html.Raw(Model.Value("foodCourtDescription"))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container-fluid food_seciality eqheight">
+    <div class="container clearfix">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 eqheight">
+                <div class="food_spec_info">
+                    <a id="dine5" href="#shop_logo_Spl">
+                        @Html.Raw(Model.Value("specialityFoodsTitle"))
+                    </a>
+                    @Html.Raw(Model.Value("specialityFoodsDescription"))
+                    <hr>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 eqheight">
+                <div class="row eqheight">
+                    @{
+                        var specialityFoods = Model.Value<IPublishedContent>("specialityFoodsImage");
+                        if (specialityFoods != null)
+                        {
+                            <div class="seciality_img" style="background: url(@specialityFoods.Url())   center no-repeat; background-size: cover;"></div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<section class="container-fluid food_shops">
+    <div class="container food_shops">
+        <div class="row">
+            <div class="food_shops_heading" id="shop_logo_Restro">
+                <hr class="heading_hr">
+                @Html.Raw(Model.Value("restaurantsAlHamra"))
+                <hr class="heading_hr">
+                <span class="downarrow"><svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 451.847 451.847"><path d="M225.923 354.706c-8.098 0-16.195-3.092-22.369-9.263L9.27 151.157c-12.359-12.359-12.359-32.397 0-44.751 12.354-12.354 32.388-12.354 44.748 0l171.905 171.915 171.906-171.909c12.359-12.354 32.391-12.354 44.744 0 12.365 12.354 12.365 32.392 0 44.751L248.292 345.449c-6.177 6.172-14.274 9.257-22.369 9.257z" fill="#2b2b2b" /></svg></span>
+            </div>
+        </div>
+        <div class="row logos_brd_list">
+
+            @{
+                var dineDetails = Model.AncestorOrSelf(1).DescendantsOfType("dine").FirstOrDefault();//Model.Content.Site().FirstChild("featuredLandingDocType");
+                if (dineDetails != null)
+                {
+                    foreach (var item in dineDetails.Children())
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 brand_main_logo">
+                            <div class="logo_container">
+                                <a href="">
+                                    <div class="card">
+                                        <div class="card_info_holder">
+                                            @{
+                                                var shopLogo = item.Value<IPublishedContent>("shopLogo");
+                                                if (shopLogo != null)
+                                                {
+                                                    <div class="card_img"><img src="@shopLogo.Url()" alt=""></div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="card_img"><p>No image available</p></div>
+                                                }
+                                            }
+                                                        
+                                            <ul class="shop_time_info">
+                                                <li class="card_heading">@item.Value("shopTitle")</li>
+                                                <li class="card_time">@item.Value("openingClosingHours")</li>
+                                                <li class="card_time">@item.Value("floorName")</li>
+                                                <li class="card_location">@item.Value("contactUs")</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <span></span>
+                        </div>
+                    }
+                }
+            }
+
+        </div>
+    </div>
+</section>

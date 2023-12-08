@@ -1,0 +1,114 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.AboutUs>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web.Mvc;
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "master.cshtml";
+}
+
+@* the fun starts here *@
+@{
+    var aboutBanner = Model.Value<IPublishedContent>("aboutBanner");
+    if (aboutBanner != null)
+    {
+        <div class="container-fluid slider-main ">
+            <div class="row">
+
+                <div class="main-banner">
+
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item" style="   background: url('@aboutBanner.Url()') center top no-repeat;">
+
+                        </div>
+                        @*<div class="item_img1 rellax internal_first_star" style="background:  url('/img/Design Element 2.png')no-repeat  right center; background-size:contain;"></div>
+                            <div class="item_img1 rellax internal_second_star" style="background:  url('/img/Design Element 1.png')no-repeat; background-size:contain;"></div>*@
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+}
+<div class="container-fluid  about_info ">
+    <div class="container">
+
+        <!--top -->
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hidden-xs  ">
+            <h2 class="aboutH2">@Umbraco.GetDictionaryValue("About Us")</h2>
+
+            <!-- <div class="open_hr">Mall Opening Hours <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" width="15" ><path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z" fill="#dbdbdb"/></svg></div> -->
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12  ">
+
+            <div class="row">
+                <div class="abt_info_contr  ">
+                    <div class="col-sm-12 hidden-lg hidden-md hidden-sm visible-xs mob_abt">
+                        <h2 class="aboutH2">@Html.Raw(Model.Value("aboutUs"))</h2>
+
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#home">@Umbraco.GetDictionaryValue("alHamraMallHeader")</a></li>
+                        <li><a data-toggle="tab" href="#menu1">@Umbraco.GetDictionaryValue("alHamraHeader")</a></li>
+                    </ul>
+                    <div class="tab-content  ">
+                        <div id="home" class="tab-pane   in active    ">
+                            @Html.Raw(Model.Value("manarMall"))
+                            <hr>
+                        </div>
+                        <div id="menu1" class="tab-pane    ">
+                            @Html.Raw(Model.Value("alHamra"))
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!--top -->
+
+    </div>
+</div>
+<section class="container-fluid ab_open_info">
+    <div class="container">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 hidden-xs  ">
+
+            <div class="open_hr">@Umbraco.GetDictionaryValue("mallOpeningTitle") <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" width="15" ><path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z" fill="#dbdbdb"/></svg> --></div>
+        </div>
+        <div class="opening_time">
+            <div class="col-sm-12 text-center">
+                <h2>@Umbraco.GetDictionaryValue("mallTiming")</h2>
+            </div>
+            <div class="row">
+                @{
+                    var aboutMallContent = Model.AncestorOrSelf(1).DescendantsOfType("aboutUs").FirstOrDefault();
+                    if (aboutMallContent != null)
+                    {
+                        var childPages = aboutMallContent.Children.Where(x => x.IsVisible());
+
+                        foreach (var childPage in childPages)
+                        {
+                            var contentImage = childPage.Value<IPublishedContent>("contentImage");
+                            if (contentImage != null)
+                            {
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 eqheight">
+                                    <div class="img_ab_cont">
+                                        <img src="@contentImage.Url()" alt="">
+                                    </div>
+                                    <div class="info_img">
+                                        <ul>
+                                            <li class="ab_time_heading">@Html.Raw(childPage.Name)</li>
+                                            <li class="ab_time">@Html.Raw(childPage.Value("contentDescription"))</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+</section>
