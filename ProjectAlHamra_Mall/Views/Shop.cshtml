@@ -40,7 +40,9 @@
     }
 }
 <!--End Main Banner-->
-<!-- Start Shopping Page Landing Content-->
+
+
+        <!-- Start Shopping Page Landing Content-->
 <div class="container-fluid shopping_information">
 
     <div class="container  ">
@@ -63,7 +65,7 @@
                             <img src="/media/ixtc2p2h/fashion-100.jpg" style="display:none" alt="image" />
                         </div>
                         <div class="sh_caption">
-                            <a rel="canonical" href="@Model.BrandImage1.Url()" class="title_link"
+                            <a rel="canonical" href="#" class="title_link"
                                onmouseover="call12()">
                                 <h2 class="appr_acces">
                                     @Model.Value("BrandImage1Description")
@@ -79,50 +81,22 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="row ">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                        <div class="row pad_7">
-                            <a rel="canonical" href="/en/accessories/" onmouseover="call12()">
-                                <div class="shopping_sec_3">
-                                    <div class="img_holder_dv"
-                                         style="background-image: url(/media/jhshds0k/accessories-100-1.jpg)">
-                                        <img src="/media/jhshds0k/accessories-100-1.jpg" style="display:none"
-                                             alt="stores in Al Hamra Mall">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row pad_7">
+                                <a rel="canonical" href="@Model.ShopCategory.Url()" onmouseover="call12()">
+                                    <div class="shopping_sec_3">
+                                        <div class="img_holder_dv" style="background-image: url(/media/qtmhqveh/accessories-100.jpg)">
+                                            <img src="@Model.ShopCategory.Url()" style="display:none" alt="stores in Al Hamra Mall">
+                                        </div>
+                                        <div class="sh_caption">
+                                            <h2 class="appr_acces">
+                                                @Model.Value("BrandImage2Description")
+                                            </h2>
+                                        </div>
                                     </div>
-                                    <div class="sh_caption">
-                                        <h2 class="appr_acces">
-                                            @Model.Value("BrandImage2Description")
-                                        </h2>
-                                    </div>
-
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
-                        <div class="row pad_7">
-                            <a rel="canonical" href="/en/eyewear-and-optical/" onmouseover="call11()">
-                                <div class="shopping_sec_2">
-                                    @*<div class="img_holder_dv"
-                                            style="background-image: url(/media/2191/eyewear-100.jpg);">
-                                            <img src="/media/2191/eyewear-100.jpg" style="display:none"
-                                                alt="stores in Al Hamra Mall">
-                                        </div>*@
-                                    <div class="img_holder_dv"
-                                         style="background-image: url(/media/qd3jp4m2/eyewear-100.jpg)">
-                                        <img src="/media/qd3jp4m2/eyewear-100.jpg" style="display:none;"
-                                             alt="stores in Al Hamra Mall">
-                                    </div>
-                                    <div class="sh_caption">
-                                        <h2 class="appr_acces" id="typewriter11">
-                                            @Model.Value("BrandImage3Description")
-                                        </h2>
-                                    </div>
-
-                                </div>
-                            </a>
-                        </div>
-                    </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6  ">
                         <div class="row pad_7">
                             <a rel="canonical" href="/en/jewellery-and-gold/" onmouseover="call10()">
@@ -417,3 +391,4 @@
     </div>
 </div>
 <!-- End Shopping Page Landing Content-->
+

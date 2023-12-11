@@ -12,7 +12,7 @@
     var V1 = DateTime.Now.ToString("yyyyMMddHHmmssfff");
     var uiCurrentCulture = Thread.CurrentThread.CurrentUICulture;
     var selection = site.Children.Where(x => x.IsVisible());
-    var moreItems = selection.Where(x => x.Name == "About Us" || x.Name == "Contact Us" || x.Name == "Media Center");
+    var moreItems = selection.Where(x => x.Name == "Media Center");
     var mainItems = selection.Except(moreItems);
     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLower();
     var translations = new Dictionary<string, string>
@@ -381,7 +381,7 @@
                                             }
                                             else if (currLang == "ar")
                                             {
-                                                mainItems = mainItems.Reverse();
+                                                /*mainItems = mainItems.Reverse();*/
                                                 if (moreItems.Any())
                                                 {
                                                     <li class="dropdown">

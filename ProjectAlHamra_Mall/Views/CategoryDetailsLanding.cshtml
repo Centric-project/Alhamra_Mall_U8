@@ -1,0 +1,83 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+	Layout = "master.cshtml";
+}
+
+@* the fun starts here *@
+@{
+    var CategoryMainBanner = Model.Value<IPublishedContent>("CategoryMainBanner");
+    if (CategoryMainBanner != null)
+    {
+        <div class="container-fluid slider-main ">
+            <div class="row">
+
+                <div class="main-banner">
+
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item" style="   background: url('@CategoryMainBanner.Url()') center top no-repeat;background-size:100%;">
+
+                        </div>
+                        @*<div class="item_img1 rellax internal_first_star" style="background:  url('/img/Design Element 2.png')no-repeat  right center; background-size:contain;"></div>
+                            <div class="item_img1 rellax internal_second_star" style="background:  url('/img/Design Element 1.png')no-repeat; background-size:contain;"></div>*@
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+}
+<section class="container-fluid food_shops">
+    <div class="container food_shops">
+        @*<div class="row">
+            <div class="food_shops_heading" id="shop_logo_Restro">
+                <hr class="heading_hr">
+                @Html.Raw(Model.Value("restaurantsAlHamra"))
+                <hr class="heading_hr">
+                <span class="downarrow"><svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 451.847 451.847"><path d="M225.923 354.706c-8.098 0-16.195-3.092-22.369-9.263L9.27 151.157c-12.359-12.359-12.359-32.397 0-44.751 12.354-12.354 32.388-12.354 44.748 0l171.905 171.915 171.906-171.909c12.359-12.354 32.391-12.354 44.744 0 12.365 12.354 12.365 32.392 0 44.751L248.292 345.449c-6.177 6.172-14.274 9.257-22.369 9.257z" fill="#2b2b2b" /></svg></span>
+            </div>
+        </div>*@
+        <div class="row logos_brd_list">
+
+            @{
+                var category = Model.AncestorOrSelf(1).DescendantsOfType("category").FirstOrDefault();//Model.Content.Site().FirstChild("featuredLandingDocType");
+                if (category != null)
+                {
+                    foreach (var item in category.Children())
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 brand_main_logo">
+                            <div class="logo_container">
+                                <a href="">
+                                    <div class="card">
+                                        <div class="card_info_holder">
+                                            @{
+                                                var Logo = item.Value<IPublishedContent>("Logo");
+                                                if (Logo != null)
+                                                {
+                                                    <div class="card_img"><img src="@Logo.Url()" alt=""></div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="card_img"><p>No image available</p></div>
+                                                }
+                                            }
+                                                        
+                                            <ul class="shop_time_info">
+                                                <li class="card_heading">@item.Value("Title")</li>
+                                                <li class="card_time">@item.Value("openingClosingHours")</li>
+                                                <li class="card_time">@item.Value("floorName")</li>
+                                                <li class="card_location">@item.Value("contactUs")</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <span></span>
+                        </div>
+                    }
+                }
+            }
+
+        </div>
+    </div>
+</section>

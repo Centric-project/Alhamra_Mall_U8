@@ -459,65 +459,84 @@
 }
 <!--End Whats New-->
 <!--Start Ultimate Experince-->
-@{
-    var Indulge = Model.AncestorOrSelf(1).DescendantsOfType("indulge").FirstOrDefault();
-
-    if (Indulge != null)
-    {
-        <section class="box-holder">
-            <!--Start Heading-->
-            <div class="heading-holder">
-                <h3 class="heading-border">@Model.Value("indulgeYourSenses")</h3>
-            </div>
-            <!--End Heading-->
-            <div class="container-fluid custom-container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="ultimate-listing gtm-mainsec" data-section="ultimate-listing">
-                            @{
-                                var indulgeImageShop = Model.Value<IPublishedContent>("indulgeYourSensesShop");
-                                if (indulgeImageShop != null)
-                                {
-                                    <div class="ultimate-holder" data-aos="fade-up">
-                                        <figure>
-                                            <img src="@indulgeImageShop.Url()" class="img-fluid" alt="" />
-                                            <div class="clearfix info-holder">
-                                                <a href="@indulgeImageShop.Url()" class="link gtm-track-tile-event" name=""><span>@Html.Raw("indulgeYourSensesShopHead")</span></a>
-                                            </div>
-                                        </figure>
+<section class="box-holder">
+    <!--Start Heading-->
+    <div class="heading-holder">
+        <h3 class="heading-border">@Umbraco.GetDictionaryValue("IndulgeYourSenses")</h3>
+    </div>
+    <!--End Heading-->
+    <div class="container-fluid custom-container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ultimate-listing gtm-mainsec" data-section="ultimate-listing">
+                    @{
+                        var entertainment = Model.AncestorOrSelf(1).DescendantsOfType("entertainment").FirstOrDefault();
+                        if (entertainment != null)
+                        {
+                            var entUEImg = entertainment.Value<IPublishedContent>("UEImage");
+                            var  entUEImgURL = entUEImg == null ? "" : entUEImg.Url();
+    
+                            var entUETitle = entertainment.Value("UETitle");
+    
+                            var entUELink = entertainment.Value<IPublishedContent>("UELink");
+                            var entUELinkURL = entUELink == null ? "" : entUELink.Url();
+    
+                            var entUEBtnText = entertainment.Value("UELinkText");
+                            <div class="ultimate-holder" data-aos="fade-up">
+                                <figure>
+                                    <img src="@entUEImgURL" class="img-fluid" alt="" />
+                                    <div class="clearfix info-holder">
+                                        <a href="@entUELinkURL" class="link gtm-track-tile-event" name=""><span>@entUEBtnText</span></a>
                                     </div>
-                                }
-                                var indulgeImageDine = Model.Value<IPublishedContent>("indulgeYourSensesDine");
-                                if (indulgeImageDine != null)
-                                {
-                                    <div class="ultimate-holder" data-aos="fade-up">
-                                        <figure>
-                                            <img src="@indulgeImageDine.Url()" class="img-fluid" alt="" />
-                                            <div class="clearfix info-holder">
-                                                <a href="@indulgeImageDine.Url()" class="link gtm-track-tile-event" name=""><span>@Html.Raw("indulgeYourSensesDineHead")</span></a>
-                                            </div>
-                                        </figure>
+                                </figure>
+                            </div>
+                          }
+                        var dine = Model.AncestorOrSelf(1).DescendantsOfType("dine").FirstOrDefault();
+                        if (dine != null)
+                        {
+                            var entUEImg = dine.Value<IPublishedContent>("UEImage");
+                            var  entUEImgURL = entUEImg == null ? "" : entUEImg.Url();
+    
+                            var entUETitle = dine.Value("UETitle");
+    
+                            var entUELink = dine.Value<IPublishedContent>("UELink");
+                            var entUELinkURL = entUELink == null ? "" : entUELink.Url();
+    
+                            var entUEBtnText = dine.Value("UELinkText");
+                            <div class="ultimate-holder" data-aos="fade-up">
+                                <figure>
+                                    <img src="@entUEImgURL" class="img-fluid" alt="" />
+                                    <div class="clearfix info-holder">
+                                        <a href="@entUELinkURL" class="link gtm-track-tile-event" name=""><span>@entUEBtnText</span></a>
                                     </div>
-                                }
-                                var indulgeImageEntertainment = Model.Value<IPublishedContent>("indulgeYourSensesEntertainment");
-                                if (indulgeImageEntertainment != null)
-                                {
-                                    <div class="ultimate-holder" data-aos="fade-up">
-                                        <figure>
-                                            <img src="@indulgeImageEntertainment.Url()" class="img-fluid" alt="" />
-                                            <div class="clearfix info-holder">
-                                                <a href="@indulgeImageEntertainment.Url()" class="link gtm-track-tile-event" name=""><span>@Html.Raw("indulgeYourSensesEntertainmentHead")</span></a>
-                                            </div>
-                                        </figure>
+                                </figure>
+                            </div>
+                          }
+                        var shop = Model.AncestorOrSelf(1).DescendantsOfType("shop").FirstOrDefault();
+                        if (shop != null)
+                        {
+                            var entUEImg = shop.Value<IPublishedContent>("UEImage");
+                            var  entUEImgURL = entUEImg == null ? "" : entUEImg.Url();
+    
+                            var entUETitle = shop.Value("UETitle");
+    
+                            var entUELink = shop.Value<IPublishedContent>("UELink");
+                            var entUELinkURL = entUELink == null ? "" : entUELink.Url();
+    
+                            var entUEBtnText = shop.Value("UELinkText");
+                            <div class="ultimate-holder" data-aos="fade-up">
+                                <figure>
+                                    <img src="@entUEImgURL" class="img-fluid" alt="" />
+                                    <div class="clearfix info-holder">
+                                        <a href="@entUELinkURL" class="link gtm-track-tile-event" name=""><span>@entUEBtnText</span></a>
                                     </div>
-                                }
-                            }
-                        </div>
-                    </div>
+                                </figure>
+                            </div>
+                          }
+                    }
                 </div>
             </div>
-        </section>
-    }
-}
-
+        </div>
+    </div>
+</section>
 <!--End Ultimate Experince-->
