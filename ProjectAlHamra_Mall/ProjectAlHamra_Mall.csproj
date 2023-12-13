@@ -950,6 +950,7 @@
     <Content Include="Images\ahm-web-banner-01.jpg" />
     <Content Include="Images\al-hamra-mall-rr-100.jpg" />
     <Content Include="Images\alhamralogo.png" />
+    <Content Include="Images\menu.png" />
     <Content Include="Images\nav_dot.png" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\classie.js" />

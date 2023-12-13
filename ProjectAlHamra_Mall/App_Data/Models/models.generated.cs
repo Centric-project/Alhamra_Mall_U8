@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "1ce7e62fa9ffd6d7")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.4")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "7d001da6a7810a98")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 namespace Umbraco.Web.PublishedModels
 {
@@ -484,7 +484,7 @@ namespace Umbraco.Web.PublishedModels
 
 	/// <summary>Shop</summary>
 	[PublishedModel("shop")]
-	public partial class Shop : PublishedContentModel, IUltimateExperience
+	public partial class Shop : PublishedContentModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -508,13 +508,6 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
-		/// Brand 2 Image Link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brand2ImageLink")]
-		public IPublishedContent Brand2ImageLink => this.Value<IPublishedContent>("brand2ImageLink");
-
-		///<summary>
 		/// Brand Description
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
@@ -522,172 +515,18 @@ namespace Umbraco.Web.PublishedModels
 		public IHtmlString BrandDescription => this.Value<IHtmlString>("brandDescription");
 
 		///<summary>
-		/// Brand Image 1
+		/// Brand Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage1")]
-		public Umbraco.Core.Models.MediaWithCrops BrandImage1 => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage1");
+		[ImplementPropertyType("brandImage")]
+		public Umbraco.Core.Models.MediaWithCrops BrandImage => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage");
 
 		///<summary>
-		/// Brand Image 10
+		/// Brand Image Description
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage10")]
-		public Umbraco.Core.Models.MediaWithCrops BrandImage10 => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage10");
-
-		///<summary>
-		/// Brand Image 10 Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage10Description")]
-		public IHtmlString BrandImage10Description => this.Value<IHtmlString>("brandImage10Description");
-
-		///<summary>
-		/// Brand Image 11
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage11")]
-		public Umbraco.Core.Models.MediaWithCrops BrandImage11 => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage11");
-
-		///<summary>
-		/// Brand Image 11 Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage11Description")]
-		public IHtmlString BrandImage11Description => this.Value<IHtmlString>("brandImage11Description");
-
-		///<summary>
-		/// Brand Image 12
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage12")]
-		public Umbraco.Core.Models.MediaWithCrops BrandImage12 => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage12");
-
-		///<summary>
-		/// Brand Image 12 Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage12Description")]
-		public IHtmlString BrandImage12Description => this.Value<IHtmlString>("brandImage12Description");
-
-		///<summary>
-		/// Brand Image 1 Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage1Description")]
-		public IHtmlString BrandImage1Description => this.Value<IHtmlString>("brandImage1Description");
-
-		///<summary>
-		/// Brand Image 2
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage2")]
-		public Umbraco.Core.Models.MediaWithCrops BrandImage2 => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage2");
-
-		///<summary>
-		/// Brand Image 2 Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage2Description")]
-		public IHtmlString BrandImage2Description => this.Value<IHtmlString>("brandImage2Description");
-
-		///<summary>
-		/// Brand Image 3
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage3")]
-		public Umbraco.Core.Models.MediaWithCrops BrandImage3 => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage3");
-
-		///<summary>
-		/// Brand Image 3 Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage3Description")]
-		public IHtmlString BrandImage3Description => this.Value<IHtmlString>("brandImage3Description");
-
-		///<summary>
-		/// Brand Image 4
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage4")]
-		public Umbraco.Core.Models.MediaWithCrops BrandImage4 => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage4");
-
-		///<summary>
-		/// Brand Image 4 Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage4Description")]
-		public IHtmlString BrandImage4Description => this.Value<IHtmlString>("brandImage4Description");
-
-		///<summary>
-		/// Brand Image 5
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage5")]
-		public Umbraco.Core.Models.MediaWithCrops BrandImage5 => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage5");
-
-		///<summary>
-		/// Brand Image 5 Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage5Description")]
-		public IHtmlString BrandImage5Description => this.Value<IHtmlString>("brandImage5Description");
-
-		///<summary>
-		/// Brand Image 6
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage6")]
-		public Umbraco.Core.Models.MediaWithCrops BrandImage6 => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage6");
-
-		///<summary>
-		/// Brand Image 6 Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage6Description")]
-		public IHtmlString BrandImage6Description => this.Value<IHtmlString>("brandImage6Description");
-
-		///<summary>
-		/// Brand Image 7
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage7")]
-		public Umbraco.Core.Models.MediaWithCrops BrandImage7 => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage7");
-
-		///<summary>
-		/// Brand Image 7 Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage7Description")]
-		public IHtmlString BrandImage7Description => this.Value<IHtmlString>("brandImage7Description");
-
-		///<summary>
-		/// Brand Image 8
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage8")]
-		public Umbraco.Core.Models.MediaWithCrops BrandImage8 => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage8");
-
-		///<summary>
-		/// Brand Image 8 Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage8Description")]
-		public IHtmlString BrandImage8Description => this.Value<IHtmlString>("brandImage8Description");
-
-		///<summary>
-		/// Brand Image 9
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage9")]
-		public Umbraco.Core.Models.MediaWithCrops BrandImage9 => this.Value<Umbraco.Core.Models.MediaWithCrops>("brandImage9");
-
-		///<summary>
-		/// Brand Image 9 Description
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("brandImage9Description")]
-		public IHtmlString BrandImage9Description => this.Value<IHtmlString>("brandImage9Description");
+		[ImplementPropertyType("brandImageDescription")]
+		public IHtmlString BrandImageDescription => this.Value<IHtmlString>("brandImageDescription");
 
 		///<summary>
 		/// Shop Banner
@@ -702,34 +541,6 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("shopCategory")]
 		public IEnumerable<IPublishedContent> ShopCategory => this.Value<IEnumerable<IPublishedContent>>("shopCategory");
-
-		///<summary>
-		/// Image
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("UEImage")]
-		public Umbraco.Core.Models.MediaWithCrops Ueimage => UltimateExperience.GetUeimage(this);
-
-		///<summary>
-		/// Link
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("UELink")]
-		public IPublishedContent Uelink => UltimateExperience.GetUelink(this);
-
-		///<summary>
-		/// Link Text
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("UELinkText")]
-		public string UelinkText => UltimateExperience.GetUelinkText(this);
-
-		///<summary>
-		/// Title
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("UETitle")]
-		public string Uetitle => UltimateExperience.GetUetitle(this);
 	}
 
 	/// <summary>Master</summary>
@@ -945,79 +756,32 @@ namespace Umbraco.Web.PublishedModels
 		public IHtmlString SpecialityFoodsTitle => this.Value<IHtmlString>("specialityFoodsTitle");
 
 		///<summary>
-		/// Image
+		/// UE Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("UEImage")]
 		public Umbraco.Core.Models.MediaWithCrops Ueimage => UltimateExperience.GetUeimage(this);
 
 		///<summary>
-		/// Link
+		/// UE Link
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("UELink")]
 		public IPublishedContent Uelink => UltimateExperience.GetUelink(this);
 
 		///<summary>
-		/// Link Text
+		/// UE Link Text
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("UELinkText")]
 		public string UelinkText => UltimateExperience.GetUelinkText(this);
 
 		///<summary>
-		/// Title
+		/// UE Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("UETitle")]
 		public string Uetitle => UltimateExperience.GetUetitle(this);
-	}
-
-	/// <summary>Category</summary>
-	[PublishedModel("category")]
-	public partial class Category : PublishedContentModel, INavigationBase
-	{
-		// helpers
-#pragma warning disable 0109 // new is redundant
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		public new const string ModelTypeAlias = "category";
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		public new static IPublishedContentType GetModelContentType()
-			=> PublishedModelUtility.GetModelContentType(ModelItemType, ModelTypeAlias);
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Category, TValue>> selector)
-			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-#pragma warning restore 0109
-
-		// ctor
-		public Category(IPublishedContent content)
-			: base(content)
-		{ }
-
-		// properties
-
-		///<summary>
-		/// Keywords: Keywords that describe the content of the page. This is considered optional since most modern search engines don't use this anymore
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("keywords")]
-		public IEnumerable<string> Keywords => NavigationBase.GetKeywords(this);
-
-		///<summary>
-		/// Description: A brief description of the content on your page. This text is shown below the title in a google search result and also used for Social Sharing Cards. The ideal length is between 130 and 155 characters
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("seoMetaDescription")]
-		public string SeoMetaDescription => NavigationBase.GetSeoMetaDescription(this);
-
-		///<summary>
-		/// Hide in Navigation: If you don't want this page to appear in the navigation, check this box
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("umbracoNavihide")]
-		public bool UmbracoNavihide => NavigationBase.GetUmbracoNavihide(this);
 	}
 
 	/// <summary>About Us</summary>
@@ -1463,28 +1227,28 @@ namespace Umbraco.Web.PublishedModels
 		public bool UmbracoNavihide => NavigationBase.GetUmbracoNavihide(this);
 
 		///<summary>
-		/// Image
+		/// UE Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("UEImage")]
 		public Umbraco.Core.Models.MediaWithCrops Ueimage => UltimateExperience.GetUeimage(this);
 
 		///<summary>
-		/// Link
+		/// UE Link
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("UELink")]
 		public IPublishedContent Uelink => UltimateExperience.GetUelink(this);
 
 		///<summary>
-		/// Link Text
+		/// UE Link Text
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("UELinkText")]
 		public string UelinkText => UltimateExperience.GetUelinkText(this);
 
 		///<summary>
-		/// Title
+		/// UE Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("UETitle")]
@@ -1784,19 +1548,19 @@ namespace Umbraco.Web.PublishedModels
 	/// <summary>Ultimate Experience</summary>
 	public partial interface IUltimateExperience : IPublishedContent
 	{
-		/// <summary>Image</summary>
+		/// <summary>UE Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		Umbraco.Core.Models.MediaWithCrops Ueimage { get; }
 
-		/// <summary>Link</summary>
+		/// <summary>UE Link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		IPublishedContent Uelink { get; }
 
-		/// <summary>Link Text</summary>
+		/// <summary>UE Link Text</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		string UelinkText { get; }
 
-		/// <summary>Title</summary>
+		/// <summary>UE Title</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		string Uetitle { get; }
 	}
@@ -1827,116 +1591,259 @@ namespace Umbraco.Web.PublishedModels
 		// properties
 
 		///<summary>
-		/// Image
+		/// UE Image
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("UEImage")]
 		public Umbraco.Core.Models.MediaWithCrops Ueimage => GetUeimage(this);
 
-		/// <summary>Static getter for Image</summary>
+		/// <summary>Static getter for UE Image</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		public static Umbraco.Core.Models.MediaWithCrops GetUeimage(IUltimateExperience that) => that.Value<Umbraco.Core.Models.MediaWithCrops>("UEImage");
 
 		///<summary>
-		/// Link
+		/// UE Link
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("UELink")]
 		public IPublishedContent Uelink => GetUelink(this);
 
-		/// <summary>Static getter for Link</summary>
+		/// <summary>Static getter for UE Link</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		public static IPublishedContent GetUelink(IUltimateExperience that) => that.Value<IPublishedContent>("UELink");
 
 		///<summary>
-		/// Link Text
+		/// UE Link Text
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("UELinkText")]
 		public string UelinkText => GetUelinkText(this);
 
-		/// <summary>Static getter for Link Text</summary>
+		/// <summary>Static getter for UE Link Text</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		public static string GetUelinkText(IUltimateExperience that) => that.Value<string>("UELinkText");
 
 		///<summary>
-		/// Title
+		/// UE Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("UETitle")]
 		public string Uetitle => GetUetitle(this);
 
-		/// <summary>Static getter for Title</summary>
+		/// <summary>Static getter for UE Title</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		public static string GetUetitle(IUltimateExperience that) => that.Value<string>("UETitle");
 	}
 
-	/// <summary>Category Landing</summary>
-	[PublishedModel("shopCategoryLanding")]
-	public partial class ShopCategoryLanding : PublishedContentModel
+	/// <summary>Category</summary>
+	[PublishedModel("category")]
+	public partial class Category : PublishedContentModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		public new const string ModelTypeAlias = "shopCategoryLanding";
+		public new const string ModelTypeAlias = "category";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		public new static IPublishedContentType GetModelContentType()
 			=> PublishedModelUtility.GetModelContentType(ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<ShopCategoryLanding, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Category, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 #pragma warning restore 0109
 
 		// ctor
-		public ShopCategoryLanding(IPublishedContent content)
+		public Category(IPublishedContent content)
 			: base(content)
 		{ }
 
 		// properties
 
 		///<summary>
-		/// Category Main Banner
+		/// Category Banner
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("CategoryMainBanner")]
-		public Umbraco.Core.Models.MediaWithCrops CategoryMainBanner => this.Value<Umbraco.Core.Models.MediaWithCrops>("CategoryMainBanner");
+		[ImplementPropertyType("categoryBanner")]
+		public Umbraco.Core.Models.MediaWithCrops CategoryBanner => this.Value<Umbraco.Core.Models.MediaWithCrops>("categoryBanner");
 
 		///<summary>
-		/// Contact Us
+		/// Category Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("contactUs")]
-		public string ContactUs => this.Value<string>("contactUs");
+		[ImplementPropertyType("categoryTitle")]
+		public string CategoryTitle => this.Value<string>("categoryTitle");
+	}
+
+	/// <summary>Shop Category</summary>
+	[PublishedModel("shopCategory")]
+	public partial class ShopCategory : PublishedContentModel, INavigationBase
+	{
+		// helpers
+#pragma warning disable 0109 // new is redundant
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new const string ModelTypeAlias = "shopCategory";
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new static IPublishedContentType GetModelContentType()
+			=> PublishedModelUtility.GetModelContentType(ModelItemType, ModelTypeAlias);
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<ShopCategory, TValue>> selector)
+			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+#pragma warning restore 0109
+
+		// ctor
+		public ShopCategory(IPublishedContent content)
+			: base(content)
+		{ }
+
+		// properties
 
 		///<summary>
-		/// Floor Name
+		/// Keywords: Keywords that describe the content of the page. This is considered optional since most modern search engines don't use this anymore
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("floorName")]
-		public string FloorName => this.Value<string>("floorName");
+		[ImplementPropertyType("keywords")]
+		public IEnumerable<string> Keywords => NavigationBase.GetKeywords(this);
 
 		///<summary>
-		/// Logo
+		/// Description: A brief description of the content on your page. This text is shown below the title in a google search result and also used for Social Sharing Cards. The ideal length is between 130 and 155 characters
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("Logo")]
-		public Umbraco.Core.Models.MediaWithCrops Logo => this.Value<Umbraco.Core.Models.MediaWithCrops>("Logo");
+		[ImplementPropertyType("seoMetaDescription")]
+		public string SeoMetaDescription => NavigationBase.GetSeoMetaDescription(this);
 
 		///<summary>
-		/// Opening and Closing Hours
+		/// Hide in Navigation: If you don't want this page to appear in the navigation, check this box
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("openingAndClosingHours")]
-		public IHtmlString OpeningAndClosingHours => this.Value<IHtmlString>("openingAndClosingHours");
+		[ImplementPropertyType("umbracoNavihide")]
+		public bool UmbracoNavihide => NavigationBase.GetUmbracoNavihide(this);
+	}
+
+	/// <summary>Shops Landing</summary>
+	[PublishedModel("shopsLandingDocType")]
+	public partial class ShopsLandingDocType : PublishedContentModel, INavigationBase, IUltimateExperience
+	{
+		// helpers
+#pragma warning disable 0109 // new is redundant
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new const string ModelTypeAlias = "shopsLandingDocType";
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new static IPublishedContentType GetModelContentType()
+			=> PublishedModelUtility.GetModelContentType(ModelItemType, ModelTypeAlias);
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<ShopsLandingDocType, TValue>> selector)
+			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+#pragma warning restore 0109
+
+		// ctor
+		public ShopsLandingDocType(IPublishedContent content)
+			: base(content)
+		{ }
+
+		// properties
+
+		///<summary>
+		/// Default Location Map
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("defaultLocationMap")]
+		public IPublishedContent DefaultLocationMap => this.Value<IPublishedContent>("defaultLocationMap");
+
+		///<summary>
+		/// Default Logo
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("defaultLogo")]
+		public IPublishedContent DefaultLogo => this.Value<IPublishedContent>("defaultLogo");
+
+		///<summary>
+		/// Default Shop Timings
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("defaultShopTimings")]
+		public IHtmlString DefaultShopTimings => this.Value<IHtmlString>("defaultShopTimings");
+
+		///<summary>
+		/// Mall Guide File
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("dineGuideFile")]
+		public IPublishedContent DineGuideFile => this.Value<IPublishedContent>("dineGuideFile");
+
+		///<summary>
+		/// Banner: (1400X450)
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("shopMainBanner")]
+		public IPublishedContent ShopMainBanner => this.Value<IPublishedContent>("shopMainBanner");
+
+		///<summary>
+		/// Description
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("shopMainDescription")]
+		public IHtmlString ShopMainDescription => this.Value<IHtmlString>("shopMainDescription");
 
 		///<summary>
 		/// Title
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
-		[ImplementPropertyType("Title")]
-		public string Title => this.Value<string>("Title");
+		[ImplementPropertyType("shopMainTitle")]
+		public string ShopMainTitle => this.Value<string>("shopMainTitle");
+
+		///<summary>
+		/// Keywords: Keywords that describe the content of the page. This is considered optional since most modern search engines don't use this anymore
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("keywords")]
+		public IEnumerable<string> Keywords => NavigationBase.GetKeywords(this);
+
+		///<summary>
+		/// Description: A brief description of the content on your page. This text is shown below the title in a google search result and also used for Social Sharing Cards. The ideal length is between 130 and 155 characters
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("seoMetaDescription")]
+		public string SeoMetaDescription => NavigationBase.GetSeoMetaDescription(this);
+
+		///<summary>
+		/// Hide in Navigation: If you don't want this page to appear in the navigation, check this box
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("umbracoNavihide")]
+		public bool UmbracoNavihide => NavigationBase.GetUmbracoNavihide(this);
+
+		///<summary>
+		/// UE Image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("UEImage")]
+		public Umbraco.Core.Models.MediaWithCrops Ueimage => UltimateExperience.GetUeimage(this);
+
+		///<summary>
+		/// UE Link
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("UELink")]
+		public IPublishedContent Uelink => UltimateExperience.GetUelink(this);
+
+		///<summary>
+		/// UE Link Text
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("UELinkText")]
+		public string UelinkText => UltimateExperience.GetUelinkText(this);
+
+		///<summary>
+		/// UE Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("UETitle")]
+		public string Uetitle => UltimateExperience.GetUetitle(this);
 	}
 
 	/// <summary>Folder</summary>

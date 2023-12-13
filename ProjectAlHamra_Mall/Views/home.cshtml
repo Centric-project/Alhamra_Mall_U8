@@ -84,6 +84,114 @@
     .main-banner.container.header-container {
         max-width: 1400px;
     }
+
+    .wrapper .custom-container-fluid {
+        max-width: 1260px;
+    }
+
+    .heading-holder {
+        text-align: center;
+    }
+
+    .heading-border {
+        font-size: 36px;
+        color: #202247;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+        padding-left: 10px;
+        padding-right: 10px;
+        display: inline-block;
+        vertical-align: top;
+        font-family: "Gotham-Bold",sans-serif;
+        text-transform: uppercase;
+    }
+
+    .ultimate-listing .ultimate-holder .info-holder {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        font-family: "Gotham-Bold",sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+        .ultimate-listing .ultimate-holder .info-holder span {
+            font-weight: 600;
+        }
+
+    .ultimate-listing .ultimate-holder figure {
+        margin: 0;
+        position: relative;
+        text-align: center;
+    }
+
+        .ultimate-listing .ultimate-holder figure img {
+            margin: 0 auto;
+        }
+
+    .ultimate-listing .ultimate-holder .info-holder .link {
+        display: block;
+        padding: 14.5px 5px;
+        background-color: #B2B2B2;
+        color: #fff;
+    }
+
+    .text-red {
+        background-color: #B42B30 !important;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        font-family: "Gotham-Bold",sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+        .text-red .link {
+            display: block;
+            padding: 14.5px 5px;
+            background-color: #B42B30;
+            color: #fff;
+        }
+
+    .ultimate-sec {
+        position: relative;
+    }
+
+        .ultimate-sec .whatsNew-content-box {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            padding: 1.5em;
+            width: 100%;
+            max-width: 500px;
+            background-color: rgba(255,255,255,0.90)
+        }
+
+    .ultimate-listing {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        /*flex-wrap: wrap;*/
+        gap: 20px;
+        align-items: center;
+    }
+
+    .ultimate-link {
+        font-size: 16px;
+        color: #B42B30;
+    }
+
+    .ultimate-sec h4 {
+        font-size: 32px;
+        color: #B42B30;
+        text-transform: uppercase;
+    }
+
+    .ultimate-Subsec {
+    }
 </style>
 <style type="text/css">
 
@@ -184,6 +292,7 @@
         margin: 0 0 40px;
         width: 75%;
     }
+
     .sub-heading {
         font-family: 'dubai_regular';
         text-align: center;
@@ -192,16 +301,19 @@
         font-weight: 400;
         color: #2A2A2A;
     }
+
     .whatsNew-slider .whatsNew-box .whatsNew-content-box .whatsNew-holder h4 {
         font-size: 30px;
         margin-bottom: 25px;
         font-family: "Gotham-Medium";
     }
+
     .whatsNew-slider .whatsNew-box .whatsNew-content-box .whatsNew-holder span.span-content {
         display: block;
         height: 340px;
         overflow: hidden;
     }
+
     @@media screen and (max-width: 1024px) {
         .download__card {
             margin: auto;
@@ -459,7 +571,7 @@
 }
 <!--End Whats New-->
 <!--Start Ultimate Experince-->
-<section class="box-holder">
+<section class="box-holder whatsNew-holder container header-container">
     <!--Start Heading-->
     <div class="heading-holder">
         <h3 class="heading-border">@Umbraco.GetDictionaryValue("IndulgeYourSenses")</h3>
@@ -470,59 +582,17 @@
             <div class="col-md-12">
                 <div class="ultimate-listing gtm-mainsec" data-section="ultimate-listing">
                     @{
-                        var entertainment = Model.AncestorOrSelf(1).DescendantsOfType("entertainment").FirstOrDefault();
-                        if (entertainment != null)
-                        {
-                            var entUEImg = entertainment.Value<IPublishedContent>("UEImage");
-                            var  entUEImgURL = entUEImg == null ? "" : entUEImg.Url();
-    
-                            var entUETitle = entertainment.Value("UETitle");
-    
-                            var entUELink = entertainment.Value<IPublishedContent>("UELink");
-                            var entUELinkURL = entUELink == null ? "" : entUELink.Url();
-    
-                            var entUEBtnText = entertainment.Value("UELinkText");
-                            <div class="ultimate-holder" data-aos="fade-up">
-                                <figure>
-                                    <img src="@entUEImgURL" class="img-fluid" alt="" />
-                                    <div class="clearfix info-holder">
-                                        <a href="@entUELinkURL" class="link gtm-track-tile-event" name=""><span>@entUEBtnText</span></a>
-                                    </div>
-                                </figure>
-                            </div>
-                          }
-                        var dine = Model.AncestorOrSelf(1).DescendantsOfType("dine").FirstOrDefault();
-                        if (dine != null)
-                        {
-                            var entUEImg = dine.Value<IPublishedContent>("UEImage");
-                            var  entUEImgURL = entUEImg == null ? "" : entUEImg.Url();
-    
-                            var entUETitle = dine.Value("UETitle");
-    
-                            var entUELink = dine.Value<IPublishedContent>("UELink");
-                            var entUELinkURL = entUELink == null ? "" : entUELink.Url();
-    
-                            var entUEBtnText = dine.Value("UELinkText");
-                            <div class="ultimate-holder" data-aos="fade-up">
-                                <figure>
-                                    <img src="@entUEImgURL" class="img-fluid" alt="" />
-                                    <div class="clearfix info-holder">
-                                        <a href="@entUELinkURL" class="link gtm-track-tile-event" name=""><span>@entUEBtnText</span></a>
-                                    </div>
-                                </figure>
-                            </div>
-                          }
                         var shop = Model.AncestorOrSelf(1).DescendantsOfType("shop").FirstOrDefault();
                         if (shop != null)
                         {
                             var entUEImg = shop.Value<IPublishedContent>("UEImage");
-                            var  entUEImgURL = entUEImg == null ? "" : entUEImg.Url();
-    
+                            var entUEImgURL = entUEImg == null ? "" : entUEImg.Url();
+
                             var entUETitle = shop.Value("UETitle");
-    
+
                             var entUELink = shop.Value<IPublishedContent>("UELink");
                             var entUELinkURL = entUELink == null ? "" : entUELink.Url();
-    
+
                             var entUEBtnText = shop.Value("UELinkText");
                             <div class="ultimate-holder" data-aos="fade-up">
                                 <figure>
@@ -532,11 +602,71 @@
                                     </div>
                                 </figure>
                             </div>
-                          }
+                        }
+
+                        var dine = Model.AncestorOrSelf(1).DescendantsOfType("dine").FirstOrDefault();
+                        if (dine != null)
+                        {
+                            var entUEImg = dine.Value<IPublishedContent>("UEImage");
+                            var entUEImgURL = entUEImg == null ? "" : entUEImg.Url();
+
+                            var entUETitle = dine.Value("UETitle");
+
+                            var entUELink = dine.Value<IPublishedContent>("UELink");
+                            var entUELinkURL = entUELink == null ? "" : entUELink.Url();
+
+                            var entUEBtnText = dine.Value("UELinkText");
+                            <div class="ultimate-holder" data-aos="fade-up">
+                                <figure>
+                                    <img src="@entUEImgURL" class="img-fluid" alt="" />
+                                    <div class="text-red">
+                                        <a href="@entUELinkURL" class="link gtm-track-tile-event" name=""><span>@entUEBtnText</span></a>
+                                    </div>
+                                </figure>
+                            </div>
+                        }
+                        var entertainment = Model.AncestorOrSelf(1).DescendantsOfType("entertainment").FirstOrDefault();
+                        if (entertainment != null)
+                        {
+                            var entUEImg = entertainment.Value<IPublishedContent>("UEImage");
+                            var entUEImgURL = entUEImg == null ? "" : entUEImg.Url();
+
+                            var entUETitle = entertainment.Value("UETitle");
+
+                            var entUELink = entertainment.Value<IPublishedContent>("UELink");
+                            var entUELinkURL = entUELink == null ? "" : entUELink.Url();
+
+                            var entUEBtnText = entertainment.Value("UELinkText");
+                            <div class="ultimate-holder" data-aos="fade-up">
+                                <figure>
+                                    <img src="@entUEImgURL" class="img-fluid" alt="" />
+                                    <div class="clearfix info-holder">
+                                        <a href="@entUELinkURL" class="link gtm-track-tile-event" name=""><span>@entUEBtnText</span></a>
+                                    </div>
+                                </figure>
+                            </div>
+                        }
                     }
+                </div>
+                <br>
+                <br>
+                <div class="ultimate-sec">
+                    <img src="/media/p50j0wmm/mask-group-7.png" alt="" />
+                    <div class="pl-none whatsNew-content-box" data-aos="fade-down" data-aos-duration="1500">
+                        <div class="ultimate-Subsec">
+                            <span class="span-content">
+                                <h4>The Ultimate Shopping Experience</h4>
+                                <p style="font-size: 20px;">Al Hamra Mall welcomes you to a world of unparalleled shopping sophistication. Nestled in the heart of luxury, our curated selection of global brands and local gems beckons discerning shoppers. Indulge in exquisite dining, entertainment, and a seamless retail experience. </p>
+                            </span>
+                            <br>
+                            <a href="#" class="ultimate-link">ABOUT AL HAMRA MALL <span><img src="/media/xgdljudf/path-27.png" alt="" /></span></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+</br>
+<br>
 <!--End Ultimate Experince-->
