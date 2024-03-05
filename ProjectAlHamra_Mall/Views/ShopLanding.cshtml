@@ -1,0 +1,82 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "master.cshtml";
+    var uiCurrentCulture = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+    IEnumerable<IPublishedContent> categories = Model.AncestorOrSelf(1).DescendantsOfType("shopCategory").FirstOrDefault().Children().Where(x => x.IsVisible()).OrderBy(x => x.Value<string>("categoryTitle"));
+}
+<style>
+    .main-banner {
+    height: 100%;
+    margin-top: 80px;
+    margin-bottom: 0px;
+    padding: 0;
+}
+.brand-box .prod-name{
+    font-size:16px;
+}
+</style>
+<!-- Main Banner -->
+@{
+    var shopMainBanner = Model.Value<IPublishedContent>("shopMainBanner");
+    if (shopMainBanner != null)
+    {
+        <div class="container header-container slider-main ">
+            <div class="row">
+                <div class="main-banner mt-100">
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item shopBanner" style="   background: url('@shopMainBanner.Url()') center top no-repeat;">
+                            <img src="@shopMainBanner.Url()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<!-- End Main Banner -->
+
+<!-- Start Shopping Page Landing Content -->
+<div class="container-fluid shopping_information newShopPage">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 sop_cat_cont eqheight">
+                <div class="newShopPage-section">
+                    <div class="shopTopText">
+                        <h2>
+                            @Html.Raw(Model.Value("shopMainTitle"))
+                        </h2>
+                        @*<h3 class="ShopStyle">
+                            @Html.Raw(Model.Value("shopSubHeading"))
+                        </h3>*@
+                        <div class="shopping_category_info-x pad_7-x1">
+                            @Html.Raw(Model.Value("shopMainDescription"))
+                        </div>
+                    </div>
+                        @{
+                            var shopCategory = Model.AncestorOrSelf(1).DescendantsOfType("shopCategory").FirstOrDefault();
+                            if (shopCategory != null)
+                            {
+                                foreach (var category in shopCategory.Children().OrderBy(x => x.Value<string>("categoryTitle")))
+                                {
+                                    var categoryThumbImage = category.Value<IPublishedContent>("categoryThumbImage");
+                                    if(categoryThumbImage!=null)
+                                    {
+                                        <div class="col-md-3">
+                                            <div class="brand-box">
+                                                <a rel="canonical" href="@category.Url" class="title_link">
+                                                        @category.Value("categoryTitle")
+                                                    <div class="brand-logo">
+                                                        <img src="@categoryThumbImage.Url" alt="" />
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        }
+                </div>   
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "master.cshtml";
+
+    // set page title segment
+    ViewBag.PageTitle = Model.Value("thankUTitle");
+}
+<style type="text/css">
+    .title-holder {
+        padding-bottom: 10px;
+    }
+    .main-banner{
+        margin-top:120px;
+    }
+    .slide img{
+        margin:auto;
+    }
+</style>
+<!--Start Main Banner-->
+@{
+    var thankYouField = Model.Value<IPublishedContent>("thankYouField");
+    if (thankYouField != null)
+    {
+        <div class="container header-container">
+            <section class="main-banner">
+                <div class="container-fluid custom-container-fluid">
+                    <div class="main-slide">
+                        <div class="slide">
+                            <img src="@thankYouField.Url()" alt="@Model.Value("thankUTitle")" class="img-fluid" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    }
+}
+<!--End Main Banner-->
+<!--Start Inner Page Wrapper-->
+<div class="inner-section">
+    <div class="container-fluid custom-container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!--Start Main Title-->
+                
+                <!--End Main Title-->
+                <div class="filter-box page-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="align-center text-center">
+                                <h3>@Model.Value("thankYouSubTitle")</h3>
+                                @Html.Raw(Model.Value("thankYouDetails"))
+                                <br />
+                                <br />
+                                <div class="buttons flexStyle">
+                                    <a href="@Umbraco.GetDictionaryValue("Home")" class="btn btn-primary">@Umbraco.GetDictionaryValue("backtohome")</a>
+                                    <div class="btnDivider"></div>
+                                    <a href="@Umbraco.GetDictionaryValue("ContactUsUrl")" class="btn btn-primary">@Umbraco.GetDictionaryValue("Contact Us")</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Inner Page Wrapper-->

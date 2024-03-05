@@ -1,0 +1,211 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+	Layout = "master.cshtml";
+    var dineLanding = Model.AncestorOrSelf(1).DescendantsOfType("dineLanding").FirstOrDefault();
+    var currCategId = Model.Id;
+}
+
+@* the fun starts here *@
+@{
+    //Use this code when all categories banner are available
+    
+    @*var categoryBanner = Model.Value<IPublishedContent>("categoryBanner");
+    if (categoryBanner != null)
+    {
+         <div class="container header-container slider-main ">
+            <div class="row">
+                <div class="main-banner mt-100">
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item shopBanner" style="center top no-repeat;">
+                            <img src="@categoryBanner.Url()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        var defaultBanner = dineLanding.Value<IPublishedContent>("defaultBanner");
+         <div class="container header-container slider-main ">
+            <div class="row">
+                <div class="main-banner mt-100">
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item shopBanner" style="center top no-repeat;">
+                            <img src="@defaultBanner.Url()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }*@
+    
+    //else use this code as a default banner
+     @*var defaultBanner = dineLanding.Value<IPublishedContent>("defaultBanner");
+         <div class="container header-container slider-main ">
+            <div class="row">
+                <div class="main-banner mt-100">
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item shopBanner" style="center top no-repeat;">
+                            <img src="@defaultBanner.Url()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+}
+<style>
+    .mt-100{
+    margin-top:130px;
+}
+</style>
+<div class="container-fluid brand_list mt-100">
+    <div class="container  ">
+        <div class="row">
+            <div class="food_shops_heading">
+                @{
+                if (dineLanding != null)
+                {
+                    foreach (var item in dineLanding.Children())
+                    {
+                        var category = item.Value<IEnumerable<IPublishedContent>>("dineCategory");
+                        if(category!=null)
+                        {
+                            var categoryId = category.FirstOrDefault()?.Id;
+                            if(currCategId == categoryId){
+                                <p class="BrandingStyle">
+                                    @Model.Value("categoryTitle")
+                                </p>
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+               
+            </div>
+        </div>
+        <div class="row logos_brd_list arFlex flexWrap">
+            @{
+                if (dineLanding != null)
+                {
+                    foreach (var item in dineLanding.Children())
+                    {
+                        var category = item.Value<IEnumerable<IPublishedContent>>("dineCategory");
+                        if(category!=null)
+                        {
+                            var categoryId = category.FirstOrDefault()?.Id;
+                            if(currCategId == categoryId){
+                                var idValue = HttpContext.Current.Request.QueryString["Id"];
+                                if (!string.IsNullOrEmpty(idValue))
+                                {
+                                    int id;
+                                    if (int.TryParse(idValue, out id))
+                                    {
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 brand_main_logo">
+                                            <div class="logo_container">
+                                                @*<a href="">*@
+                                                    <div class="card  @(item.Id==id ? "highlighted" : "")">
+                                                        <div class="card_info_holder">
+                                                            @{
+                                                                var shopLogo = item.Value<IPublishedContent>("shopLogo");
+                                                                var defaultLogo = dineLanding.Value<IPublishedContent>("defaultLogo");
+                                                                if (shopLogo != null)
+                                                                {
+                                                                    <div class="card_img"><img src="@shopLogo.Url()" alt=""></div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="card_img"><img src="@defaultLogo.Url()" alt"No Image to Preview"></div>
+                                                                }
+                                                            }
+                                                                        
+                                                            <ul class="shop_time_info">
+                                                                <li class="card_heading">@item.Value("shopTitle")</li>
+                                                               @if (!string.IsNullOrWhiteSpace(item.Value<string>("openingClosingHours")))
+                                                                {
+                                                                    <li class="card_time">@item.Value("openingClosingHours")</li>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <li class="card_time">@Html.Raw(dineLanding.Value<string>("defaultShopTimings"))</li>
+                                                                }
+                                                                <li class="card_time">@item.Value("floorName")</li>
+                                                                <li class="card_location">@item.Value("contactUs")</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                @*</a>*@
+                                            </div>
+                                            <span></span>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 brand_main_logo">
+                                        <div class="logo_container">
+                                            @*<a href="">*@
+                                                <div class="card">
+                                                    <div class="card_info_holder">
+                                                        @{
+                                                            var shopLogo = item.Value<IPublishedContent>("shopLogo");
+                                                            var defaultLogo = dineLanding.Value<IPublishedContent>("defaultLogo");
+                                                            if (shopLogo != null)
+                                                            {
+                                                                <div class="card_img"><img src="@shopLogo.Url()" alt=""></div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="card_img"><img src="@defaultLogo.Url()" alt"No Image to Preview"></div>
+                                                            }
+                                                        }
+                                                                    
+                                                        <ul class="shop_time_info">
+                                                            <li class="card_heading">@item.Value("shopTitle")</li>
+                                                           @if (!string.IsNullOrWhiteSpace(item.Value<string>("openingClosingHours")))
+                                                            {
+                                                                <li class="card_time">@item.Value("openingClosingHours")</li>
+                                                            }
+                                                            else
+                                                            {
+                                                                <li class="card_time">@Html.Raw(dineLanding.Value<string>("defaultShopTimings"))</li>
+                                                            }
+                                                            <li class="card_time">@item.Value("floorName")</li>
+                                                            <li class="card_location">@item.Value("contactUs")</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            @*</a>*@
+                                        </div>
+                                        <span></span>
+                                    </div>
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var brandListContainer = document.querySelector('.brand_list');
+        var shopCards = Array.from(document.querySelectorAll('.brand_list .card'));
+        var highlightedShop = shopCards.find(function (card) {
+            return card.classList.contains('highlighted');
+        });
+        if (highlightedShop) {
+            var fragment = document.createDocumentFragment();
+            fragment.appendChild(highlightedShop);
+            shopCards.forEach(function (card) {
+                if (card !== highlightedShop) {
+                    card.style.display = 'none';
+                }
+            });
+            brandListContainer.appendChild(fragment);
+            document.body.classList.add('shop-highlighted');
+        }
+    });
+</script>

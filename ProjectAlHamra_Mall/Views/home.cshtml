@@ -1,0 +1,277 @@
+﻿@using Umbraco.Web;
+@using System;
+@using ContentModels = Umbraco.Web.PublishedModels;
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Home>
+@{
+    Layout = "master.cshtml";
+    var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+}
+<style>
+    [lang="ar"] .slick-track {
+   float: left;
+}
+.mb-25{
+    margin-bottom:25px;
+}
+</style>
+
+<section class="main-banner container header-container mt-80">
+    <div class="">
+    <div class="slick-carousel">
+        @{
+            var bannerItems = Model.AncestorOrSelf(1).DescendantsOfType("homeSlider")
+                .OrderBy(x => x.Value<int>("sortOrder")).ToList();
+            int currIndex = 0;
+    
+            foreach (ContentModels.HomeSlider hSlide in bannerItems)
+            {
+                DateTime currDate = DateTime.Today;
+                var campaignDate = hSlide.Value<DateTime>("bannerEndDate");
+                if (campaignDate.Date >= currDate.Date)
+                {
+                    currIndex++;
+                    if (hSlide.SliderVideo != null && !string.IsNullOrEmpty(hSlide.SliderVideo.Url))
+                    {
+                        <div class="slide video-slide slick-carousel">
+                            <div class="slide-content">
+                                @if (lang == "ar" || lang == "en")
+                                {
+                                    var languageLink = lang == "ar"
+                                        ? "https://www.aljimimall.com/media/vbbcpghe/jimi-mall-digital-guide-arabic-final.pdf"
+                                        : "https://www.aljimimall.com/media/br2hdbbp/jimi-mall-digital-guide-english-final.pdf";
+    
+                                    <a href="@languageLink">
+                                        <video id="slider_video" class="tv_video hide-for-small-only"
+                                               name="@hSlide.ButtonText-VideoPlay" poster="@hSlide.SliderImage.Url()" loop
+                                               muted autoplay>
+                                            <source src="@hSlide.SliderVideo.Url()" type="video/mp4" />
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </a>
+                                }
+                            </div>
+                            @if (!hSlide.ShowLinkText)
+                            {
+                                <div class="caption">
+                                    <h3>@hSlide.SliderHeading</h3>
+                                    <a href="@hSlide.ButtonLink" class="btn btn-primary gtm-track-more-event"
+                                       name="@hSlide-WatchVideos">@hSlide.ButtonText</a>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else if (hSlide.SliderImage != null && !string.IsNullOrEmpty(hSlide.SliderImage.Url))
+                    {
+                        string btnLinkURL = hSlide.ButtonLink?.Url ?? "";
+                        bool flag = false;
+    
+                        <div class="slide slide-content">
+                            <a href="@btnLinkURL">
+                                <img src="@hSlide.SliderImage.Url()" class="img-fluid" alt="@hSlide.SliderHeading" />
+                            </a>
+                            <div class="caption" style="display: none">
+                                <h3>@hSlide.SliderHeading</h3>
+                                @if (!hSlide.ShowLinkText)
+                                {
+                                    <a href="@btnLinkURL" class="btn btn-primary gtm-track-button-event"
+                                       name="@hSlide.Value("ButtonText", "en-US")">@hSlide.ButtonText</a>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            }
+    
+            if (currIndex == 0)
+            {
+                currIndex++;
+                var videoBanner = Model.Value<IPublishedContent>("defaultVideoBanner");
+                <div class="slide video-slide">
+                    <div class="clearfix sliderVideo-holder">
+                        <video id="slider_video" class="tv_video hide-for-small-only" controls="controls"
+                               autoplay loop muted>
+                            <source src="@videoBanner.Url()" type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+
+
+    </div>
+</section>
+
+<!--Start Ultimate Experince-->
+<section class="box-holder whatsNew-holder container  header-container">
+    <!--Start Heading-->
+    <div class="heading-holder">
+        <h3 class="heading-border">@Umbraco.GetDictionaryValue("DiscoverAlhamraMall")</h3>
+    </div>
+    <!--End Heading-->
+    <div class="container-fluid custom-container-fluid pe-i-2">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="ultimate-listing gtm-mainsec" data-section="ultimate-listing">
+                    @if(lang == "en"){
+                        @RenderSection("shopsLanding", "UEImage", "UETitle", "UELink", "UELinkText", lang, "fade-up")
+                        @RenderSection("dineLanding", "UEImage", "UETitle", "UELink", "UELinkText", lang, "fade-up")
+                        @RenderSection("entertainment", "UEImage", "UETitle", "UELink", "UELinkText", lang, "fade-up")
+                    }
+                    else if(lang == "ar"){
+                        @RenderSection("entertainment", "UEImage", "UETitle", "UELink", "UELinkText", lang, "fade-up")
+                        @RenderSection("dineLanding", "UEImage", "UETitle", "UELink", "UELinkText", lang, "fade-up")
+                        @RenderSection("shopsLanding", "UEImage", "UETitle", "UELink", "UELinkText", lang, "fade-up")
+                    }
+                </div>
+                @helper RenderSection(string sectionType, string imageProperty, string titleProperty, string linkProperty, string linkTextProperty, string currentLang, string animation)
+                {
+                    var section = Model.AncestorOrSelf(1).DescendantsOfType(sectionType).FirstOrDefault();
+                
+                    if (section != null)
+                    {
+                        var entUEImg = section.Value<IPublishedContent>(imageProperty);
+                        var entUEImgURL = entUEImg == null ? "" : entUEImg.Url();
+                        var entUETitle = section.Value<string>(titleProperty);
+                        var entUELink = section.Value<IPublishedContent>(linkProperty);
+                        var entUELinkURL = entUELink == null ? "" : entUELink.Url();
+                        var entUEBtnText = section.Value<string>(linkTextProperty);
+                
+                        <div class="ultimate-holder" data-aos="@animation">
+                            <figure>
+                                <img src="@entUEImgURL" class="img-fluid" alt="" />
+                                <div class="clearfix info-holder">
+                                    <a href="@entUELinkURL" class="link gtm-track-tile-event" name="">
+                                        <span>@entUEBtnText</span>
+                                    </a>
+                                </div>
+                            </figure>
+                        </div>
+                    }
+                }
+                <br>
+                <br>
+                <div class="ultimate-sec">
+                    @{
+                        var ultimateExperienceImage = Model.Value<IPublishedContent>("ultimateExperienceImage");
+                        if(ultimateExperienceImage!=null)
+                        {
+                            <img src="@ultimateExperienceImage.Url()" alt="" />
+                            <div class="pl-none whatsNew-content-box" data-aos="fade-down" data-aos-duration="1500">
+                                <div class="ultimate-Subsec">
+                                    <span class="span-content">
+                                        <h4>@Html.Raw(Model.Value("ultimateExperienceHeading"))</h4>
+                                        @Html.Raw(Model.Value("ultimateExperienceDescription"))
+                                    </span>
+                                    <br>
+                                    <a href="@Umbraco.GetDictionaryValue("AboutUsUrl")" class="btn btn-primary gtn-track-more-event">@Umbraco.GetDictionaryValue("KnowMore")<span>
+                                        @*<svg xmlns="http://www.w3.org/2000/svg" width="6.734" height="11.968" viewBox="0 0 6.734 11.968">
+                                          <path id="Path_27" data-name="Path 27" d="M114.469,362.709l4.923,4.923-4.923,4.923" transform="translate(-113.408 -361.648)" fill="none" stroke="#b42b30" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+                                        </svg>*@
+        
+                                        </span></a>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</br>
+<br>
+<!--End Ultimate Experince-->
+<!--Start  Whats New-->
+
+@{
+    var whatsNew = Model.AncestorOrSelf(1).DescendantsOfType("whatsNewSlider").FirstOrDefault();
+    //var darnaRewards = mallReDevList.Where(x => x.Id == 1870).FirstOrDefault(); //Get The Darna Rewards Content By Id
+
+    if (whatsNew != null)
+    {
+    <div class="bgGray">
+        <section class="box-holder lp-box  whatsNew-holder container header-container">
+            <!--Start Heading-->
+            <div class="heading-holder">
+                <h2 class="sub-heading">@Umbraco.GetDictionaryValue("WhatsNew")</h2>
+            </div>
+            <!--End Heading-->
+            <!--Start Event Slider-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="custom-slider whatsNew-slider pe-i-2">
+                        @{
+                            IEnumerable<IPublishedContent> whatsNewItem = whatsNew.Children().Where(x => x.IsVisible());
+                            foreach (var whatsNewItems in whatsNewItem)
+                            {
+                                <div class="slide">
+                                    <div class="whatsNew-box">
+                                        <div class="row flexColCenter">
+                                            <div class="col-lg-8 col-md-8 col-xs-12 pr-none main-event">
+                                                <div class="clearfix whatsNewVideo-holder">
+                                                    @{
+                                                        var whatsNewVideo = whatsNewItems.Value<IPublishedContent>("video");
+                                                        var whatsNewImg = whatsNewItems.Value<IPublishedContent>("thumbImage");
+                                                        if (whatsNewVideo != null)
+                                                        {
+                                                            if (whatsNewImg != null)
+                                                            {
+                                                                <video id="darna_video" class="tv_video hide-for-small-only" controls="controls"
+                                                                       poster="@whatsNewImg.Url()">
+                                                                    <source src="@whatsNewVideo.Url()" type="video/mp4" />
+                                                                    Your browser does not support the video tag.
+                                                                </video>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            if (whatsNewImg != null)
+                                                            {
+                                                                <img src="@whatsNewImg.Url()" class="img-fluid">
+                                                            }
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-xs-12 pl-none whatsNew-content-box" data-aos="fade-down" data-aos-duration="1500">
+                                                <div class="clearfix whatsNew-holder">
+                                                    <span class="span-content mb-25">
+                                                        <h4>@whatsNewItems.Value("whatsNewTitle")</h4>
+                                                        @Html.Raw(whatsNewItems.Value("whatsNewDetails"))
+                                                    </span>
+                                                        @{
+                                                            var wNPageLink = whatsNewItems.Value<IPublishedContent>("redirectToPage");
+                                                            var wNPageLinkURL = wNPageLink == null ? "" : wNPageLink.Url();
+                                                            if (wNPageLinkURL != "")
+                                                            {
+                                                                <a href="@wNPageLinkURL" class="btn btn-primary">@whatsNewItems.Value("buttonText")</a>
+                                                            }
+                                                            else if (whatsNewItems.Id == 1641){
+                                                                <a href="https://www.aldargiftcard.com/adgc/welcome" class="btn btn-primary" target="_blank">@whatsNewItems.Value("buttonText")</a>
+                                                            }
+                                                            else
+                                                            {
+                                                                <a href="https://offers.adcb.com/offer/websites/personal/touchpoints-offers/list?category=Instant%20Redemption" class="btn btn-primary" target="_blank">@whatsNewItems.Value("buttonText")</a>
+                                                            }
+                                                        }
+
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!--End Event Slider-->
+        </section>
+    </div>
+    }
+}
+<!--End Whats New-->

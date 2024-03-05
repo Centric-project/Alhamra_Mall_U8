@@ -1,0 +1,121 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.DineLanding>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+    var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+    IEnumerable<IPublishedContent> categories = Model.AncestorOrSelf(1).DescendantsOfType("dineCategory").FirstOrDefault()?.Children().Where(x => x.IsVisible()).OrderBy(x => x.Name);
+}
+
+<style>
+    @@media screen and (max-width: 768px) {
+        .dFlex-odd-even .dFlex-item {
+            flex-direction: column;
+            margin-bottom: 50px;
+        }
+        .dFlex-odd-even .dFlex-item:nth-child(2n) {
+            flex-direction: column;
+        }
+        .dFlex-odd-even .dFlex-item .imageDine {
+            width: 100%;
+            max-width: 90%;
+        }
+        .pad_7-x {
+            padding-inline: 3em;
+        }
+    }
+</style>
+
+@* the fun starts here *@
+@{
+    var dineMainBanner = Model.Value<IPublishedContent>("dineMainBanner");
+    if (dineMainBanner != null)
+    {
+        <div class="container header-container slider-main ">
+            <div class="row">
+                <div class="main-banner mt-100">
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item shopBanner" style="   background: url('') center top no-repeat;">
+                            <img src="@dineMainBanner.Url()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<section class="container-fluid dine">
+    <div class="container">
+        <div class="row">
+            <div class="shopTopText">
+                <h2>
+                    @Html.Raw(Model.Value("dineHeading"))
+                </h2>
+                <br>
+                @*<h3 class="ShopStyle">
+                    @Html.Raw(Model.Value("dineSubHeading"))
+                </h3>*@
+                <div class="shopping_category_info-x pad_7-x">
+                    @Html.Raw(Model.Value("dineMainDescription"))
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="container dine_section_links">
+        <div class="row text-center">
+            <ul>
+                @{
+                    var dineBrands = Model.Value<IEnumerable<IPublishedContent>>("dineBrands");
+                    
+                    if (dineBrands!=null)
+                    {
+                        foreach (var item in dineBrands)
+                        {
+                            <li><a rel="canonical" href="#"><img src="@item.Url()" alt=""></a> </li>
+                        }
+                    }
+                }
+            </ul>
+        </div>
+    </div>*@
+</section>
+
+<section class="container dine">
+    <div class="dFlex-odd-even">
+        @{
+            var dineCategory = Model.AncestorOrSelf(1).DescendantsOfType("dineCategory").FirstOrDefault();
+            if (dineCategory != null)
+            {
+                <div class="dFlex-item">
+                    <div class="textDine dine_info">
+                        @foreach (var item in dineCategory.Children())
+                        {
+                            var categoryBanner = item.Value<IPublishedContent>("categoryBanner");
+                            var categoryTitle = item.Value<string>("categoryTitle");
+                            var categoryHeading = item.Value<string>("categoryHeading");
+                            <div class="dFlex-item">
+                                <div class="textDine dine_info">
+                                    <h2>
+                                        @Html.Raw(categoryHeading)
+                                    </h2>
+                                    @Html.Raw(item.Value("categoryDetails"))
+                                    <a rel="canonical" href="@item.Url()" class="btn btn-primary gtn-track-more-event" onmouseover="call12()">
+                                        @Umbraco.GetDictionaryValue("KnowMore")
+                                    </a>
+                                </div>
+                                <div class="imageDine">
+                                    @if (categoryBanner != null)
+                                    {
+                                        <div class="dine_section_links">
+                                            <img src="@categoryBanner.Url" class="fullCoverImg" alt="" />
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                         
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>

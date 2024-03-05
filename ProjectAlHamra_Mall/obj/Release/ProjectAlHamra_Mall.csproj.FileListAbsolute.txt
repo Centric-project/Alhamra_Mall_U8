@@ -1,0 +1,2 @@
+C:\Users\USER\Desktop\Hamra\ProjectAlHamra_Mall\ProjectAlHamra_Mall\obj\Release\ProjectAlHamra_Mall.csproj.AssemblyReference.cache
+C:\Users\USER\Desktop\Hamra\ProjectAlHamra_Mall\ProjectAlHamra_Mall\obj\Release\ProjectAlHamra_Mall.csproj.CoreCompileInputs.cache

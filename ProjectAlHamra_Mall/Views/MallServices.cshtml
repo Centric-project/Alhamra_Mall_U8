@@ -1,0 +1,123 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+	Layout = "master.cshtml";
+    var mallServices = Model.AncestorOrSelf(1).DescendantsOfType("mallServices").FirstOrDefault();
+    var backgroundImage = mallServices.Value<IPublishedContent>("mallServicesBackgroundImage");
+}
+
+@* the fun starts here *@
+@{
+    if(mallServices!=null)
+    {
+        var mallServicesBanner = mallServices.Value<IPublishedContent>("mallServicesBanner");
+        <div class="container-fluid slider-main ">
+            <div class="row">
+                <div class="main-banner mt-100">
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item shopBanner" style="background: url('@mallServicesBanner.Url()') center top no-repeat;"></div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<section class="container-fluid about_tabs_info" style="padding-top:50px">
+    <div class="container ">
+        <div class="  ab_sr_heading_holder">
+            <br>
+            <h2>Services</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="bg_ab_sr">
+        <div class="col-sm-6 eqheight slider_bg_sr" style="background: url('@backgroundImage.Url()') no-repeat; background-size: cover;  position: absolute; left: 0;">
+        </div>
+        <div class="container ">
+            <div class="ab_servs_sl_cont">
+                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 eqheight ab_sr_slider1">
+                    <div class="row">
+                        <div class="block-media  slider_cont">
+                            <button class="pr_btn"><img src="/media/mnxdjsuw/prev_arrow.png" alt="prev">Prev</button>
+                            <button class="nt_btn">Next<img src="/media/kiycl01p/right-arrow.png" alt="next"></button>
+
+
+                            <div class=" slick1 slider-for">
+                                @{
+                                    if (mallServices != null)
+                                    {
+                                        foreach (var item in mallServices.Children())
+                                        {
+                                            <div>
+                                                <h3>@Html.Raw(item.Value("serviceHeading"))</h3>
+                                                <hr>
+                                                @Html.Raw(item.Value("serviceBriefDescription"))
+                                                <span class="sr_detials_mobile_view">
+                                                    <div class="sr_bt_cont">
+                                                            <a href="JavaScript:void(0);" data-toggle="modal" data-target="#customer_service" class="serv_btn">customer assistance</a>
+                                                            <a href="JavaScript:void(0);" data-toggle="modal" data-target="#manar_policies" class="serv_btn">Manar policies.</a>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                </span>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            </div>
+                        </div><!-- /.block-media -->
+                        <div class='slider-nav'>
+                            @{
+                                if (mallServices != null)
+                                {
+                                    foreach (var item in mallServices.Children())
+                                    {
+                                        var serviceImage = item.Value<IPublishedContent>("serviceImage");
+                                        <div>
+                                            <ul class="nav_icon">
+                                                <li class="nav_img"><img src="@serviceImage.Url()" alt="Alhamra Mall"></li>
+                                                <li class="nav_text"><span>@item.Value("serviceHeading")</span></li>
+                                            </ul>
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 eqheight ab_sr_slider2" style="height: 571px;">
+                        <div class="row">
+                            <div class="block-text">
+
+                                <div class="carousel-text slider-for">
+                                    @{
+                                        if (mallServices != null)
+                                        {
+                                            foreach (var item in mallServices.Children())
+                                            {
+                                                var image = item.Value<IPublishedContent>("serviceImage");
+                                                <div>
+                                                    <h3>@Html.Raw(item.Value("serviceHeading"))</h3>
+                                                    <hr>
+                                                    <div class="col-sm-12">
+                                                        <div class="row">
+                                                            <div class="cust_info_addr">
+                                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ">
+                                                                    <a rel="canonical" href="@item.Url()" style="padding-top:9px;height:70px" class="about_cust_service eqheight "><img src="@image.Url()" alt="custome care"><span class="tooltiptext cs_info">@item.Value("serviceMainDescription")</span></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div><!-- /.block-text -->
+                        </div>
+                    </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</section>

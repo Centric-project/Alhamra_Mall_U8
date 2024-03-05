@@ -1,0 +1,155 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+	Layout = "master.cshtml";
+        var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+}
+
+@* the fun starts here *@
+
+<style type="text/css">
+    .brand-box .brand-logo {
+        width: 63%;
+    }
+    [lang="ar"] .contDirection{
+        direction:ltr;
+    }
+</style>
+
+<!--Start Main Banner-->
+@{
+    var mainBannerImg = Model.Value<IPublishedContent>("servicesMainBanner");
+    if (mainBannerImg != null)
+    {
+
+        <div class="container header-container slider-main ">
+            <div class="row">
+                <div class="main-banner mt-100">
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item shopBanner" style="center top no-repeat;">
+                            <img src="@mainBannerImg.Url()" alt="@Model.Value("servicesMainTitle")">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<!--End Main Banner--><!--Start Search Box-->
+<section class="filter-holder">
+    <div class="container custom-container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="filter-box">
+                    <div class="row">
+                        <div class="shopTopText">
+                            <h2>
+                                @Html.Raw(Model.Value("servicesMainTitle"))
+                            </h2>
+                            @Html.Raw(Model.Value("servicesMainDescrip"))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Search Box-->
+<!--Start Search Result-->
+<section class="search-result">
+    <div class="container custom-container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="search-result-container">
+                    <div class="row">
+                        @{
+                            var rewardsLanding = Model.AncestorOrSelf(1).DescendantsOfType("servicesLanding").FirstOrDefault();
+                            if (rewardsLanding!=null)
+                            {
+                                foreach (var item in rewardsLanding.Children)
+                                {
+                                    var idValue = HttpContext.Current.Request.QueryString["Id"];
+                                    var servThmbImg = item.Value<IPublishedContent>("listingImage");
+                                    if (servThmbImg != null)
+                                    {
+                                        if (!string.IsNullOrEmpty(idValue))
+                                        {
+                                            int id;
+                                            if (int.TryParse(idValue, out id))
+                                            {
+                                                <div class="col-md-3 @(item.Id==id ? "visible" : "hidden")">
+                                                    <div class="brand-box">
+                                                        @{
+                                                            var itemURL = item.Url();
+                                                            IPublishedContent servItemlink = item.Value<IPublishedContent>("redirectPageLink");
+                                                            if (servItemlink != null)
+                                                            {
+                                                                var servItemlinkType = servItemlink.Url();
+                                                                itemURL = string.IsNullOrEmpty(servItemlinkType) ? null : servItemlinkType == null ? "" : servItemlinkType;
+                                                            }
+                                                        }
+                                                        @*<a href="https://www.aldargiftcard.com/adgc/welcome" class="gtm-track-more-event" name="@Model.Value("servicesMainTitle")-KnowMore" target="_blank">*@
+                                                            <div class="prod-name">
+                                                                @Html.Raw(item.Value("servicesContentTitle"))
+                                                            </div>
+                                                            <div class="brand-logo">
+                                                                <img src="@servThmbImg.Url()" alt="@item.Value("servicesContentTitle")" />
+                                                            </div>
+                                                                <p>@Html.Raw(item.Value("contactUs"))</p>
+                                                            @*<div class="sale-cont">
+                                                                <strong>@Umbraco.GetDictionaryValue("ReadMore")</strong>
+                                                            </div>*@
+                                                        @*</a>*@
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-3">
+                                                <div class="brand-box">
+                                                    @{
+                                                        var itemURL = item.Url();
+                                                        IPublishedContent servItemlink = item.Value<IPublishedContent>("redirectPageLink");
+                                                        if (servItemlink != null)
+                                                        {
+                                                            var servItemlinkType = servItemlink.Url();
+                                                            itemURL = string.IsNullOrEmpty(servItemlinkType) ? null : servItemlinkType == null ? "" : servItemlinkType;
+                                                        }
+                                                    }
+                                                    @*<a href="https://www.aldargiftcard.com/adgc/welcome" class="gtm-track-more-event" name="@Model.Value("servicesMainTitle")-KnowMore" target="_blank">*@
+                                                        <div class="prod-name">
+                                                            @Html.Raw(item.Value("servicesContentTitle"))
+                                                        </div>
+                                                        <div class="brand-logo">
+                                                            <img src="@servThmbImg.Url()" alt="@item.Value("servicesContentTitle")" />
+                                                        </div>
+                                                        <div class="sale-cont contDirection">
+                                                              <p>@Html.Raw(item.Value("contactUs"))</p>
+                                                           @*<strong>@Umbraco.GetDictionaryValue("ReadMore")</strong>*@
+                                                        </div>
+                                                    @*</a>*@
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <!--End Search Result-->
+        <script type="text/javascript">
+            $(function () {
+                $(".search-result-container .brand-box").slice(0, 24).show();
+
+                $("#cmbSortData").change(function () {
+                    const parsedUrl = new URL(window.location.href);
+                    parsedUrl.searchParams.set('sort', this.value);
+                    window.location.href = parsedUrl.href;
+                });
+            });
+        </script>

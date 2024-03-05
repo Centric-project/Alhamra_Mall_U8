@@ -1,0 +1,59 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+	Layout = "master.cshtml";
+}
+
+@* the fun starts here *@
+
+<style type="text/css">
+    .page-content .content .video-thumb {
+        display: block;
+    }
+
+    .page-content h1.title {
+        width: 100%;
+    }
+</style>
+<!--Start Main Banner-->
+@{
+    var serviceBannerImg = Model.Value<IPublishedContent>("rewardsContentBanner");
+    if (serviceBannerImg != null)
+    {
+        <section class="main-banner">
+            <div class="container-fluid custom-container-fluid">
+                <div class="main-slide">
+                    <div class="slide">
+                        <img src="@serviceBannerImg.Url()" alt="@Model.Value("rewardsContentTitle")" class="img-fluid" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}
+<!--End Main Banner-->
+<!--Start Search Box-->
+<section class="filter-holder">
+    <div class="container-fluid custom-container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="filter-box page-content">
+                    <div class="row">
+                        <h1 class="title">@Model.Value("rewardsContentTitle")</h1>
+                        @Html.Raw(Model.Value("bigDetails"))
+                        @if (!string.IsNullOrWhiteSpace(Model.Value("videoLink").ToString()))
+                        {
+                            <a href="@Model.Value("videoLink")" class="video-thumb" data-fancybox rel="gallery1">
+                                <span class="icon"></span>
+                                <img src="@Model.Value("videoPoster")" width="100%" />
+                                <video autoplay controls style="display:none;">
+                                    <source src="@Model.Value("videoLink")" type="video/mp4" />
+                                </video>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End Search Box-->

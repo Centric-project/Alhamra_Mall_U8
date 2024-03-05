@@ -1,0 +1,440 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using System.Threading;
+@using Umbraco.Web.Models;
+@using Umbraco.Web;
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Entertainment>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "master.cshtml";
+    var uiCurrentCulture = Thread.CurrentThread.CurrentUICulture;
+    var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+
+}
+
+@* the fun starts here *@
+    <style>
+    .dFlex-odd-even .dFlex-item {
+        display: flex;
+        gap: 4em;
+         align-items: unset; 
+        margin-bottom: 3.5em;
+    }
+   
+        .csTmFlex {
+            display: flex;
+            gap: 1.5em;
+        }
+        .iconLogo {
+            width: 120px;
+        }
+        .iconLogo img {
+            border: 1px solid #707070;
+            max-width: 100%;
+        }
+        .textStyle h2 {
+            font-size: 16px;
+            display: inline-block;
+            font-weight: 600;
+            padding-bottom: 0.5em;
+            position: relative;
+        }
+        
+        .textStyle h2::before {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            content: "";
+            width: 150px;
+            height: 1px;
+            background: #000000;
+        }
+        .textStyle h4:nth-child(2)::before {
+            width: 0;
+        }
+        .textStyle p {
+         position: relative;
+         font-size: 16px;
+        }
+        .textStyle p::before {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            content: "";
+            width: 150px;
+            height: 1px;
+            background: #000000;
+        }
+        .shopping_category_info-x {
+            width: 100%;
+            max-width: 630px;
+            margin: auto;
+        }
+        .shopping_category_info-x p {
+            font-size: 16px;
+            line-height: 21px;
+        }
+        [lang="ar"] .textStyle p::before,
+        [lang="ar"] .textStyle h2::before {
+            left: unset;
+        }
+        .EntertainH4{
+            margin-bottom:0px;
+        }
+        @@media screen and (max-width: 768px) {
+            .csTmFlex {
+              display: flex;
+              gap: 1.5em;
+              flex-direction: column;  
+            }
+            .dFlex-item {
+                flex-direction: column !important;
+            }
+            .dFlex-item .imageDine {
+              width: 100%;
+              max-width: 100% !important;
+              padding-inline: 25px;
+            }
+            [lang="ar"].tooltiptext{
+                direction:ltr;
+                justify-content:flex-end;
+                text-align:right;
+            }
+            .tooltiptext{
+                justify-content:flex-start;
+            }
+        }
+</style>
+@{
+    var entertainmentMainBanner = Model.Value<IPublishedContent>("entertainmentMainBanner");
+    if (entertainmentMainBanner != null)
+    {
+        <div class="container header-container slider-main ">
+            <div class="row">
+                <div class="main-banner mt-100">
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item shopBanner" style="   background: url('') center top no-repeat;">
+                            <img src="@entertainmentMainBanner.Url()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+@*<section class="container-fluid  ent_details">
+    <div class="container slider_movie1">
+        <div class="row">
+            <div class="col-sm-12 clearfix">
+
+                <div class="  share_heading ">
+                    <a href="" class="share1">@Umbraco.GetDictionaryValue("Share")</a>
+                    <p class="headingH">@Umbraco.GetDictionaryValue("Entertainment")</p>
+                </div>
+                <div class="owl-carousel owl-theme movie_carasual">
+
+                    @{
+                        var entertainment = Model.AncestorOrSelf(1).DescendantsOfType("entertainment").FirstOrDefault();//Model.Content.Site().FirstChild("featuredLandingDocType");
+                        if (entertainment != null)
+                        {
+                            foreach (var item in entertainment.Children())
+                            {
+                                var movieBanner = item.Value<IPublishedContent>("movieBanner");
+                                if (movieBanner != null)
+                                {
+                                    <div class="item disable-owl-swipe" style="background: url(@movieBanner.Url());">
+                                        <div class="fun_info_overlay">
+                                        </div>
+                                        <div class="mv_slider_cont" style="z-index: 9999">
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="row  mv_sl_bottom">
+            <div class="col-lg-12 col-md-12  clearfix ">
+                <div class="mv_slider_cont info_mv_hl">
+                    <div class="  share_heading ">
+                                <a href="" class="share1">SHARE</a>
+                                <h1 class="">Entertainment</h1>
+                        </div>
+                    @if (!string.IsNullOrEmpty(Convert.ToString(Model.Value("entertainmentDescription"))))
+                    {
+                        <h2 class="mv_desc_heading">@Model.Value("entertainmentDescription")</h2>
+                    }
+                    <hr>
+                    <p class="mv_desc_info">@Model.Value("entertainmentInfo")</p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container upcoming_movies">
+        <div class="col-sm-12">
+            <div class="row movie_heading">
+                @{
+                    if (lang == "ar")
+                    {
+                        <h2>
+                            @Umbraco.GetDictionaryValue("NowShowing")
+                        </h2>
+                    }
+                    else if (lang == "en")
+                    {
+                        <h2>
+                            @Umbraco.GetDictionaryValue("NowShowing")
+                        </h2>
+                    }
+                }
+                <hr>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-4 col-xs-5 mv_bg_img">
+                    @{
+                        var nowShowingImage = Model.Value<IPublishedContent>("nowShowingImage");
+                        if (nowShowingImage != null)
+                        {
+                            <div class="row main_mv_img" style="background: url(@nowShowingImage.Url()) no-repeat center;">
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="col-sm-8 col-xs-7 mv_bg_img_slider">
+                    <div class="row">
+                        <div class="owl-carousel owl-theme movie_list">
+                            @{
+                                var upcomingMovieBanner = Model.Value<IEnumerable<IPublishedContent>>("upcomingMovieBanner");
+                                if (upcomingMovieBanner != null && upcomingMovieBanner.Any())
+                                {
+                                    foreach (var upcomingMovieBanners in upcomingMovieBanner)
+                                    {
+                                        <div class="item">
+                                            <div class="col-sm-12" style="background: url(@upcomingMovieBanners.Url()) no-repeat center;">
+
+                                            </div>
+                                        </div>
+                                    }
+
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container-fluid fun_ent_place eqheight">
+    <div class="row">
+        @{
+            var funVilleMainImage = Model.Value<IPublishedContent>("funVilleMainImage");
+            if (funVilleMainImage != null)
+            {
+                <div class=" eqheight fun_cont_bg  " style="background-image: url(@funVilleMainImage.Url());">
+                </div>
+            }
+        }
+        <div class="container" style="top:0px; ">
+            <div class="col-lg-9 col-md-8 col-sm-8 eqheight img_contnr  ">
+                <div class="row">
+
+
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 mv_info_main eqheight">
+                <div class="row">
+                    <div class="ent_fun_info text-right">
+                        <div class="entr_img_holder">
+                            @{
+                                var funVilleImage = Model.Value<IPublishedContent>("funVilleImage");
+                                if (funVilleImage != null)
+                                {
+                                    <img src="@funVilleImage.Url()" alt="" />
+                                }
+                            }
+                        </div>
+
+                        @Html.Raw(Model.Value("funVilleDescription"))
+
+                        <hr>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+@{
+    var mallTrainImage = Model.Value<IPublishedContent>("mallTrainImage");
+    if (mallTrainImage != null)
+    {
+        <section class="container-fluid event_train eqheight2" style="background-image: url('@mallTrainImage.Url()'); background-position: right top;">
+            <div class="container clearfix">
+                <div class="overlay_cont"></div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 eqheight2">
+                    <div class="row eqheight2">
+                        <div class="food_spec_info">
+                            @if (lang == "ar")
+                            {
+                                <h2 style="padding-bottom:0px">
+                                    @Umbraco.GetDictionaryValue("KidsTrain")
+                                </h2>
+                            }
+                            else
+                            {
+                                <h2 style="padding-bottom:0px">@Umbraco.GetDictionaryValue("KidsTrain")</h2>
+                            }
+                            @Html.Raw(Model.Value("mallTrainDescription"))
+                            <hr>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}*@
+<div class="container">
+       
+    </div>
+
+<section class="container dine">
+     <div class="row">
+            <div class="shopTopText">
+                <h2>
+                    @Html.Raw(Model.Value("entertainmentMainHeading"))
+                </h2>
+                <br>
+                @*<h3 class="ShopStyle">
+                    @Html.Raw(Model.Value("dineSubHeading"))
+                </h3>*@
+                <div class="shopping_category_info-x pad_7-x">
+                    @Html.Raw(Model.Value("entertainmentMainDescription"))
+                </div>
+            </div>
+        </div>
+    <div class="dFlex-odd-even">
+        @{
+            var entertainment = Model.AncestorOrSelf(1).DescendantsOfType("entertainment").FirstOrDefault();
+            if (entertainment != null)
+            {
+                <div class="dFlex-item">
+                    <div class="textDine dine_info">
+                        @foreach (var item in entertainment.Children())
+                        {
+                            var entertainmentLogoImage = item.Value<IPublishedContent>("entertainmentDetailsImage");
+                            var entertainmentDetailsMainImage = item.Value<IPublishedContent>("entertainmentDetailsMainImage");
+                            var buttonText = item.Value<string>("buttonText");
+                            var idValue = HttpContext.Current.Request.QueryString["Id"];
+                            if (!string.IsNullOrEmpty(idValue))
+                            {
+                                int id;
+                                if (int.TryParse(idValue, out id))
+                                {
+                                    <div class="dFlex-item @(item.Id==id ? "visible" : "hidden")">
+                                        <div class="textDine dine_info csTmFlex">
+                                            <div class="iconLogo">
+                                                @if (entertainmentLogoImage != null)
+                                                {
+                                                    <div class="iconLogo">
+                                                        <img src="@entertainmentLogoImage.Url" class="fullCoverImg" alt="" />
+                                                    </div>
+                                                }
+                                                  @*  <img src="/media/nwun5eir/fun-ville.png" alt="image Logo" />*@
+                                            </div>
+                                            <div class="textStyle">
+                                                <h2>
+                                                    @Html.Raw(item.Value<string>("entertainmentDetailsTitle"))
+                                                </h2>
+                                                @Html.Raw(item.Value<string>("entertainmentDetailsDescription"))
+                                                <h4 class="EntertainH4">@Umbraco.GetDictionaryValue("Location")</h4>@Html.Raw(item.Value("location"))
+                                                <br>
+                                                <br>
+                                                <h4 class="EntertainH4">@Umbraco.GetDictionaryValue("Contact")</h4><h5 class="tooltiptext">@Html.Raw(item.Value("contact"))</h5>
+                                                <br>
+                                                <h4 class="EntertainH4">@Umbraco.GetDictionaryValue("Timing")</h4>
+                                                @Html.Raw(item.Value("timings"))
+                                                @if(buttonText != null && item.Id == 1618)
+                                                {
+                                                    <a href="https://uae.voxcinemas.com/cinemas/al-hamra-mall" class="btn btn-primary" target="_blank">@buttonText</a> 
+                                                }
+                                                else
+                                                {
+                                                    @*<a href="https://uae.voxcinemas.com/cinemas/al-hamra-mall" class="btn btn-primary" target="_blank">@buttonText</a>*@
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="imageDine">
+                                            @if (entertainmentDetailsMainImage != null)
+                                            {
+                                                <div class="dine_section_links">
+                                                    <img src="@entertainmentDetailsMainImage.Url" class="fullCoverImg" alt="" />
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else{
+                                <div class="dFlex-item">
+                                        <div class="textDine dine_info csTmFlex">
+                                            <div class="iconLogo">
+                                                @if (entertainmentLogoImage != null)
+                                                {
+                                                    <div class="iconLogo">
+                                                        <img src="@entertainmentLogoImage.Url" class="fullCoverImg" alt="" />
+                                                    </div>
+                                                }
+                                                  @*  <img src="/media/nwun5eir/fun-ville.png" alt="image Logo" />*@
+                                            </div>
+                                            <div class="textStyle">
+                                                <h2>
+                                                    @Html.Raw(item.Value<string>("entertainmentDetailsTitle"))
+                                                </h2>
+                                                @Html.Raw(item.Value<string>("entertainmentDetailsDescription"))
+                                                <h4 class="EntertainH4">@Umbraco.GetDictionaryValue("Location")</h4>@Html.Raw(item.Value("location"))
+                                                <br>
+                                                <br>
+                                                <h4 class="EntertainH4">@Umbraco.GetDictionaryValue("Contact")</h4><h5 class="tooltiptext">@Html.Raw(item.Value("contact"))</h5>
+                                                <br>
+                                                <h4 class="EntertainH4">@Umbraco.GetDictionaryValue("Timing")</h4>
+                                                @Html.Raw(item.Value("timings"))
+                                                 @if(buttonText != null && item.Id == 1618)
+                                                {
+                                                    <a href="https://uae.voxcinemas.com/cinemas/al-hamra-mall" class="btn btn-primary" target="_blank">@buttonText</a> 
+                                                }
+                                                else
+                                                {
+                                                    @*<a href="https://uae.voxcinemas.com/cinemas/al-hamra-mall" class="btn btn-primary" target="_blank">@buttonText</a>*@
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="imageDine">
+                                            @if (entertainmentDetailsMainImage != null)
+                                            {
+                                                <div class="dine_section_links">
+                                                    <img src="@entertainmentDetailsMainImage.Url" class="fullCoverImg" alt="" />
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                            
+                            }
+                           
+                        }
+                         
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>

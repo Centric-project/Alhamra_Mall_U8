@@ -1,0 +1,28 @@
+{
+  "id": "6bdd312d-de8f-49c4-acf3-f0d437f34760",
+  "name": "Email To Customer With Template",
+  "form": "41c8a072-5250-4037-a283-85746341543a",
+  "active": true,
+  "includeSensitiveData": "False",
+  "workflowTypeId": "17c61629-d984-4e86-b43b-a8407b3efea9",
+  "executesOn": "Submitted",
+  "settings": {
+    "RazorViewFilePath": "Forms/Emails/Contact_Us-ET.cshtml",
+    "Attachment": "",
+    "Email": "{Email}",
+    "CcEmail": "",
+    "BccEmail": "",
+    "SenderEmail": "aljimimallcustomercare@aldar.com",
+    "ReplyToEmail": "",
+    "Subject": "Thank You For Contact Us"
+  },
+  "sortOrder": 1,
+  "isMandatory": false,
+  "condition": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "enabled": false,
+    "actionType": "Show",
+    "logicType": "All",
+    "rules": []
+  }
+}

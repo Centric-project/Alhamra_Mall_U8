@@ -1,0 +1,249 @@
+﻿@inherits UmbracoViewPage<Contact>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using System.Threading;
+
+@{
+    Layout = "master.cshtml";
+    var uiCurrentCulture = Thread.CurrentThread.CurrentUICulture;
+
+}
+
+<style>
+.container-fluid.slider-main {
+   margin-bottom: 60px;
+}
+.main-banner .inner_banner_item {
+    background-size: unset !important;
+}
+.contact_banner.container-fluid.slider-main {
+    height: 400px;
+        margin-top: 100px;
+}
+
+.cont_feedback_form {
+    padding: 50px;
+}
+
+.cont_feedback_form_holder {
+  margin-top: 0px;
+}
+
+.dNone {
+    display: none;
+}
+
+.whatsNew-holder.container.header-container {
+  padding: 0;
+}
+
+.cont_info_holder {
+    margin-top: 0;
+}
+
+.cont_map_contr {
+  height: 100%;
+  margin-top: 50px;
+}
+
+.cont_info_overlay {
+  position: unset;
+  padding: 20px 50px;
+}
+
+.cont_info_holder {
+    height: auto;
+}
+
+.cont_info li {
+  font-size: 18px;
+  line-height: 31px;
+}
+
+.cont_map_contr iframe {
+    height: 250px;
+}
+[lang="ar"] .contactTooltiptext{
+        direction: ltr;
+        display: flex;
+        justify-content: end;
+        gap: 5px;
+    }
+</style>
+@{
+    var contactMainBanner = Model.Value<IPublishedContent>("contactUsMainBanner");
+    var contactUsBackgroundImage = Model.Value<IPublishedContent>("contactUsBackgroundImage");
+
+    if (contactMainBanner != null)
+    {
+        <div class="container header-container contact_banner slider-main">
+            <div class="row">
+                <div class="main-banner">
+                    <div class="banner_info inner_banner_info" style="display: block; width: 100%;">
+                        <div class="item a inner_banner_item" style="background: url('') center top no-repeat; background-size: cover;">
+                            <img src="@contactMainBanner.Url()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<!--<section class="container-fluid contact_n_map">-->
+<section class="box-holder whatsNew-holder container header-container csmtPad">
+    
+    <!--<div class="cont_top_bg"></div>-->
+    <div class="row arFlex arMobFlex">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="row">
+                <div class="cont_info_holder">
+                    <div class="cont_info_overlay">
+                        <p class="ContactStyle">@Html.Raw(Model.Value("contactFormHeader"))</p>
+                        <hr>
+                        <ul class="cont_info">
+                            <li class="cont-address">@Html.Raw(Model.Value("contactUsSubHeading"))</li>
+                            <li class="cont-address tooltiptext">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M16 64C16 28.7 44.7 0 80 0H304c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H80c-35.3 0-64-28.7-64-64V64zM224 448a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zM304 64H80V384H304V64z"/></svg>
+                                @Html.Raw(Model.Value("contactUsMobile"))
+                            </li>
+                            <li class="cont-address tooltiptext">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>
+                                @Html.Raw(Model.Value("contactUsEmail"))
+                            </li>
+                            <li class="cont-address">@Html.Raw(Model.Value("mallTiming"))</li>
+                        </ul>
+
+                        <div class="cont_social">
+                            <div class="socialText">
+                                <p>
+                                    @Umbraco.GetDictionaryValue("Follow")
+                                    <a rel="canonical" href="@Umbraco.GetDictionaryValue("facebookUrl")" title="facebook" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="15" viewBox="0 0 96.124 96.123"><path d="M72.089.02L59.624 0C45.62 0 36.57 9.285 36.57 23.656v10.907H24.037a1.96 1.96 0 0 0-1.96 1.961v15.803a1.96 1.96 0 0 0 1.96 1.96H36.57v39.876a1.96 1.96 0 0 0 1.96 1.96h16.352a1.96 1.96 0 0 0 1.96-1.96V54.287h14.654a1.96 1.96 0 0 0 1.96-1.96l.006-15.803a1.963 1.963 0 0 0-1.961-1.961H56.842v-9.246c0-4.444 1.059-6.7 6.848-6.7l8.397-.003a1.96 1.96 0 0 0 1.959-1.96V1.98A1.96 1.96 0 0 0 72.089.02z" /></svg></a>
+                                    @*<li>
+                                        <a title="twitter" rel="canonical" href="@Umbraco.GetDictionaryValue("twitterUrl")" target="_blank">
+                                            <svg viewBox="0 -47 512.002 512" width="15" xmlns="http://www.w3.org/2000/svg"><path d="M191.012 419.043c-22.14 0-44.93-1.793-67.856-5.387-40.379-6.336-81.254-27.457-92.82-33.781L0 363.289l32.844-10.8c35.902-11.805 57.742-19.13 84.777-30.598-27.07-13.11-47.933-36.692-57.976-67.176l-7.641-23.195 6.266.957A113.939 113.939 0 0 1 44 214.883c-12.934-19.645-19.781-43.649-18.324-64.219l1.437-20.246 12.121 4.695a113.316 113.316 0 0 1-10.98-30.777c-5.293-26.36-.863-54.363 12.476-78.852L51.29 6.102l14.12 16.96c44.66 53.649 101.227 85.473 168.363 94.79-2.742-18.903-.687-37.145 6.114-53.497 7.918-19.039 22.004-35.183 40.722-46.69 20.79-12.778 46-18.97 70.989-17.435 26.511 1.63 50.582 11.563 69.699 28.747 9.336-2.426 16.215-5.016 25.512-8.516 5.593-2.106 11.937-4.496 19.875-7.23l29.25-10.079-19.075 54.477a96.355 96.355 0 0 1 3.91-.254l31.235-1.414-18.461 25.23c-1.059 1.446-1.328 1.856-1.703 2.422-1.488 2.242-3.34 5.032-28.68 38.867-6.344 8.473-9.512 19.508-8.922 31.079 2.246 43.968-3.148 83.75-16.043 118.234-12.195 32.625-31.093 60.617-56.164 83.2-31.023 27.937-70.582 47.066-117.582 56.847-23.054 4.797-47.812 7.203-73.437 7.203zm0 0" /></svg>
+                                        </a>
+                                    </li>*@
+                                    <a rel="canonical" href="@Umbraco.GetDictionaryValue("instagramUrl")" target="_blank">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" viewBox="0 0 512 512"><path d="M352 0H160C71.648 0 0 71.648 0 160v192c0 88.352 71.648 160 160 160h192c88.352 0 160-71.648 160-160V160C512 71.648 440.352 0 352 0zm112 352c0 61.76-50.24 112-112 112H160c-61.76 0-112-50.24-112-112V160C48 98.24 98.24 48 160 48h192c61.76 0 112 50.24 112 112v192z"></path><path d="M256 128c-70.688 0-128 57.312-128 128s57.312 128 128 128 128-57.312 128-128-57.312-128-128-128zm0 208c-44.096 0-80-35.904-80-80 0-44.128 35.904-80 80-80s80 35.872 80 80c0 44.096-35.904 80-80 80z"></path><circle cx="393.6" cy="118.4" r="17.056"></circle></svg>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="cont_feedback_form_holder">
+                <div class="cnt_map_head_contr hidden-xs dNone">
+                    <div class="cnt_map_head">
+                        @Umbraco.GetDictionaryValue("FindUsOnMap") 
+                    <hr class="cnt_map_hr">
+                    </div>
+                </div>
+                <div class='cont_feedback_form'>
+                    <h3>@Umbraco.GetDictionaryValue("LeaveFeedback")</h3>
+                    <p>
+                        @Umbraco.GetDictionaryValue("letUsKnow")
+                    </p>
+                        @Umbraco.RenderMacro("renderUmbracoForm", new { FormGuid = "59493bbe-8776-4fed-b2a2-463092d98d3b", FormTheme = "contactus-formtheme", ExcludeScripts = "0" })
+                        <div class="field-validation-error" id="divErrorXSSCom" style="display: none;color:red;">Special characters not allowed</div>
+                        <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="">
+    <div class="row-x">
+        <div class="cont_map_contr ">
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3595.647634704113!2d55.779602315019275!3d25.682972883672715!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef60a6a9a7f634d%3A0x24d1990c3ea9f134!2sAl%20Hamra%20Mall!5e0!3m2!1sen!2sin!4v1580983967895!5m2!1sen!2sin" width="600" height="250"  style="border:0;" allowfullscreen=""></iframe>
+
+
+        </div>
+    </div>
+
+</section>
+<script src="~/js/ContactJs-1.js"></script>
+<script>
+$("#btnSubmit").click(function (e) {
+    var invalidFields = 0;
+    var secNL = $("div.contact-form .umbraco-forms-field.mandatory");
+    $(secNL).find("input[type='text']").each(function () {
+        if ($(this).val() == "") {
+            invalidFields += 1;
+        }
+    });
+    $(secNL).find("select > option:selected").each(function () {
+        if ($(this).val() == "") {
+            invalidFields += 1;
+        }
+    });
+    $(secNL).find("textarea").each(function () {
+        if ($(this).val() == "") {
+            invalidFields += 1;
+        }
+    });
+    if (invalidFields == 0) {
+        gtmTrackEvent_ContactUsClick($(this));
+    }
+});
+$('#btnSubmit').click(function () {
+    var firstName = $('#7872e3a1-1fec-43ae-ad94-dff05865a08b').val();
+    var lastName = $('#f6718dda-0e45-48f9-bf8f-ecfe8a500a9e').val();
+    var mobileName = $('#c9204231-7756-4e10-cb50-60870fb4bb73').val();
+    var comments = $('#216dcdb8-94e0-45a4-d5cb-50bbe71d3b93').val();
+    var chkNumb = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
+    var letters = /^[A-Za-z ]+$/;
+    var commentsExp = /^[a-z0-9 ]+$/i
+    var numbers = /^[0-9]+$/;
+    
+    if (firstName) {
+        if (firstName.match(letters)) {
+            $('#7872e3a1-1fec-43ae-ad94-dff05865a08b').css('border-color', '');
+            $('#divErrorXSS').hide();
+        }
+        else {
+            $('#7872e3a1-1fec-43ae-ad94-dff05865a08b').css('border-color', '#45454a');
+            $('#7872e3a1-1fec-43ae-ad94-dff05865a08b').focus();
+            $('#divErrorXSS').show();
+            return false;
+        }
+    }
+    if (lastName) {
+        if (lastName.match(letters)) {
+            $('#f6718dda-0e45-48f9-bf8f-ecfe8a500a9e').css('border-color', '');
+            $('#divErrorXSS').hide();
+        }
+        else {
+            $('#f6718dda-0e45-48f9-bf8f-ecfe8a500a9e').css('border-color', '#45454a');
+            $('#f6718dda-0e45-48f9-bf8f-ecfe8a500a9e').focus();
+            $('#divErrorXSS').show();
+            return false;
+        }
+    }
+    if (mobileName) {
+        if (mobileName.match(chkNumb)) {
+            $('#c9204231-7756-4e10-cb50-60870fb4bb73').css('border-color', '');
+        }
+        else {
+            $('#c9204231-7756-4e10-cb50-60870fb4bb73').css('border-color', '#45454a');
+            $('#c9204231-7756-4e10-cb50-60870fb4bb73').focus();
+            return false;
+        }
+    }
+    
+    if (comments) {
+        if (comments.match(commentsExp)) {
+            $('#216dcdb8-94e0-45a4-d5cb-50bbe71d3b93').css('border-color', '');
+        }
+        else {
+            $('#216dcdb8-94e0-45a4-d5cb-50bbe71d3b93').css('border-color', '#45454a');
+            $('#216dcdb8-94e0-45a4-d5cb-50bbe71d3b93').focus();
+            return false;
+        }
+    }
+});
+
+</script>
