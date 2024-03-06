@@ -246,6 +246,7 @@
                   "preValues": [
                     "#YasMall",
                     "#AlAinMall",
+                    "#alHamraMallHeader",
                     "#Other"
                   ],
                   "parsedPreValues": [
@@ -255,6 +256,10 @@
                     },
                     {
                       "value": "#AlAinMall",
+                      "caption": null
+                    },
+                    {
+                      "value": "#alHamraMallHeader",
                       "caption": null
                     },
                     {

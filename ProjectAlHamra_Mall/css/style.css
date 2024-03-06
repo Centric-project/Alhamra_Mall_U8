@@ -4882,9 +4882,9 @@ button svg {
 	transition: all 200ms ease-in;
 	transform:translate(-50%, -50%) scale(1.1);
 }
-.card_info_holder .card_img img{
-    margin-bottom:20px;
-}
+/*.card_info_holder .card_img img{*/
+/*    margin-bottom:20px;*/
+/*}*/
 .brand_list  .card .card_info_holder {
 	position: absolute;
 	height: 230px;
