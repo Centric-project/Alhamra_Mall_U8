@@ -1,0 +1,85 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ShopsLandingDocType>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web.Mvc;
+@using ClientDependency.Core.Mvc
+@{
+    Layout = "master.cshtml";
+}
+
+@* the fun starts here *@
+
+<!--Start Main Banner-->
+@{
+    var shopMainBanner = Model.Value<IPublishedContent>("shopMainBanner");
+    if (shopMainBanner != null)
+    {
+        <div class="container-fluid slider-main shopping_bn">
+
+            <div class="row">
+
+                <div class="main-banner">
+
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item"
+                             style="   background: url('@shopMainBanner.Url()') center top no-repeat;background-size:100%;">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    }
+}
+<!--End Main Banner-->
+<!-- Start Shopping Page Landing Content-->
+<div class="container-fluid shopping_information">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-8 sop_cat_cont eqheight">
+                <div class="row">
+                    <div class="shopping_category_info pad_7">
+                        @Html.Raw(Model.Value("shopMainDescription"))
+                    </div>
+                </div>
+            </div>
+           @{
+                var shopCategory = Model.AncestorOrSelf(1).DescendantsOfType("shopCategory").FirstOrDefault();
+                if (shopCategory != null)
+                {
+                    //var itemsPerRow = 2; // Set the number of items per row dynamically
+
+                    //var columnClass = $"col-lg-{12 / itemsPerRow} col-md-{12 / itemsPerRow} col-sm-{12 / itemsPerRow} col-xs-{12 / itemsPerRow}";
+
+                    foreach (var category in shopCategory.Children())
+                    {
+                        var categoryBanner = category.Value<IPublishedContent>("categoryBanner");
+                        
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="row pad_7 eqheight">
+                                <div class="shopping_sec_1" style="overflow:hidden">
+                                    @if (categoryBanner != null && !string.IsNullOrEmpty(categoryBanner.Url()))
+                                    {
+                                        <div class="img_holder_dv" style="background-image: url('@categoryBanner.Url()');">
+                                            <img src="@categoryBanner.Url()" alt="image" />
+                                        </div>
+                                    }
+                                    <div class="sh_caption">
+                                        <a rel="canonical" href="@category.Url" class="title_link" onmouseover="call12()">
+                                            <h2 class="appr_acces">
+                                                @category.Value("categoryTitle")
+                                            </h2>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+
+
+        </div>
+    </div>
+</div>
+<!-- End Shopping Page Landing Content-->
