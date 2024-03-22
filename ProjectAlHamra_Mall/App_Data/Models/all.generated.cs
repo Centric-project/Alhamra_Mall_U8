@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "650b4be9f6ae0d26")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "33de875551fe9fa")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
 // FILE: models.generated.cs
@@ -1030,6 +1030,13 @@ namespace Umbraco.Web.PublishedModels
 		public IEnumerable<IPublishedContent> DineCategory => this.Value<IEnumerable<IPublishedContent>>("dineCategory");
 
 		///<summary>
+		/// End Date
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("endDate")]
+		public DateTime EndDate => this.Value<DateTime>("endDate");
+
+		///<summary>
 		/// Floor Name
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
@@ -1192,6 +1199,13 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("contact")]
 		public string Contact => this.Value<string>("contact");
+
+		///<summary>
+		/// End Date
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("endDate")]
+		public DateTime EndDate => this.Value<DateTime>("endDate");
 
 		///<summary>
 		/// Entertainment Details Description
@@ -1867,6 +1881,13 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("contactUs")]
 		public IHtmlString ContactUs => this.Value<IHtmlString>("contactUs");
+
+		///<summary>
+		/// End Date
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("endDate")]
+		public DateTime EndDate => this.Value<DateTime>("endDate");
 
 		///<summary>
 		/// Floor Name
@@ -2721,6 +2742,205 @@ namespace Umbraco.Web.PublishedModels
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("umbracoNavihide")]
 		public bool UmbracoNavihide => NavigationBase.GetUmbracoNavihide(this);
+	}
+
+	/// <summary>Etihad Guest</summary>
+	[PublishedModel("etihadGuestDocType")]
+	public partial class EtihadGuestDocType : PublishedContentModel, INavigationBase
+	{
+		// helpers
+#pragma warning disable 0109 // new is redundant
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new const string ModelTypeAlias = "etihadGuestDocType";
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new static IPublishedContentType GetModelContentType()
+			=> PublishedModelUtility.GetModelContentType(ModelItemType, ModelTypeAlias);
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<EtihadGuestDocType, TValue>> selector)
+			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+#pragma warning restore 0109
+
+		// ctor
+		public EtihadGuestDocType(IPublishedContent content)
+			: base(content)
+		{ }
+
+		// properties
+
+		///<summary>
+		/// Banner: (1400X450)
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("bannerImage")]
+		public IPublishedContent BannerImage => this.Value<IPublishedContent>("bannerImage");
+
+		///<summary>
+		/// Big Deal
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("bigDeal")]
+		public IHtmlString BigDeal => this.Value<IHtmlString>("bigDeal");
+
+		///<summary>
+		/// Big Deal Img
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("bigDealImage")]
+		public IPublishedContent BigDealImage => this.Value<IPublishedContent>("bigDealImage");
+
+		///<summary>
+		/// Buy and Fly
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("buyAndFly")]
+		public IHtmlString BuyAndFly => this.Value<IHtmlString>("buyAndFly");
+
+		///<summary>
+		/// Buy and Fly Img
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("buyAndFlyImage")]
+		public IPublishedContent BuyAndFlyImage => this.Value<IPublishedContent>("buyAndFlyImage");
+
+		///<summary>
+		/// Etihad Video Poster
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("egEtihadVideoPoster")]
+		public IPublishedContent EgEtihadVideoPoster => this.Value<IPublishedContent>("egEtihadVideoPoster");
+
+		///<summary>
+		/// Etihad Reward Video: In .MP4 format
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("egRewardVideo")]
+		public IPublishedContent EgRewardVideo => this.Value<IPublishedContent>("egRewardVideo");
+
+		///<summary>
+		/// EtihadMainTitle
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("etihadMainTitle")]
+		public string EtihadMainTitle => this.Value<string>("etihadMainTitle");
+
+		///<summary>
+		/// Explore Etihad Detailes
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("exploreEtihadDetailes")]
+		public IHtmlString ExploreEtihadDetailes => this.Value<IHtmlString>("exploreEtihadDetailes");
+
+		///<summary>
+		/// Explore Etihad Img
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("exploreEtihadImage")]
+		public IPublishedContent ExploreEtihadImage => this.Value<IPublishedContent>("exploreEtihadImage");
+
+		///<summary>
+		/// Explore Etihad Title
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("exploreEtihadTitle")]
+		public string ExploreEtihadTitle => this.Value<string>("exploreEtihadTitle");
+
+		///<summary>
+		/// Journey Steps
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("journeySteps")]
+		public IHtmlString JourneySteps => this.Value<IHtmlString>("journeySteps");
+
+		///<summary>
+		/// Tiers & Benefits
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("tiersBenefits")]
+		public IHtmlString TiersBenefits => this.Value<IHtmlString>("tiersBenefits");
+
+		///<summary>
+		/// Tiers & Benefits Img
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("tiersBenefitsImage")]
+		public IPublishedContent TiersBenefitsImage => this.Value<IPublishedContent>("tiersBenefitsImage");
+
+		///<summary>
+		/// Winning Partnership
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("winningPartnership")]
+		public IHtmlString WinningPartnership => this.Value<IHtmlString>("winningPartnership");
+
+		///<summary>
+		/// Keywords: Keywords that describe the content of the page. This is considered optional since most modern search engines don't use this anymore
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("keywords")]
+		public IEnumerable<string> Keywords => NavigationBase.GetKeywords(this);
+
+		///<summary>
+		/// Description: A brief description of the content on your page. This text is shown below the title in a google search result and also used for Social Sharing Cards. The ideal length is between 130 and 155 characters
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("seoMetaDescription")]
+		public string SeoMetaDescription => NavigationBase.GetSeoMetaDescription(this);
+
+		///<summary>
+		/// Hide in Navigation: If you don't want this page to appear in the navigation, check this box
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("umbracoNavihide")]
+		public bool UmbracoNavihide => NavigationBase.GetUmbracoNavihide(this);
+	}
+
+	/// <summary>Whats New</summary>
+	[PublishedModel("whatsNew")]
+	public partial class WhatsNew : PublishedContentModel
+	{
+		// helpers
+#pragma warning disable 0109 // new is redundant
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new const string ModelTypeAlias = "whatsNew";
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public new static IPublishedContentType GetModelContentType()
+			=> PublishedModelUtility.GetModelContentType(ModelItemType, ModelTypeAlias);
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<WhatsNew, TValue>> selector)
+			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+#pragma warning restore 0109
+
+		// ctor
+		public WhatsNew(IPublishedContent content)
+			: base(content)
+		{ }
+
+		// properties
+
+		///<summary>
+		/// Brands Section Heading
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("brandsSectionHeading")]
+		public string BrandsSectionHeading => this.Value<string>("brandsSectionHeading");
+
+		///<summary>
+		/// Main Banner
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("mainBanner")]
+		public IPublishedContent MainBanner => this.Value<IPublishedContent>("mainBanner");
+
+		///<summary>
+		/// Main Heading
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("mainHeading")]
+		public IHtmlString MainHeading => this.Value<IHtmlString>("mainHeading");
 	}
 
 	/// <summary>Folder</summary>

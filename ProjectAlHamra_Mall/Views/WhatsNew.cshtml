@@ -1,0 +1,248 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using ContentModels = Umbraco.Web.PublishedModels;
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.WhatsNew>
+@{
+    Layout = "master.cshtml";
+}
+
+<style>
+.card{
+    background:#ffffff;
+}
+.main__huna-brand {
+    background: rgba(182, 161, 113, .1);
+    padding: 40px 0;
+}
+    .main__huna-brand .card {
+    border: 1px solid #b6a171;
+    margin: 16px 0;
+    text-align: center;
+}
+.main__huna-brand .card .card-body {
+    height: 280px;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main__huna-brand .card .card-footer {
+    border-top: 1px solid #b6a171;
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0);
+    padding: 20px 0px;
+    cursor: pointer;
+}
+.main__huna-brand .card .card-body img{
+    max-width:60%;
+}
+</style>
+@* Main Banner *@
+@{
+    var mainBanner = Model.Value<IPublishedContent>("mainBanner");
+    if (mainBanner != null)
+    {
+        <div class="container header-container slider-main ">
+            <div class="row">
+                <div class="main-banner mt-100">
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item shopBanner" style="center top no-repeat;">
+                            <img src="@mainBanner.Url()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@* Breadcrumbs and Title *@
+<section class="filter-holder">
+    <div class="container-fluid custom-container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="clearfix title-holder-x">
+                    <h1 class="title">@Model.Value("mainHeading")</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section class="main__huna-brand whatsNew">
+            <div class="container header-container">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <img class="card-img-top" src="/media/bvyfxrby/crocs.jpg" alt="Card image cap">
+                            </div>
+                            <div class="card-footer">
+                                <a href="@Umbraco.GetDictionaryValue("crocsnUrl")">
+                                    <button type="button" class="collapsible">
+                                         @Umbraco.GetDictionaryValue("crocs")
+                                     </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <img class="card-img-top" src="/media/mj2bdktd/salt-logo.jpg" alt="Card image cap">
+                            </div>
+                            <div class="card-footer">
+                                <a href="@Umbraco.GetDictionaryValue("SaltUrl")">
+                                    <button type="button" class="collapsible">
+                                         @Umbraco.GetDictionaryValue("Salt")</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <img class="card-img-top" src="/media/raffyftj/senso.png" alt="Card image cap">
+                            </div>
+                            <div class="card-footer">
+                                <a href="@Umbraco.GetDictionaryValue("SENSOUrl")">
+                                    <button type="button" class="collapsible">
+                                      @Umbraco.GetDictionaryValue("SENSO") </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <img class="card-img-top" src="/media/1q5dwury/gissah-alhamra-1.jpg" alt="Card image cap">
+                            </div>
+                            <div class="card-footer">
+                                <a href="@Umbraco.GetDictionaryValue("GissahPerfumesUrl")">
+                                    <button type="button" class="collapsible">
+                                         @Umbraco.GetDictionaryValue("Gissah Perfumes")</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <img class="card-img-top" src="/media/lahb10xh/rivoli-eye-zone.png" alt="Card image cap">
+                            </div>
+                            <div class="card-footer">
+                                <a href="@Umbraco.GetDictionaryValue("rivoliUrl")">
+                                    <button type="button" class="collapsible">
+                                         @Umbraco.GetDictionaryValue("rivoli")</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <img class="card-img-top" src="/media/hsldf1uw/damas.png" alt="Card image cap">
+                            </div>
+                            <div class="card-footer">
+                                <a href="@Umbraco.GetDictionaryValue("damasUrl")">
+                                    <button type="button" class="collapsible">
+                                         @Umbraco.GetDictionaryValue("damas")</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <img class="card-img-top" src="/media/3ooll45y/florance.jpg" alt="Card image cap">
+                            </div>
+                            <div class="card-footer">
+                                <a href="@Umbraco.GetDictionaryValue("floranceUrl")">
+                                    <button type="button" class="collapsible">
+                                         @Umbraco.GetDictionaryValue("florance")</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <img class="card-img-top" src="/media/ktrcwxoy/reshie.png" alt="Card image cap">
+                            </div>
+                            <div class="card-footer">
+                                <a href="@Umbraco.GetDictionaryValue("reshieUrl")">
+                                    <button type="button" class="collapsible">
+                                         @Umbraco.GetDictionaryValue("reshie")</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <img class="card-img-top" src="/media/bncboh1v/grandstore.jpg" alt="Card image cap">
+                            </div>
+                            <div class="card-footer">
+                                <a href="@Umbraco.GetDictionaryValue("grandstoreUrl")">
+                                    <button type="button" class="collapsible">
+                                         @Umbraco.GetDictionaryValue("grandstore")</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+@* Main Content Section *@
+
+@*@{
+    DateTime today = DateTime.Today;
+    var shopList = Model.AncestorOrSelf(1).DescendantsOfType("shopsLanding").FirstOrDefault()?.Children().Where(e => e.IsVisible() && e.HasValue("endDate") && DateTime.Parse(e.Value<string>("endDate")) >= today);
+    var dineList = Model.AncestorOrSelf(1).DescendantsOfType("dinelanding").FirstOrDefault()?.Children().Where(e => e.IsVisible() && e.HasValue("endDate") && DateTime.Parse(e.Value<string>("endDate")) >= today);
+    var entertainList = Model.AncestorOrSelf(1).DescendantsOfType("entertainment").FirstOrDefault()?.Children().Where(e => e.IsVisible() && e.HasValue("endDate") && DateTime.Parse(e.Value<string>("endDate")) >= today);
+    if ((shopList != null && shopList.Any()) || (dineList != null && dineList.Any()) || (entertainList != null && entertainList.Any()))
+    {
+        <section class="main__huna-brand whatsNew">
+            <div class="container header-container">
+                <div class="row">
+                    @foreach (var list in new List<IEnumerable<IPublishedContent>> { shopList, dineList, entertainList }.Where(l => l != null))
+                    {
+                        foreach (var item in list)
+                        {
+                            var logo = item.Value<IPublishedContent>("shopLogo") ?? item.Value<IPublishedContent>("entertainmentDetailsImage");
+                            var categories = item.Value<string>("shopCategory");
+                            if (logo != null)
+                            {
+                                <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img class="card-img-top" src="@logo.Url()" alt="Card image cap">
+                                        </div>
+                                        <div class="card-footer">
+                                            <a href="#">
+                                                <button type="button" class="collapsible">
+                                                    @if(item.HasValue("shopTitle"))
+                                                    {
+                                                        @item.Value("shopTitle")
+                                                    }
+                                                    else if(item.HasValue("entertainmentDetailsTitle"))
+                                                    {
+                                                        @item.Value("entertainmentDetailsTitle")
+                                                    }
+                                                </button>                                           
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+    }
+
+}
+*@
+
+
+

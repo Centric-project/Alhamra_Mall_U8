@@ -437,6 +437,9 @@ a.title_link {
 	transform: scale(1);
 	padding: 0px 20px;
 }
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover{
+    background-color: transparent;
+}
 
 .main-menu ul li ul li a {
 }
@@ -5056,7 +5059,7 @@ button svg {
 }
 .shopBanner{
     height:500px !important;
-    margin-top: 0px !important;
+    margin-top: 40px !important;
 }
 .newShopPage a.title_link{
     position:unset;

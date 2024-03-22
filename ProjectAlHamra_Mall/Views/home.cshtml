@@ -66,9 +66,16 @@
                         bool flag = false;
     
                         <div class="slide slide-content">
-                            @*<a href="@btnLinkURL">*@
+                            @if(hSlide.ShowLinkText)
+                            {
+                                <a href="@hSlide.ButtonText">
+                                    <img src="@hSlide.SliderImage.Url()" class="img-fluid" alt="@hSlide.SliderHeading" />
+                                </a>
+                            }
+                            else
+                            {
                                 <img src="@hSlide.SliderImage.Url()" class="img-fluid" alt="@hSlide.SliderHeading" />
-                            @*</a>*@
+                            }
                             <div class="caption" style="display: none">
                                 <h3>@hSlide.SliderHeading</h3>
                                 @if (!hSlide.ShowLinkText)

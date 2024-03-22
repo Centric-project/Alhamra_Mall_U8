@@ -67,7 +67,6 @@
                             {
                                 foreach (var item in rewardsLanding.Children)
                                 {
-
                                     var servThmbImg = item.Value<IPublishedContent>("listingImage");
                                     var idValue = HttpContext.Current.Request.QueryString["Id"];
                                     if (servThmbImg != null)
@@ -88,34 +87,38 @@
                                                     }
                                                     @if(item.Id == 1776)
                                                     {   
-                                                        <a href="https://aldarhospitality.com/darna-loyalty-program" class="gtm-track-more-event" name="@Model.Value("rewardsMainTitle")-KnowMore" target="_blank">
-                                                            <div class="prod-name">
-                                                                @Html.Raw(item.Value("rewardsContentTitle"))
-                                                            </div>
-                                                            <div class="brand-logo">
-                                                                <img src="@servThmbImg.Url()" alt="@item.Value("rewardsContentTitle")" />
-                                                            </div>
-                                                            <div class="sale-cont">
-                                                                <strong>@Umbraco.GetDictionaryValue("ReadMore")</strong>
-                                                            </div>
-                                                        </a>
+                                                        if(lang == "ar")
+                                                        {
+                                                            <a href="https://aldarhospitality.com/ar/darna-loyalty-program" class="gtm-track-more-event" name="@Model.Value("rewardsMainTitle")-KnowMore" target="_blank">
+                                                                <div class="prod-name">
+                                                                    @Html.Raw(item.Value("rewardsContentTitle"))
+                                                                </div>
+                                                                <div class="brand-logo">
+                                                                    <img src="@servThmbImg.Url()" alt="@item.Value("rewardsContentTitle")" />
+                                                                </div>
+                                                                <div class="sale-cont">
+                                                                    <strong>@Umbraco.GetDictionaryValue("ReadMore")</strong>
+                                                                </div>
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="https://aldarhospitality.com/darna-loyalty-program" class="gtm-track-more-event" name="@Model.Value("rewardsMainTitle")-KnowMore" target="_blank">
+                                                                <div class="prod-name">
+                                                                    @Html.Raw(item.Value("rewardsContentTitle"))
+                                                                </div>
+                                                                <div class="brand-logo">
+                                                                    <img src="@servThmbImg.Url()" alt="@item.Value("rewardsContentTitle")" />
+                                                                </div>
+                                                                <div class="sale-cont">
+                                                                    <strong>@Umbraco.GetDictionaryValue("ReadMore")</strong>
+                                                                </div>
+                                                            </a>
+                                                        }
                                                     }
-                                                    else if(item.Id == 1821)
+                                                    else
                                                     {
-                                                        @*<a href="https://aldarhospitality.com/darna-loyalty-program" class="gtm-track-more-event" name="@Model.Value("rewardsMainTitle")-KnowMore" target="_blank">*@
-                                                            <div class="prod-name">
-                                                                @Html.Raw(item.Value("rewardsContentTitle"))
-                                                            </div>
-                                                            <div class="brand-logo">
-                                                                <img src="@servThmbImg.Url()" alt="@item.Value("rewardsContentTitle")" />
-                                                            </div>
-                                                            <div class="sale-cont">
-                                                                @*<strong>@Umbraco.GetDictionaryValue("ReadMore")</strong>*@
-                                                            </div>
-                                                        @*</a>*@
-                                                    }
-                                                    else{
-                                                         <a href="https://www.aldargiftcard.com/adgc/welcome" class="gtm-track-more-event" name="@Model.Value("rewardsMainTitle")-KnowMore" target="_blank">
+                                                        <a href="@itemURL" class="gtm-track-more-event" name="@Model.Value("rewardsMainTitle")-KnowMore">
                                                             <div class="prod-name">
                                                                 @Html.Raw(item.Value("rewardsContentTitle"))
                                                             </div>
@@ -145,34 +148,38 @@
                                                     }
                                                    @if(item.Id == 1776)
                                                     {   
-                                                         <a href="https://aldarhospitality.com/darna-loyalty-program" class="gtm-track-more-event" name="@Model.Value("rewardsMainTitle")-KnowMore" target="_blank">
-                                                            <div class="prod-name">
-                                                                @Html.Raw(item.Value("rewardsContentTitle"))
-                                                            </div>
-                                                            <div class="brand-logo">
-                                                                <img src="@servThmbImg.Url()" alt="@item.Value("rewardsContentTitle")" />
-                                                            </div>
-                                                            <div class="sale-cont">
-                                                                <strong>@Umbraco.GetDictionaryValue("ReadMore")</strong>
-                                                            </div>
-                                                        </a>
+                                                           if(lang == "ar")
+                                                        {
+                                                            <a href="https://aldarhospitality.com/ar/darna-loyalty-program" class="gtm-track-more-event" name="@Model.Value("rewardsMainTitle")-KnowMore" target="_blank">
+                                                                <div class="prod-name">
+                                                                    @Html.Raw(item.Value("rewardsContentTitle"))
+                                                                </div>
+                                                                <div class="brand-logo">
+                                                                    <img src="@servThmbImg.Url()" alt="@item.Value("rewardsContentTitle")" />
+                                                                </div>
+                                                                <div class="sale-cont">
+                                                                    <strong>@Umbraco.GetDictionaryValue("ReadMore")</strong>
+                                                                </div>
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="https://aldarhospitality.com/darna-loyalty-program" class="gtm-track-more-event" name="@Model.Value("rewardsMainTitle")-KnowMore" target="_blank">
+                                                                <div class="prod-name">
+                                                                    @Html.Raw(item.Value("rewardsContentTitle"))
+                                                                </div>
+                                                                <div class="brand-logo">
+                                                                    <img src="@servThmbImg.Url()" alt="@item.Value("rewardsContentTitle")" />
+                                                                </div>
+                                                                <div class="sale-cont">
+                                                                    <strong>@Umbraco.GetDictionaryValue("ReadMore")</strong>
+                                                                </div>
+                                                            </a>
+                                                        }
                                                     }
-                                                    else if(item.Id == 1821)
+                                                    else
                                                     {
-                                                        @*<a href="https://aldarhospitality.com/darna-loyalty-program" class="gtm-track-more-event" name="@Model.Value("rewardsMainTitle")-KnowMore" target="_blank">*@
-                                                            <div class="prod-name">
-                                                                @Html.Raw(item.Value("rewardsContentTitle"))
-                                                            </div>
-                                                            <div class="brand-logo">
-                                                                <img src="@servThmbImg.Url()" alt="@item.Value("rewardsContentTitle")" />
-                                                            </div>
-                                                            <div class="sale-cont">
-                                                                @*<strong>@Umbraco.GetDictionaryValue("ReadMore")</strong>*@
-                                                            </div>
-                                                        @*</a>*@
-                                                    }
-                                                    else{
-                                                         <a href="https://www.aldargiftcard.com/adgc/welcome" class="gtm-track-more-event" name="@Model.Value("rewardsMainTitle")-KnowMore" target="_blank">
+                                                        <a href="@itemURL" class="gtm-track-more-event" name="@Model.Value("rewardsMainTitle")-KnowMore">
                                                             <div class="prod-name">
                                                                 @Html.Raw(item.Value("rewardsContentTitle"))
                                                             </div>

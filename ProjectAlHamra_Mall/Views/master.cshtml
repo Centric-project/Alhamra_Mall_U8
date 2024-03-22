@@ -29,6 +29,7 @@
         { "Terms and Condition", culture == "ar" ? "الشروط والأحكام" :"Terms and Condition"},
         { "Loyalty", culture == "ar" ? "الولاء" :"Loyalty"},
         { "Services", culture == "ar" ? "الخدمات" :"Services"},
+        { "Etihad Guest", culture == "ar" ? "شراكة ضيف الاتحاد" : "Etihad Guest"},
         { "More", culture == "ar" ? "المزيد" : "More" }
     };
 
@@ -118,8 +119,8 @@
                     var isExcluded = new List<string> {
                         "Terms and Condition", "Bank Services Type", "Bank Services",
                         "Shop Details", "Home", "Dine Category", "Thank you Leasing Enquiry", "Thank You Contact Us",
-                        "Shop Category", "WHATS NEW", 
-                        "Indulge Your Senses", "Thank You", "About Us"
+                        "Shop Category","Whats New Slider", "Whats New" ,
+                        "Indulge Your Senses", "Thank You", "About Us", "Etihad Guest"
                     }.Contains(item.Name);
             
                     var itemName = currLang == "ar" ? (translations.ContainsKey(item.Name) ? translations[item.Name] : item.Name) : item.Name;
@@ -213,6 +214,9 @@
                                                 itemName == "Rewards"||
                                                 itemName == "Services"||
                                                 itemName == "Thank You Contact Us" ||
+                                                itemName == "Etihad Guest"||
+                                                itemName == "Whats New Slider"||
+                                                itemName == "Whats New"||
                                                 itemName == "About Us";
                                     
                                             if (currLang == "en")
@@ -225,6 +229,43 @@
                                                         <!--<li>
                                                             <a class="nav-link @(item.IsAncestorOrSelf(Model) ? "nav-link--active" : null)" href="@item.Url">@itemName</a>
                                                         </li>-->
+                                                    }
+                                                    else if (item.Name == "Loyalty")
+                                                    {
+                                                        IEnumerable<IPublishedContent> loyaltyChildren = Model.AncestorOrSelf(1).DescendantsOfType("rewardsLanding").FirstOrDefault().Children().Where(e => e.IsVisible());
+                                                        if (loyaltyChildren != null && loyaltyChildren.Any())
+                                                        {
+                                                            <li class="dropdown">
+                                                                <a href="@Umbraco.GetDictionaryValue("LoyaltyHref")" id="mainLink" class="dropdown-toggle nav-link">
+                                                                    @itemName 
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" width="12" height="12">
+                                                                        <path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z" fill="#555" />
+                                                                    </svg>
+                                                                </a>
+                                                                <ul class="dropdown-menu">
+                                                                    @foreach (var loyaltyChild in loyaltyChildren)
+                                                                    {
+                                                                        var itemURL = item.Url();
+                                                                        IPublishedContent servItemlink = loyaltyChild.Value<IPublishedContent>("redirectPageLink");
+                                                                        if (servItemlink != null)
+                                                                        {
+                                                                            var servItemlinkType = servItemlink.Url();
+                                                                            itemURL = string.IsNullOrEmpty(servItemlinkType) ? null : servItemlinkType == null ? "" : servItemlinkType;
+                                                                        }
+                                                                        if(loyaltyChild.Id == 1776)
+                                                                        {
+                                                                            var loyaltyChildName = loyaltyChild.Value<string>("rewardsContentTitle");
+                                                                            <li><a href="@Umbraco.GetDictionaryValue("DarnaHref")" target="_blank">@loyaltyChildName</a></li>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            var loyaltyChildName = loyaltyChild.Value<string>("rewardsContentTitle");
+                                                                            <li><a href="@itemURL">@loyaltyChildName</a></li>
+                                                                        }
+                                                                    }
+                                                                </ul>
+                                                            </li>
+                                                        }
                                                     }
                                                     else
                                                     {
@@ -286,6 +327,43 @@
                                                         <!--<li>
                                                             <a class="nav-link @(item.IsAncestorOrSelf(Model) ? "nav-link--active" : null)" href="@item.Url">@itemName</a>
                                                         </li>-->
+                                                    }
+                                                    else if (item.Name == "Loyalty")
+                                                    {
+                                                        IEnumerable<IPublishedContent> loyaltyChildren = Model.AncestorOrSelf(1).DescendantsOfType("rewardsLanding").FirstOrDefault().Children().Where(e => e.IsVisible());
+                                                        if (loyaltyChildren != null && loyaltyChildren.Any())
+                                                        {
+                                                            <li class="dropdown">
+                                                                <a href="@Umbraco.GetDictionaryValue("LoyaltyHref")" id="mainLink" class="dropdown-toggle nav-link">
+                                                                    @itemName 
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" width="12" height="12">
+                                                                        <path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z" fill="#555" />
+                                                                    </svg>
+                                                                </a>
+                                                                <ul class="dropdown-menu">
+                                                                    @foreach (var loyaltyChild in loyaltyChildren)
+                                                                    {
+                                                                        var itemURL = item.Url();
+                                                                        IPublishedContent servItemlink = loyaltyChild.Value<IPublishedContent>("redirectPageLink");
+                                                                        if (servItemlink != null)
+                                                                        {
+                                                                            var servItemlinkType = servItemlink.Url();
+                                                                            itemURL = string.IsNullOrEmpty(servItemlinkType) ? null : servItemlinkType == null ? "" : servItemlinkType;
+                                                                        }
+                                                                        if(loyaltyChild.Id == 1776)
+                                                                        {
+                                                                            var loyaltyChildName = loyaltyChild.Value<string>("rewardsContentTitle");
+                                                                            <li><a href="@Umbraco.GetDictionaryValue("DarnaHref")" target="_blank">@loyaltyChildName</a></li>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            var loyaltyChildName = loyaltyChild.Value<string>("rewardsContentTitle");
+                                                                            <li><a href="@itemURL">@loyaltyChildName</a></li>
+                                                                        }
+                                                                    }
+                                                                </ul>
+                                                            </li>
+                                                        }
                                                     }
                                                     else
                                                     {
@@ -426,6 +504,9 @@
                                     itemName == "WHATS NEW" ||
                                     itemName == "Thank You Contact Us" ||
                                     itemName == "Thank you Leasing Enquiry"||
+                                    itemName == "Etihad Guest"||
+                                    itemName == "Whats New Slider"||
+                                    itemName == "Whats New"||
                                     itemName == "Shop Category Details";
                         
                                 foreach (var item in selection)
@@ -515,7 +596,7 @@
                             <div class="">
                                 <h3 class="centerClass">MALL TIMINGS</h3>
                                 <hr>
-                                <h3 class="centerClass">Retail Stores</h3>
+                                <h3 class="centerClass">Shops</h3>
                                 <ul>
                                     <!--<li>-->
                                     <!--    <span>Retail Outlets</span>-->
@@ -553,7 +634,7 @@
                             <div class="">
                                 <h3 class="centerClass">مواعيد المول</h3>
                                 <hr>
-                                <h3 class="centerClass">المحلات التجارية</h3>
+                                <h3 class="centerClass">محلات</h3>
                                 <ul>
                                     <!--<li>-->
                                     <!--    <span>كافة المتاجر</span>-->
@@ -639,7 +720,19 @@
     <script src="~/js/jquery.nice-select.js"></script>
     <script src="~/scripts/aos.js"></script>
     
+    <script>
+        var mainLink = document.getElementById('mainLink');
     
+        mainLink.addEventListener('click', function(event) {
+        var url;
+        if (mainLink) {
+            url = "@Umbraco.GetDictionaryValue("LoyaltyHref")";
+        } else {
+            url = event.target.href; // Get the href attribute of the clicked anchor tag
+        }
+        window.location.href = url;
+        });
+    </script>
     <script type="text/javascript">
         $().ready(function () {
             $('.slick-carousel').slick({
@@ -882,7 +975,14 @@
     <script src="~/js/imgViewer2.js"></script>
 
     <script src="~/js/leaflet.js"></script>
-
+<script>
+    $(document).ready(function(){
+        // Enable hover for dropdowns
+        $('.dropdown-toggle').mouseenter(function(){
+            $(this).dropdown('toggle');
+        });
+    });
+</script>
     <script>
         window.fbAsyncInit = function () {
             FB.init({
@@ -1089,10 +1189,7 @@
         }
     }
     @{
-        // Define a list to hold all pages and their children
         List<ShopItem> allPagesSearchList = new List<ShopItem>();
-    
-        // Add data from shop list
         foreach (var shop in shopList)
         {
             ShopItem shopItem = new ShopItem()
@@ -1104,8 +1201,6 @@
                 cat = string.Empty,
                 catId = 0
             };
-    
-            // Find category and set properties
             var category = shopCategInHead.FirstOrDefault(categ => shop.Value<IEnumerable<dynamic>>("shopCategory").Any(sc => sc.Id == categ.Id));
             if (category != null)
             {
@@ -1116,8 +1211,6 @@
     
             allPagesSearchList.Add(shopItem);
         }
-    
-        // Add data from dine list
         foreach (var dine in dineList)
         {
             ShopItem dineItem = new ShopItem()
@@ -1129,8 +1222,6 @@
                 cat = string.Empty,
                 catId = 0
             };
-    
-            // Find category and set properties
             var category = dineCategInHead.FirstOrDefault(categ => dine.Value<IEnumerable<dynamic>>("dineCategory").Any(sc => sc.Id == categ.Id));
             if (category != null)
             {
@@ -1141,8 +1232,6 @@
     
             allPagesSearchList.Add(dineItem);
         }
-    
-        // Add data from service list
         foreach (var service in serviceList)
         {
             ShopItem serviceItem = new ShopItem()
@@ -1154,8 +1243,6 @@
                 cat = string.Empty,
                 catId = 0
             };
-    
-            // Find category and set properties
             var category = servicesTypeInHead.FirstOrDefault(categ => service.Value<IEnumerable<dynamic>>("servicesType").Any(sc => sc.Id == categ.Id));
             if (category != null)
             {
@@ -1166,8 +1253,6 @@
     
             allPagesSearchList.Add(serviceItem);
         }
-    
-        // Add data from entertainment list
         foreach (var entertain in entertainmentList)
         {
             ShopItem entertainmentItem = new ShopItem()
@@ -1179,8 +1264,6 @@
             
             allPagesSearchList.Add(entertainmentItem);
         }
-    
-        // Add data from rewards list
         foreach (var reward in rewardsList)
         {
             ShopItem rewardsItem = new ShopItem()
@@ -1192,8 +1275,6 @@
             
             allPagesSearchList.Add(rewardsItem);
         }
-    
-        // Add data from mallservices list
         foreach (var sr in mallservicesList)
         {
             ShopItem servicesItem = new ShopItem()
@@ -1205,11 +1286,9 @@
             
             allPagesSearchList.Add(servicesItem);
         }
-    
-        // Add data from model list
         foreach (var sr in children)
         {
-            if (sr.Id != 1315 && sr.Id != 1761 && sr.Id != 1592 && sr.Id != 1394 && sr.Id != 1586 && sr.Id != 1343)
+            if (sr.Id != 1315 && sr.Id != 1761 && sr.Id != 1592 && sr.Id != 1394 && sr.Id != 1586 && sr.Id != 1343 && sr.Id != 1210)
             {
                 ShopItem modelItem = new ShopItem()
                 {
@@ -1221,137 +1300,8 @@
                 allPagesSearchList.Add(modelItem);
             }
         }
-    
-        // Optionally, you can add data from other lists like AboutUs, ContactUs, LeasingEnquiry, termsNConditions
-        // ...
-    
-        // Concatenate all lists and order them
         var topSearchList = allPagesSearchList.OrderBy(x => x.name).ToList();
     }
-
-    @*@{
-        List<ShopItem> shopSearchList = new List<ShopItem>();
-        
-        foreach (var shop in shopList)
-        {
-            ShopItem shopItem = new ShopItem()
-            {
-                id = shop.Id.ToString(),
-                name = shop.Value<string>("shopTitle"),
-                url = string.Empty,
-                tags = shop.HasValue("outletTags") ? shop.Value<string[]>("outletTags") : null,
-                cat = string.Empty,
-                catId = 0
-            };
-        
-            var category = shopCategInHead.FirstOrDefault(categ => shop.Value<IEnumerable<dynamic>>("shopCategory").Any(sc => sc.Id == categ.Id));
-            if (category != null)
-            {
-                shopItem.catId = category.Id;
-                shopItem.url = category.Url;
-                shopItem.cat = category.Value<string>("categoryTitle");
-            }
-        
-            shopSearchList.Add(shopItem);
-        }
-
-        List<ShopItem> dineSearchList = new List<ShopItem>();
-        foreach (var dine in dineList)
-        {
-            var dineItem = new ShopItem()
-            {
-                id = dine.Id.ToString(),
-                name = dine.Value<string>("shopTitle"),
-                url = string.Empty,
-                tags = dine.HasValue("outletTags") ? dine.Value<string[]>("outletTags") : null,
-                cat = string.Empty,
-                catId = 0
-            };
-        
-            var category = dineCategInHead.FirstOrDefault(categ => dine.Value<IEnumerable<dynamic>>("dineCategory").Any(sc => sc.Id == categ.Id));
-            if (category != null)
-            {
-                dineItem.catId = category.Id;
-                dineItem.url = category.Url;
-                dineItem.cat = category.Value<string>("categoryTitle");
-            }
-        
-            dineSearchList.Add(dineItem);
-        }
-        
-        List<ShopItem> serviceSearchList = new List<ShopItem>();
-        foreach (var service in serviceList)
-        {
-            var serviceItem = new ShopItem()
-            {
-                id = service.Id.ToString(),
-                name = service.Value<string>("shopTitle"),
-                url = string.Empty,
-                tags = service.HasValue("outletTags") ? service.Value<string[]>("outletTags") : null,
-                cat = string.Empty,
-                catId = 0
-            };
-        
-            var category = servicesTypeInHead.FirstOrDefault(categ => service.Value<IEnumerable<dynamic>>("servicesType").Any(sc => sc.Id == categ.Id));
-            if (category != null)
-            {
-                serviceItem.catId = category.Id;
-                serviceItem.url = "/en/shop-category/services-banks-financial-services/";
-                serviceItem.cat = category.Value<string>("serviceTitle");
-            }
-        
-            serviceSearchList.Add(serviceItem);
-        }
-        List<ShopItem> entertainmentSearchList = new List<ShopItem>();
-        foreach (var entertain in entertainmentList)
-        {
-            var entertainmentItem = new ShopItem()
-            {
-                id = entertain.Id.ToString(),
-                name = entertain.Value<string>("entertainmentDetailsTitle"),
-                url = "/en/entertain/",
-            };
-            entertainmentSearchList.Add(entertainmentItem);
-        }
-        List<ShopItem> rewardsSearchList = new List<ShopItem>();
-        foreach (var reward in rewardsList)
-        {
-            var rewardsItem = new ShopItem()
-            {
-                id = reward.Id.ToString(),
-                name = reward.Value<string>("rewardsContentTitle"),
-                url = "/en/rewards/",
-            };
-            rewardsSearchList.Add(rewardsItem);
-        }
-        List<ShopItem> mallservicesSearchList = new List<ShopItem>();
-        foreach (var sr in mallservicesList)
-        {
-            var servicesItem = new ShopItem()
-            {
-                id = sr.Id.ToString(),
-                name = sr.Value<string>("servicesContentTitle"),
-                url = "/en/services/",
-            };
-            mallservicesSearchList.Add(servicesItem);
-        }
-        List<ShopItem> modelSearch = new List<ShopItem>();
-        foreach (var sr in children)
-        {
-            if (sr.Id != 1315 && sr.Id != 1761 && sr.Id != 1592 && sr.Id != 1394 && sr.Id != 1586 && sr.Id != 1343)
-            {
-                var servicesItem = new ShopItem()
-                {
-                    id = sr.Id.ToString(),
-                    name = sr.Name,
-                    url = sr.Url,
-                };
-                modelSearch.Add(servicesItem);
-            }
-        }
-        var topSearchList = shopSearchList.Concat(dineSearchList).Concat(serviceSearchList).Concat(entertainmentSearchList).Concat(rewardsSearchList).Concat(mallservicesSearchList).Concat(modelSearch).OrderBy(x => x.name).ToList();
-
-    }*@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.navbar-toggler').click(function () {

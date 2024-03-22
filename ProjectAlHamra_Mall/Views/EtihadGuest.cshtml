@@ -1,0 +1,346 @@
+﻿@using ContentModels = Umbraco.Web.PublishedModels;
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.EtihadGuestDocType>
+@using Umbraco.Web.Mvc;
+@{
+    Layout = "master.cshtml";
+    var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+
+    ViewBag.MetaTitle = Model.EtihadMainTitle;
+    ViewBag.MetaDescription = Model.SeoMetaDescription;
+    ViewBag.MetaKeyword = Model.Keywords;
+
+    // set page title segment
+    ViewBag.PageTitle = Model.EtihadMainTitle;
+}
+<link rel="stylesheet" href=@Url.Content("~/css/main.min.css?ver=103") />
+
+<style type="text/css">
+.app-box {
+  padding: 40px 0 !important;
+}
+.content-wrap .cont-wrap .content-box {
+  padding: 0px 40px;
+  height: 390px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.content-wrap .cont-wrap .content-box ul {
+  list-style: disc;
+}
+.journey-box ul li:after {
+    content: "";
+    position: absolute;
+    right: 25px;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    background: url(/media/lmwiqawu/arrow-big.png) no-repeat right center;
+}
+.journey-box ul li.step01 {
+    background: url(/media/krobx43m/step-01.png) no-repeat left center / 13% auto;
+}
+.journey-box ul li.step02 {
+    background: url(/media/1b4bzyhk/step-02.png) no-repeat left center / 13% auto;
+}
+.journey-box ul li.step03 {
+    background: url(/media/q25k35zx/step-03.png) no-repeat left center / 13% auto;
+}
+    div section.content-wrap {
+        padding: 40px 0;
+    }
+    .app-box {
+    background-color: rgba(166, 126, 177, .1);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.app-box img {
+    max-width: 100%;
+}
+.app-box .app-content {
+    margin: 0 -15px;
+    background-color: #fff;
+    padding: 15px 35px;
+    height: 100%;
+}
+.app-box h2 {
+    font-size: 36px;
+    margin-bottom: 50px;
+}
+
+.inner-section {
+    padding: 0 0 50px;
+}
+.content-wrap .col-md-6 .row {
+    align-items: center;
+    height: 100%;
+}
+
+.content-wrap video {
+    margin-bottom: 0;
+}
+
+video {
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    margin-bottom: -10px;
+}
+
+.content-wrap .col-md-6 .row img {
+    height: auto;
+}
+.content-wrap .col-md-6 .row {
+    align-items: center;
+    height: 100%;
+}
+
+.content-wrap img {
+    width: 100%;
+}
+
+.content-wrap .cont-wrap {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.content-wrap .cont-wrap .content-box {
+    padding: 0 40px;
+}
+.rowFlex {
+   display: flex;
+}
+
+.inner-section p {
+    color: #333333;
+}
+
+
+
+@@media screen and (min-width: 1400px) {
+  .container {
+    max-width: 1366px;
+}
+}
+@@media (min-width: 768px)
+.col-md-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+@@media screen and (max-width: 991px) {
+   .rowFlex {
+      flex-direction: column;
+   }
+   .content-wrap .cont-wrap .content-box {
+   padding: 0 0;
+    }
+    .journey-box ul li::after {
+      top: 38px;
+    }
+    .content-wrap .cont-wrap .content-box {
+  height: auto;
+  }
+  .journey-box ul li::after {
+    top: 50%;
+    transform: translateY(-50%);
+    }
+    
+}
+@@media only screen and (max-width: 991px) and (min-width: 768px)  {
+    html[lang="ar"] .journey-box ul li::after {
+          transform: scaleX(-1) translateY(-50%);
+          
+    }
+}
+@@media screen and (max-width: 767.99px) {
+    .slick-dotted.slick-slider {
+  margin-top: 0;
+}
+ .journey-box ul li {
+    width: 100%;
+    background-size: 8% !important;
+ }
+ 
+ .journey-box ul li::after {
+  background: url(/media/lmwiqawu/arrow-big.png) no-repeat right center;
+  left: 50%;
+  transform: translateX(-50%) rotate(90deg);
+  }
+}
+
+@@media screen and (max-width: 575px) {
+    .journey-box ul li {
+        width: 100%;
+        background-size: 13% !important;
+    }
+}
+</style>
+<!--Start Main Banner-->
+@{
+    var bannerImage = Model.Value<IPublishedContent>("bannerImage");
+    if (bannerImage != null)
+    {
+        <div class="container header-container slider-main ">
+            <div class="row">
+                <div class="main-banner mt-100">
+                    <div class="banner_info inner_banner_info" style="display: block;width: 100%;">
+                        <div class="item a inner_banner_item shopBanner" style="   background: url('') center top no-repeat;">
+                            <img src="@bannerImage.Url()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<!--End Main Banner-->
+<!--Explore Etihad App-->
+<section class="app-box">
+    <div class="container header-container">
+        <h2><b>@Model.Value("exploreEtihadTitle")</b></h2>
+        <div class="row d-none rowFlex">
+            <div class="col-md-6">
+                <div class="row">
+                    @{
+                        var egExploreEtihadImg = Model.Value<IPublishedContent>("exploreEtihadImage");
+                        if (egExploreEtihadImg != null)
+                        {
+                            <img src="@egExploreEtihadImg.Url()" alt="" />
+                        }
+                    }
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="app-content">
+                    <img class="etihad-logo" src="/media/xhdnpc15/etihad-logo-appsection.png" alt="@Model.Value("exploreEtihadTitle")" />
+                    @Html.Raw(Model.Value("exploreEtihadDetailes"))
+                    <a href="https://apple.co/2AyrtVU" class="gtm-track-app-event" name="App Store" target="_blank">
+                        <img src="/media/vuqmmlz5/icon-appstore.png" alt="" />
+                    </a>
+                    <a href="https://bit.ly/3fk5C3a" class="gtm-track-app-event" name="Google Play" target="_blank">
+                        <img src="/media/vcjhsrww/icon-googleplay.png" alt="" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+<!--Explore Etihad App-->
+<!--Start Inner Page Wrapper-->
+<div class="inner-section">
+    <div class="container-fluid custom-container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="content-wrap">
+                    <div class="container header-container">
+                        <div class="row" style="display: flex; flex-wrap: wrap;">
+                            <!--Winning Partnership-->
+                            <div class="col-md-6">
+                                <div class="row">
+                                    @{
+                                        var egVideoPoster = Model.Value<IPublishedContent>("egEtihadVideoPoster");
+                                        var egRewardVideo = Model.Value<IPublishedContent>(lang == "ar" ? "egRewardVideo" : "egRewardVideo");
+                                        if (egVideoPoster != null && egRewardVideo != null)
+                                        {
+                                            <video id="ban_video" class="tv_video hide-for-small-only" name="@Model.Name-VideoPlay"
+                                                    poster="@egVideoPoster.Url()" loop autoplay muted>
+                                                <source src="@egRewardVideo.Url()" type="video/mp4" />
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="cont-wrap">
+                                    <div class="content-box">
+                                        @Html.Raw(Model.Value("winningPartnership"))
+                                        @*<a class="know-more" href="javascript:void(0)">Know More</a>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Winning Partnership-->
+                            <!--Buy and fly-->
+                            <div class="col-md-6">
+                                <div class="cont-wrap">
+                                    <div class="content-box">
+                                        @Html.Raw(Model.Value("buyAndFly"))
+                                        @*<a class="know-more" href="javascript:void(0)">Know More</a>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    @{
+                                        var egBuyAndFlyImg = Model.Value<IPublishedContent>("buyAndFlyImage");
+                                        if (egBuyAndFlyImg != null)
+                                        {
+                                            <img src="@egBuyAndFlyImg.Url()" alt="" />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <!--Buy and Fly-->
+                            <!--Big Deal-->
+                            <div class="col-md-6">
+                                <div class="row">
+                                    @{
+                                        var egBigDealImg = Model.Value<IPublishedContent>("bigDealImage");
+                                        if (egBigDealImg != null)
+                                        {
+                                            <img src="@egBigDealImg.Url()" alt="" />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="cont-wrap">
+                                    <div class="content-box">
+                                        @Html.Raw(Model.Value("bigDeal"))
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Big Deal-->
+                            <!--Guest Tiers & Benefits-->
+                            <div class="col-md-6">
+                                <div class="cont-wrap">
+                                    <div class="content-box">
+                                        @Html.Raw(Model.Value("tiersBenefits"))
+                                        @*<a class="know-more" href="javascript:void(0)">Know More</a>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    @{
+                                        var egTiersAndBenefitsImg = Model.Value<IPublishedContent>("tiersBenefitsImage");
+                                        if (egTiersAndBenefitsImg != null)
+                                        {
+                                            <img src="@egTiersAndBenefitsImg.Url()" alt="" />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                            <!--Guest Tiers & Benefits-->
+                        </div>
+                    </div>
+                </section>
+                <!--Journey Steps-->
+                <section class="journey-box">
+                    <div class="container">
+                        <div class="row">
+                            @Html.Raw(Model.Value("journeySteps"))
+                        </div>
+                    </div>
+                </section>
+                <!--Journey Steps-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Inner Page Wrapper-->
