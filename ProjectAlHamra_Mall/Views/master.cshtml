@@ -94,6 +94,10 @@
     .centerClass{
         text-align:center;
     }
+        [lang="ar"] .shopBanner {
+    height: 500px !important;
+    margin-top: 60px !important;
+}
     @@media screen and (max-width: 767px) {
         .toggle-slide-right {
             margin-top: 0px;
@@ -466,7 +470,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="searchbox">
+                        <div class="searchbox" style="display:none;">
                             <input type="text" name="topSearchMainMob" id="topSearchMainMob" placeholder="@Umbraco.GetDictionaryValue("Search")" class="form-control" autocomplete="off">
                             <div id="SearchMainMobDiv" class="search-popup">
                                 
@@ -734,13 +738,13 @@
         });
     </script>
     <script type="text/javascript">
-        $().ready(function () {
+        $(document).ready(function () {
             $('.slick-carousel').slick({
                 arrows: true,
                 centerPadding: "0px",
                 dots: true,
                 slidesToShow: 1,
-                autoplay: true
+                autoplay: false
             });
             $('.whatsNew-slider').slick({
                 arrows: false,
@@ -922,7 +926,7 @@
         });
 
 
-        $('.main-banner').slick({
+        $('.main-banner-x').slick({
 
             draggable: true,
             autoplay: true,

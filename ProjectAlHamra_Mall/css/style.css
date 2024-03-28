@@ -2554,7 +2554,7 @@ select option {
   .mt-100{
       /*margin-top:100px;*/
       margin-top:40px;
-      margin-bottom: 40px;
+      /*margin-bottom: 40px;*/
   }
   
 .banner_object {
@@ -5039,7 +5039,7 @@ button svg {
    max-width: 50%;
 }
 .shopTopText{
-    margin-top:60px;
+    /*margin-top:60px;*/
     margin-bottom:60px;
 }
 .shopTopText h2{
@@ -5416,7 +5416,7 @@ figcaption .btn_call:hover {
 .inner_header_bg{background:#fff;}
  .main-banner .inner_banner_item{height: auto !important;  }
  
- .inner_banner_info{height: 100vh}
+ /*.inner_banner_info{height: 100vh}*/
 
 .container-fluid.slider-main.food_banner .slider-main-text {
 	transform: translateX(-50%) translateY(-35%);
@@ -7583,7 +7583,13 @@ line-height: 22px;}
     right: 45px;
     font-size: 60px;
 }
- 
+.slider-main {
+  margin-bottom: 55px;
+}
+ .banner_info.inner_banner_info img {
+  width: 100%;
+  object-fit: cover;
+}
 @media screen and (max-height: 450px) {
     .overlay-search a {font-size: 20px}
     .overlay-search .closebtn {
@@ -7591,6 +7597,11 @@ line-height: 22px;}
         top: 15px;
         right: 35px;
     }
+}
+@media screen and (max-width: 480px) {
+.banner_info.inner_banner_info img {
+  height: 250px;
+}
 }
 .disp_result{margin-top: 75px}
  
@@ -10005,4 +10016,9 @@ padding-inline: 1em;
 
 .search-result .search-result-container {
     margin: 0 auto;
+}
+
+.slick-dots li.slick-active button:before {
+    
+    display: block;
 }

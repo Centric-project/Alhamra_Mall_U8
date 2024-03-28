@@ -100,6 +100,7 @@
         </div>
         <div class="row logos_brd_list">
             @{
+                bool isShop = false;
                 if (shopLanding != null)
                 {
                     foreach (var item in shopLanding.Children())
@@ -111,6 +112,7 @@
                             
                             if (currCategId == categoryId)
                             {
+                                isShop = true;
                                 var shopTitle = item.Value<string>("shopTitle");
                                 var idValue = HttpContext.Current.Request.QueryString["Id"];
                                 if (!string.IsNullOrEmpty(idValue))
@@ -196,6 +198,15 @@
                             }
                         }
                     }
+                }
+                if(!isShop)
+                {
+                    <div class="shopTopText">
+                        <h2>
+                            @Umbraco.GetDictionaryValue("NoShopAvailable")
+                        </h2>
+                        <br>
+                    </div>
                 }
             }
         </div>

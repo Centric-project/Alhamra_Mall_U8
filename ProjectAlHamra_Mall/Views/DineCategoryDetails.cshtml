@@ -58,6 +58,9 @@
     .mt-100{
     margin-top:130px;
 }
+[lang="ar"] .shopTopText{
+    text-align:center;
+}
 </style>
 <div class="container-fluid brand_list mt-100">
     <div class="container  ">
@@ -87,6 +90,7 @@
         </div>
         <div class="row logos_brd_list arFlex flexWrap">
             @{
+                bool isShop = false;
                 if (dineLanding != null)
                 {
                     foreach (var item in dineLanding.Children())
@@ -96,6 +100,7 @@
                         {
                             var categoryId = category.FirstOrDefault()?.Id;
                             if(currCategId == categoryId){
+                                isShop = true;
                                 var idValue = HttpContext.Current.Request.QueryString["Id"];
                                 if (!string.IsNullOrEmpty(idValue))
                                 {
@@ -184,6 +189,15 @@
                             }
                         }
                     }
+                }
+                if(!isShop)
+                {
+                    <div class="shopTopText">
+                        <h2>
+                            @Umbraco.GetDictionaryValue("NoShopAvailable")
+                        </h2>
+                        <br>
+                    </div>
                 }
             }
         </div>
