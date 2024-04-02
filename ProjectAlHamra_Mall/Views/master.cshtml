@@ -94,10 +94,6 @@
     .centerClass{
         text-align:center;
     }
-        [lang="ar"] .shopBanner {
-    height: 500px !important;
-    margin-top: 60px !important;
-}
     @@media screen and (max-width: 767px) {
         .toggle-slide-right {
             margin-top: 0px;
@@ -739,6 +735,13 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
+            $('.slick-carousel-Home').slick({
+                arrows: true,
+                centerPadding: "0px",
+                dots: true,
+                slidesToShow: 1,
+                autoplay: false
+            });
             $('.slick-carousel').slick({
                 arrows: true,
                 centerPadding: "0px",

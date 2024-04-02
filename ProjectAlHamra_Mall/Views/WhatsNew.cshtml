@@ -68,7 +68,7 @@
         </div>
     </div>
 </section>
-        <section class="main__huna-brand whatsNew">
+        @*<section class="main__huna-brand whatsNew">
             <div class="container header-container">
                 <div class="row">
                     <div class="col-12 col-md-6 col-lg-3 col-xl-3">
@@ -191,10 +191,35 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section>*@
 @* Main Content Section *@
+@{
+    var shCategory = Model.AncestorOrSelf(1).DescendantsOfType("shopCategory")
+                            .FirstOrDefault()?
+                            .Children()
+                            .Where(e => e.IsVisible() && e.HasValue("categoryTitle"))
+                            .Select(e => e.Value<string>("categoryTitle"));
 
-@*@{
+    var dnCategory = Model.AncestorOrSelf(1).DescendantsOfType("dineCategory")
+                            .FirstOrDefault()?
+                            .Children()
+                            .Where(e => e.IsVisible() && e.HasValue("categoryTitle"))
+                            .Select(e => e.Value<string>("categoryTitle"));
+
+    List<string> shCategoryList = new List<string>();
+    List<string> dnCategoryList = new List<string>();
+
+    if (shCategory != null)
+    {
+        shCategoryList.AddRange(shCategory);
+    }
+
+    if (dnCategory != null)
+    {
+        dnCategoryList.AddRange(dnCategory);
+    }
+}
+@{
     DateTime today = DateTime.Today;
     var shopList = Model.AncestorOrSelf(1).DescendantsOfType("shopsLanding").FirstOrDefault()?.Children().Where(e => e.IsVisible() && e.HasValue("endDate") && DateTime.Parse(e.Value<string>("endDate")) >= today);
     var dineList = Model.AncestorOrSelf(1).DescendantsOfType("dinelanding").FirstOrDefault()?.Children().Where(e => e.IsVisible() && e.HasValue("endDate") && DateTime.Parse(e.Value<string>("endDate")) >= today);
@@ -209,8 +234,11 @@
                         foreach (var item in list)
                         {
                             var logo = item.Value<IPublishedContent>("shopLogo") ?? item.Value<IPublishedContent>("entertainmentDetailsImage");
-                            var categories = item.Value<string>("shopCategory");
-                            if (logo != null)
+                            var shopTitle = item.Value<string>("shopTitle");
+                            var entertainmentDetailsTitle = item.Value<string>("entertainmentDetailsTitle");
+                            var dineCategory = item.Value<string>("dineCategory");
+    
+                            if (logo != null || shopTitle != null || entertainmentDetailsTitle != null)
                             {
                                 <div class="col-12 col-md-6 col-lg-3 col-xl-3">
                                     <div class="card">
@@ -220,15 +248,15 @@
                                         <div class="card-footer">
                                             <a href="#">
                                                 <button type="button" class="collapsible">
-                                                    @if(item.HasValue("shopTitle"))
+                                                    @if(!string.IsNullOrEmpty(shopTitle))
                                                     {
-                                                        @item.Value("shopTitle")
+                                                        @shopTitle
                                                     }
-                                                    else if(item.HasValue("entertainmentDetailsTitle"))
+                                                    else if (!string.IsNullOrEmpty(entertainmentDetailsTitle))
                                                     {
-                                                        @item.Value("entertainmentDetailsTitle")
+                                                        @entertainmentDetailsTitle
                                                     }
-                                                </button>                                           
+                                                </button>
                                             </a>
                                         </div>
                                     </div>
@@ -239,10 +267,57 @@
                 </div>
             </div>
         </section>
+        
+        if (dnCategoryList != null && dnCategoryList.Any())
+        {
+            <div class="container">
+                <h2>Dine Categories</h2>
+                <div class="row">
+                    @foreach (var category in dnCategoryList)
+                    {
+                        <div class="col-12">
+                            <div>@category</div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+        if (dineList != null && dineList.Any())
+        {
+            <div class="container">
+                <h2>Dine List</h2>
+                <div class="row">
+                    @foreach (var item in dineList)
+                    {
+                        var dineTitle = item.Value<string>("dineCategory");
+                        if (dnCategoryList.Any(category => category.Equals(dineTitle, StringComparison.OrdinalIgnoreCase)))
+                        {
+                            <div class="col-12">
+                                <div>@dineTitle</div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        }
+    
+        if (shopList != null && shopList.Any())
+        {
+            <div class="container">
+                <h2>Shop List</h2>
+                <div class="row">
+                    @foreach (var item in shopList)
+                    {
+                        var shopCategory = item.Value<string>("shopCategory");
+                        if (shCategoryList.Any(category => category.Equals(shopCategory, StringComparison.OrdinalIgnoreCase)))
+                        {
+                            <div class="col-12">
+                                <div>@shopCategory</div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        }
     }
-
 }
-*@
-
-
-

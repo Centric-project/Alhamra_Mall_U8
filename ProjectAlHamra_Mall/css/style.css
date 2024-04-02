@@ -2553,7 +2553,7 @@ select option {
   }
   .mt-100{
       /*margin-top:100px;*/
-      margin-top:40px;
+      margin-top:80px;
       /*margin-bottom: 40px;*/
   }
   
@@ -4936,12 +4936,12 @@ button svg {
 	transition-delay: 0ms;
 }
 
-.brand_list  .card:hover .card_img {
+.brand_list .card:hover .card_img {
 	
  position: absolute; 
      
     display: block;
- margin-top: -15%;
+ margin-top: -20%;
 
 	transition: all 200ms ease-in;
 	transition-delay: 0ms;
@@ -9256,13 +9256,13 @@ padding-inline: 1em;
     }
     
     .main-banner.container.header-container .slick-track {
-       width: 100% !important;
+       /*width: 100% !important;*/
     }
     
     
     
     .main-banner.container.header-container .slick-track .slick-slide {
-       width: 100% !important;
+       /*width: 100% !important;*/
     }
     .main-banner.container.header-container .slick-track .slick-slide a {
        display: block;
@@ -10016,6 +10016,19 @@ padding-inline: 1em;
 
 .search-result .search-result-container {
     margin: 0 auto;
+}
+
+[lang="ar"] .search-result .search-result-container .row {
+    display: flex;
+}
+
+@media screen and (max-width: 991px) {
+    [lang="ar"] .search-result .search-result-container .row {
+        flex-direction: column;
+    }
+    .search-result .search-result-container .row .brand-box {
+        height: 65vw;
+    }
 }
 
 .slick-dots li.slick-active button:before {

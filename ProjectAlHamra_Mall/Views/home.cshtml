@@ -17,7 +17,7 @@
 
 <section class="main-banner container header-container mt-80">
     <div class="">
-    <div class="slick-carousel">
+        <div class="slick-carousel-Home">
         @{
             var bannerItems = Model.AncestorOrSelf(1).DescendantsOfType("homeSlider")
                 .OrderBy(x => x.Value<int>("sortOrder")).ToList();
