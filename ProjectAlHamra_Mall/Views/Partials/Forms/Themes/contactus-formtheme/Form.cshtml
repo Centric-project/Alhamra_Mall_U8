@@ -42,7 +42,7 @@
                         @foreach (FieldViewModel f in c.Fields)
                         {
                             bool hidden = f.HasCondition && f.ConditionActionType == FieldConditionActionType.Show;
-
+                            
                             <div class="col-sm-6 field @Html.GetFormFieldWrapperClass(f.FieldTypeName)  @f.CssClass" @{ if (hidden) { <text> style="display: none" </text>  } }>
 
                                 @if (!f.HideLabel)
@@ -74,9 +74,8 @@
 
 
                             </div>
-
                         }
-                        <input type="submit" style="width:200px; height:40px;margin-top:25px;margin-inline-end: 50px;" id="nxt_btn" class="next_btn" value="@Model.SubmitCaption" name="submitbtn" />
+                        <input type="submit" style="width:200px; height:40px;margin-top:30px;margin-inline-end: 60px;" id="nxt_btn" class="next_btn" value="@Model.SubmitCaption" name="submitbtn" />
                     </div>
                         
                     }

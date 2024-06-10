@@ -1,0 +1,28 @@
+{
+  "id": "b2e5e783-7059-4967-9306-f0c490a9c650",
+  "name": "Email to Admin with Template",
+  "form": "41c8a072-5250-4037-a283-85746341543a",
+  "active": true,
+  "includeSensitiveData": "False",
+  "workflowTypeId": "17c61629-d984-4e86-b43b-a8407b3efea9",
+  "executesOn": "Submitted",
+  "settings": {
+    "RazorViewFilePath": "Forms/Emails/LeasingEnquiryAdmin-ET.cshtml",
+    "Attachment": "",
+    "Email": "talha.ismail@centric.ae",
+    "CcEmail": "",
+    "BccEmail": "",
+    "SenderEmail": "aljimimallcustomercare@aldar.com",
+    "ReplyToEmail": "",
+    "Subject": "Leasing - New Enquiry"
+  },
+  "sortOrder": 1,
+  "isMandatory": false,
+  "condition": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "enabled": false,
+    "actionType": "Show",
+    "logicType": "All",
+    "rules": []
+  }
+}

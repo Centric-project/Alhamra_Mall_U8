@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "33de875551fe9fa")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "334372a0ad60341")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.5")]
 
 namespace Umbraco.Web.PublishedModels
 {
@@ -1014,7 +1014,7 @@ namespace Umbraco.Web.PublishedModels
 		public IEnumerable<IPublishedContent> DineCategory => this.Value<IEnumerable<IPublishedContent>>("dineCategory");
 
 		///<summary>
-		/// End Date
+		/// WhatsNew End Date
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("endDate")]
@@ -1185,7 +1185,7 @@ namespace Umbraco.Web.PublishedModels
 		public string Contact => this.Value<string>("contact");
 
 		///<summary>
-		/// End Date
+		/// WhatsNew End Date
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("endDate")]
@@ -1867,7 +1867,7 @@ namespace Umbraco.Web.PublishedModels
 		public IHtmlString ContactUs => this.Value<IHtmlString>("contactUs");
 
 		///<summary>
-		/// End Date
+		/// WhatsNew End Date
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
 		[ImplementPropertyType("endDate")]
@@ -1980,6 +1980,34 @@ namespace Umbraco.Web.PublishedModels
 		{ }
 
 		// properties
+
+		///<summary>
+		/// ET Banner
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("cetBanner")]
+		public Umbraco.Core.Models.MediaWithCrops CetBanner => this.Value<Umbraco.Core.Models.MediaWithCrops>("cetBanner");
+
+		///<summary>
+		/// ET Body Msg
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("cetBodyMsg")]
+		public IHtmlString CetBodyMsg => this.Value<IHtmlString>("cetBodyMsg");
+
+		///<summary>
+		/// ET Footer Msg
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("cetFooterMsg")]
+		public IHtmlString CetFooterMsg => this.Value<IHtmlString>("cetFooterMsg");
+
+		///<summary>
+		/// ET Web Logo
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder", "8.1.6")]
+		[ImplementPropertyType("cetWebLogo")]
+		public Umbraco.Core.Models.MediaWithCrops CetWebLogo => this.Value<Umbraco.Core.Models.MediaWithCrops>("cetWebLogo");
 
 		///<summary>
 		/// Leasing Background Banner

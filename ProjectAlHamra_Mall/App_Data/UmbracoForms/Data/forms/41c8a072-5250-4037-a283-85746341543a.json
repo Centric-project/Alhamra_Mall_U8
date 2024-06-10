@@ -303,7 +303,7 @@
                   "dataSourceFieldKey": null,
                   "containsSensitiveData": false,
                   "mandatory": true,
-                  "regex": "^[0-9]*$",
+                  "regex": "",
                   "requiredErrorMessage": "#RequiredEstimatedSalesAmount",
                   "invalidErrorMessage": "#InvalidNumberInput",
                   "condition": {
@@ -425,7 +425,7 @@
                   "dataSourceFieldKey": null,
                   "containsSensitiveData": false,
                   "mandatory": true,
-                  "regex": "^[0-9]*$",
+                  "regex": "",
                   "requiredErrorMessage": "#RequiredMinSpaceReq",
                   "invalidErrorMessage": "#InvalidNumberInput",
                   "condition": {
@@ -507,9 +507,9 @@
                   "dataSourceFieldKey": null,
                   "containsSensitiveData": false,
                   "mandatory": false,
-                  "regex": null,
+                  "regex": "",
                   "requiredErrorMessage": null,
-                  "invalidErrorMessage": null,
+                  "invalidErrorMessage": "#InvalidNumberInput",
                   "condition": {
                     "id": "7911e250-e771-4837-8462-315481740628",
                     "enabled": false,
@@ -612,9 +612,9 @@
                   "dataSourceFieldKey": null,
                   "containsSensitiveData": false,
                   "mandatory": true,
-                  "regex": null,
+                  "regex": "",
                   "requiredErrorMessage": "#RequiredContactPerson",
-                  "invalidErrorMessage": null,
+                  "invalidErrorMessage": "#InvalidContactNumber",
                   "condition": {
                     "id": "e9a69efe-915a-42ef-beca-e8e76f300f1f",
                     "enabled": false,
@@ -627,7 +627,7 @@
                     "Placeholder": "#ContactPerson",
                     "ShowLabel": "",
                     "MaximumLength": "",
-                    "FieldType": "text",
+                    "FieldType": "tel",
                     "AutocompleteAttribute": ""
                   },
                   "preValues": [],
@@ -800,9 +800,9 @@
                   "dataSourceFieldKey": null,
                   "containsSensitiveData": false,
                   "mandatory": true,
-                  "regex": null,
+                  "regex": "",
                   "requiredErrorMessage": "#RequiredPhone",
-                  "invalidErrorMessage": null,
+                  "invalidErrorMessage": "Please Enter a Valid Phone Number",
                   "condition": {
                     "id": "898ca430-48a8-481e-b526-9156e14a66cf",
                     "enabled": false,
@@ -815,7 +815,7 @@
                     "Placeholder": "#PhonePlaceholder",
                     "ShowLabel": "",
                     "MaximumLength": "",
-                    "FieldType": "tel",
+                    "FieldType": "number",
                     "AutocompleteAttribute": ""
                   },
                   "preValues": [],
@@ -841,9 +841,9 @@
                   "dataSourceFieldKey": null,
                   "containsSensitiveData": false,
                   "mandatory": true,
-                  "regex": null,
+                  "regex": "",
                   "requiredErrorMessage": "#RequiredMobileNumber",
-                  "invalidErrorMessage": null,
+                  "invalidErrorMessage": "Please Enter a Valid Mobile Number",
                   "condition": {
                     "id": "240aab2e-ed2c-4789-ac23-5a9c88f48be9",
                     "enabled": false,
@@ -856,7 +856,7 @@
                     "Placeholder": "#MobileNumber",
                     "ShowLabel": "",
                     "MaximumLength": "",
-                    "FieldType": "text",
+                    "FieldType": "tel",
                     "AutocompleteAttribute": ""
                   },
                   "preValues": [],
@@ -882,7 +882,7 @@
                   "dataSourceFieldKey": null,
                   "containsSensitiveData": false,
                   "mandatory": true,
-                  "regex": "[a-zA-Z0-9_\\.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-\\.]+",
+                  "regex": "",
                   "requiredErrorMessage": "#RequiredEmailAddress",
                   "invalidErrorMessage": "#InvalidEmailAddress",
                   "condition": {
@@ -1176,7 +1176,8 @@
   "disableDefaultStylesheet": false,
   "useClientDependency": true,
   "workflows": [
-    "6bdd312d-de8f-49c4-acf3-f0d437f34760"
+    "6bdd312d-de8f-49c4-acf3-f0d437f34760",
+    "b2e5e783-7059-4967-9306-f0c490a9c650"
   ],
   "datasource": null,
   "submitLabel": "Submit",

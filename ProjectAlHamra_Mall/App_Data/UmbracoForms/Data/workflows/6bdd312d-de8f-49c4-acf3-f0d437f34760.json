@@ -7,16 +7,16 @@
   "workflowTypeId": "17c61629-d984-4e86-b43b-a8407b3efea9",
   "executesOn": "Submitted",
   "settings": {
-    "RazorViewFilePath": "Forms/Emails/Contact_Us-ET.cshtml",
+    "RazorViewFilePath": "Forms/Emails/LeasingEnquiry-ET.cshtml",
     "Attachment": "",
     "Email": "{Email}",
     "CcEmail": "",
     "BccEmail": "",
     "SenderEmail": "aljimimallcustomercare@aldar.com",
     "ReplyToEmail": "",
-    "Subject": "Thank You For Contact Us"
+    "Subject": "Thank you for Submitting You Enquiry"
   },
-  "sortOrder": 1,
+  "sortOrder": 0,
   "isMandatory": false,
   "condition": {
     "id": "00000000-0000-0000-0000-000000000000",

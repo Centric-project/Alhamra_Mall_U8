@@ -1,11 +1,32 @@
 ﻿@model Umbraco.Forms.Mvc.Models.FieldViewModel
 @using Umbraco.Forms.Mvc
-
-<textarea class="@Html.GetFormFieldClass(Model.FieldTypeName)"  
+<style>
+    textarea{
+        color:#9ea3b1;
+        background-color:transparent;
+    }
+    @@media screen and (max-width: 768px) {
+        .textArea{
+            width:210px !important;
+        }
+    }
+    @@media screen and (max-width: 480px) {
+        .textArea{
+            width:200px !important;
+        }
+    }
+    @@media screen and (max-width: 768.99px) {
+        .textArea{
+            width:170px !important;
+        }
+    }
+</style>
+<textarea class="@Html.GetFormFieldClass(Model.FieldTypeName) textArea"  
           name="@Model.Name" 
           id="@Model.Id" 
-          rows="2" 
+          rows="4" 
           cols="20"
+          style="width: 480px;"
         @{if(string.IsNullOrEmpty(Model.PlaceholderText) == false){<text>placeholder="@Model.PlaceholderText"</text>}}
         @{if(Model.Mandatory || Model.Validate){<text>data-val="true"</text>}}
         @{if (Model.Mandatory) {<text> data-val-required="@Model.RequiredErrorMessage"</text>}}

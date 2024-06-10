@@ -100,7 +100,7 @@
     line-height: 71px;
   }
   .container-fluid.slider-main.food_banner, .container-fluid.slider-main.shops_slider, .container-fluid.slider-main.mv_main_banner, .container-fluid.slider-main.shopping_bn, .abt_banner.container-fluid.slider-main, .contact_banner.container-fluid.slider-main, .container-fluid.slider-main.event_slider, .container-fluid.slider-main.events_slider{height: 85vh}
-.inner_banner_info, .main-banner .inner_banner_item{height: 85vh}
+/*.inner_banner_info, .main-banner .inner_banner_item{height: 85vh}*/
 .main-banner .item.bg_name_txt{
     	background-size:70%;
     }
@@ -5392,7 +5392,7 @@ top:5%;
 
   .inner_banner_info, 
   .main-banner .inner_banner_item {
-    height: 320px;
+    /*height: 320px;*/
 }
   .mv_bg_img,
   .mv_bg_img_slider {

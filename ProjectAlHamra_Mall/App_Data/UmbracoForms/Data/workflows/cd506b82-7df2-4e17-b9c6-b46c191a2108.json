@@ -16,7 +16,7 @@
     "ReplyToEmail": "",
     "Subject": "Thank You For Contact Us"
   },
-  "sortOrder": 1,
+  "sortOrder": 0,
   "isMandatory": false,
   "condition": {
     "id": "00000000-0000-0000-0000-000000000000",

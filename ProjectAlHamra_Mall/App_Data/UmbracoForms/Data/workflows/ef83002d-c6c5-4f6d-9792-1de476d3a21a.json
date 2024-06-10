@@ -1,0 +1,28 @@
+{
+  "id": "ef83002d-c6c5-4f6d-9792-1de476d3a21a",
+  "name": "Email to Admin with Template",
+  "form": "59493bbe-8776-4fed-b2a2-463092d98d3b",
+  "active": true,
+  "includeSensitiveData": "False",
+  "workflowTypeId": "17c61629-d984-4e86-b43b-a8407b3efea9",
+  "executesOn": "Submitted",
+  "settings": {
+    "RazorViewFilePath": "Forms/Emails/Contact_Us-ET.cshtml",
+    "Attachment": "",
+    "Email": "aljimicustomercare@aldar.com",
+    "CcEmail": "",
+    "BccEmail": "",
+    "SenderEmail": "",
+    "ReplyToEmail": "",
+    "Subject": "Contact Us - New Enquiry"
+  },
+  "sortOrder": 1,
+  "isMandatory": false,
+  "condition": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "enabled": false,
+    "actionType": "Show",
+    "logicType": "All",
+    "rules": []
+  }
+}

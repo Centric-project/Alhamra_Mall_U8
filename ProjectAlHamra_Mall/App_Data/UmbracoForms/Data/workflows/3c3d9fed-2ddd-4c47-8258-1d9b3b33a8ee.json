@@ -1,0 +1,28 @@
+{
+  "id": "3c3d9fed-2ddd-4c47-8258-1d9b3b33a8ee",
+  "name": "Email to Admin with Template",
+  "form": "59493bbe-8776-4fed-b2a2-463092d98d3b",
+  "active": true,
+  "includeSensitiveData": "False",
+  "workflowTypeId": "17c61629-d984-4e86-b43b-a8407b3efea9",
+  "executesOn": "Submitted",
+  "settings": {
+    "RazorViewFilePath": "Forms/Emails/Contact_Us-ET.cshtml",
+    "Attachment": "",
+    "Email": "talha.ismail@centric.ae",
+    "CcEmail": "",
+    "BccEmail": "",
+    "SenderEmail": "aljimimallcustomercare@aldar.com",
+    "ReplyToEmail": "",
+    "Subject": "Contact Us - New Enquiry"
+  },
+  "sortOrder": 1,
+  "isMandatory": false,
+  "condition": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "enabled": false,
+    "actionType": "Show",
+    "logicType": "All",
+    "rules": []
+  }
+}

@@ -131,7 +131,7 @@
                   "dataSourceFieldKey": null,
                   "containsSensitiveData": false,
                   "mandatory": true,
-                  "regex": "^[0-9]*$",
+                  "regex": "^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$",
                   "requiredErrorMessage": "Please Enter In Number",
                   "invalidErrorMessage": "#InvalidContactNumber",
                   "condition": {
@@ -188,6 +188,131 @@
                   "parsedPreValues": [],
                   "allowedUploadTypes": null,
                   "allowMultipleFileUploads": true
+                },
+                {
+                  "caption": "Subject",
+                  "tooltip": null,
+                  "placeholder": null,
+                  "cssClass": null,
+                  "alias": "subject",
+                  "id": "12eb712b-a5b2-4f3f-e37a-0c62a63aafbf",
+                  "fieldTypeId": "0dd29d42-a6a5-11de-a2f2-222256d89593",
+                  "prevalueSourceId": "00000000-0000-0000-0000-000000000000",
+                  "dataSourceFieldKey": null,
+                  "containsSensitiveData": false,
+                  "mandatory": true,
+                  "regex": "",
+                  "requiredErrorMessage": "Please Select Any Enquiry",
+                  "invalidErrorMessage": "",
+                  "condition": {
+                    "id": "4d6d7ab1-f87f-4512-b373-bbc047c5ea3c",
+                    "enabled": false,
+                    "actionType": "Show",
+                    "logicType": "All",
+                    "rules": []
+                  },
+                  "settings": {
+                    "DefaultValue": "Please Select an Option",
+                    "AllowMultipleSelections": "False",
+                    "ShowLabel": "",
+                    "AutocompleteAttribute": ""
+                  },
+                  "preValues": [
+                    "#GeneralFeedBack",
+                    "#GeneralEnquiry",
+                    "#GreenPassHosnApp",
+                    "#COVID–19",
+                    "#CleanlinessAndHygiene",
+                    "#Parking",
+                    "#AldarGiftCard",
+                    "#LeasingStore",
+                    "#PromotionAndMarketing",
+                    "#Transportation",
+                    "#ShoppingAndFB"
+                  ],
+                  "parsedPreValues": [
+                    {
+                      "value": "#GeneralFeedBack",
+                      "caption": null
+                    },
+                    {
+                      "value": "#GeneralEnquiry",
+                      "caption": null
+                    },
+                    {
+                      "value": "#GreenPassHosnApp",
+                      "caption": null
+                    },
+                    {
+                      "value": "#COVID–19",
+                      "caption": null
+                    },
+                    {
+                      "value": "#CleanlinessAndHygiene",
+                      "caption": null
+                    },
+                    {
+                      "value": "#Parking",
+                      "caption": null
+                    },
+                    {
+                      "value": "#AldarGiftCard",
+                      "caption": null
+                    },
+                    {
+                      "value": "#LeasingStore",
+                      "caption": null
+                    },
+                    {
+                      "value": "#PromotionAndMarketing",
+                      "caption": null
+                    },
+                    {
+                      "value": "#Transportation",
+                      "caption": null
+                    },
+                    {
+                      "value": "#ShoppingAndFB",
+                      "caption": null
+                    }
+                  ],
+                  "allowedUploadTypes": null,
+                  "allowMultipleFileUploads": true
+                },
+                {
+                  "caption": "Comments",
+                  "tooltip": null,
+                  "placeholder": null,
+                  "cssClass": null,
+                  "alias": "comments",
+                  "id": "b3a77d76-19d7-4888-aa54-4e9bc5d3d60b",
+                  "fieldTypeId": "023f09ac-1445-4bcb-b8fa-ab49f33bd046",
+                  "prevalueSourceId": "00000000-0000-0000-0000-000000000000",
+                  "dataSourceFieldKey": null,
+                  "containsSensitiveData": false,
+                  "mandatory": false,
+                  "regex": "^[a-zA-Z0-9\\s]+$",
+                  "requiredErrorMessage": null,
+                  "invalidErrorMessage": "No Special Characters are Allowed",
+                  "condition": {
+                    "id": "2b0f12f9-13bc-4d67-9780-ff65ecbfffea",
+                    "enabled": false,
+                    "actionType": "Show",
+                    "logicType": "All",
+                    "rules": []
+                  },
+                  "settings": {
+                    "DefaultValue": "",
+                    "Placeholder": "#Comments",
+                    "ShowLabel": "",
+                    "AutocompleteAttribute": "",
+                    "NumberOfRows": "2",
+                    "MaximumLength": "500"
+                  },
+                  "preValues": [],
+                  "parsedPreValues": [],
+                  "allowedUploadTypes": null,
+                  "allowMultipleFileUploads": true
                 }
               ]
             }
@@ -225,7 +350,8 @@
   "disableDefaultStylesheet": true,
   "useClientDependency": false,
   "workflows": [
-    "cd506b82-7df2-4e17-b9c6-b46c191a2108"
+    "cd506b82-7df2-4e17-b9c6-b46c191a2108",
+    "3c3d9fed-2ddd-4c47-8258-1d9b3b33a8ee"
   ],
   "datasource": null,
   "submitLabel": "#Submit",

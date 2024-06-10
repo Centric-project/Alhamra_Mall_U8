@@ -68,256 +68,122 @@
         </div>
     </div>
 </section>
-        @*<section class="main__huna-brand whatsNew">
-            <div class="container header-container">
-                <div class="row">
-                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img class="card-img-top" src="/media/bvyfxrby/crocs.jpg" alt="Card image cap">
-                            </div>
-                            <div class="card-footer">
-                                <a href="@Umbraco.GetDictionaryValue("crocsnUrl")">
-                                    <button type="button" class="collapsible">
-                                         @Umbraco.GetDictionaryValue("crocs")
-                                     </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img class="card-img-top" src="/media/mj2bdktd/salt-logo.jpg" alt="Card image cap">
-                            </div>
-                            <div class="card-footer">
-                                <a href="@Umbraco.GetDictionaryValue("SaltUrl")">
-                                    <button type="button" class="collapsible">
-                                         @Umbraco.GetDictionaryValue("Salt")</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img class="card-img-top" src="/media/raffyftj/senso.png" alt="Card image cap">
-                            </div>
-                            <div class="card-footer">
-                                <a href="@Umbraco.GetDictionaryValue("SENSOUrl")">
-                                    <button type="button" class="collapsible">
-                                      @Umbraco.GetDictionaryValue("SENSO") </button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img class="card-img-top" src="/media/1q5dwury/gissah-alhamra-1.jpg" alt="Card image cap">
-                            </div>
-                            <div class="card-footer">
-                                <a href="@Umbraco.GetDictionaryValue("GissahPerfumesUrl")">
-                                    <button type="button" class="collapsible">
-                                         @Umbraco.GetDictionaryValue("Gissah Perfumes")</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img class="card-img-top" src="/media/lahb10xh/rivoli-eye-zone.png" alt="Card image cap">
-                            </div>
-                            <div class="card-footer">
-                                <a href="@Umbraco.GetDictionaryValue("rivoliUrl")">
-                                    <button type="button" class="collapsible">
-                                         @Umbraco.GetDictionaryValue("rivoli")</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                                        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img class="card-img-top" src="/media/hsldf1uw/damas.png" alt="Card image cap">
-                            </div>
-                            <div class="card-footer">
-                                <a href="@Umbraco.GetDictionaryValue("damasUrl")">
-                                    <button type="button" class="collapsible">
-                                         @Umbraco.GetDictionaryValue("damas")</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                                        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img class="card-img-top" src="/media/3ooll45y/florance.jpg" alt="Card image cap">
-                            </div>
-                            <div class="card-footer">
-                                <a href="@Umbraco.GetDictionaryValue("floranceUrl")">
-                                    <button type="button" class="collapsible">
-                                         @Umbraco.GetDictionaryValue("florance")</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img class="card-img-top" src="/media/ktrcwxoy/reshie.png" alt="Card image cap">
-                            </div>
-                            <div class="card-footer">
-                                <a href="@Umbraco.GetDictionaryValue("reshieUrl")">
-                                    <button type="button" class="collapsible">
-                                         @Umbraco.GetDictionaryValue("reshie")</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                                        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img class="card-img-top" src="/media/bncboh1v/grandstore.jpg" alt="Card image cap">
-                            </div>
-                            <div class="card-footer">
-                                <a href="@Umbraco.GetDictionaryValue("grandstoreUrl")">
-                                    <button type="button" class="collapsible">
-                                         @Umbraco.GetDictionaryValue("grandstore")</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>*@
 @* Main Content Section *@
-@{
-    var shCategory = Model.AncestorOrSelf(1).DescendantsOfType("shopCategory")
-                            .FirstOrDefault()?
-                            .Children()
-                            .Where(e => e.IsVisible() && e.HasValue("categoryTitle"))
-                            .Select(e => e.Value<string>("categoryTitle"));
-
-    var dnCategory = Model.AncestorOrSelf(1).DescendantsOfType("dineCategory")
-                            .FirstOrDefault()?
-                            .Children()
-                            .Where(e => e.IsVisible() && e.HasValue("categoryTitle"))
-                            .Select(e => e.Value<string>("categoryTitle"));
-
-    List<string> shCategoryList = new List<string>();
-    List<string> dnCategoryList = new List<string>();
-
-    if (shCategory != null)
-    {
-        shCategoryList.AddRange(shCategory);
-    }
-
-    if (dnCategory != null)
-    {
-        dnCategoryList.AddRange(dnCategory);
-    }
-}
 @{
     DateTime today = DateTime.Today;
     var shopList = Model.AncestorOrSelf(1).DescendantsOfType("shopsLanding").FirstOrDefault()?.Children().Where(e => e.IsVisible() && e.HasValue("endDate") && DateTime.Parse(e.Value<string>("endDate")) >= today);
-    var dineList = Model.AncestorOrSelf(1).DescendantsOfType("dinelanding").FirstOrDefault()?.Children().Where(e => e.IsVisible() && e.HasValue("endDate") && DateTime.Parse(e.Value<string>("endDate")) >= today);
+    var dineList = Model.AncestorOrSelf(1).DescendantsOfType("dineLanding").FirstOrDefault()?.Children().Where(e => e.IsVisible() && e.HasValue("endDate") && DateTime.Parse(e.Value<string>("endDate")) >= today);
     var entertainList = Model.AncestorOrSelf(1).DescendantsOfType("entertainment").FirstOrDefault()?.Children().Where(e => e.IsVisible() && e.HasValue("endDate") && DateTime.Parse(e.Value<string>("endDate")) >= today);
     if ((shopList != null && shopList.Any()) || (dineList != null && dineList.Any()) || (entertainList != null && entertainList.Any()))
     {
         <section class="main__huna-brand whatsNew">
             <div class="container header-container">
                 <div class="row">
-                    @foreach (var list in new List<IEnumerable<IPublishedContent>> { shopList, dineList, entertainList }.Where(l => l != null))
-                    {
-                        foreach (var item in list)
+                    @{
+                        foreach (var list in new List<IEnumerable<IPublishedContent>> { shopList }.Where(l => l != null))
                         {
-                            var logo = item.Value<IPublishedContent>("shopLogo") ?? item.Value<IPublishedContent>("entertainmentDetailsImage");
-                            var shopTitle = item.Value<string>("shopTitle");
-                            var entertainmentDetailsTitle = item.Value<string>("entertainmentDetailsTitle");
-                            var dineCategory = item.Value<string>("dineCategory");
-    
-                            if (logo != null || shopTitle != null || entertainmentDetailsTitle != null)
+                            foreach (var item in list)
                             {
-                                <div class="col-12 col-md-6 col-lg-3 col-xl-3">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <img class="card-img-top" src="@logo.Url()" alt="Card image cap">
+                                var logo = item.Value<IPublishedContent>("shopLogo");
+                                var shopTitle = item.Value<string>("shopTitle");
+                                var shopCategory = item.Value<IEnumerable<IPublishedContent>>("shopCategory");
+                                if(shopCategory != null)
+                                {
+                                    var categoryUrl = shopCategory.FirstOrDefault()?.Url;
+                                    if (logo != null)
+                                    {
+                                        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <img class="card-img-top" src="@logo.Url()" alt="Card image cap">
+                                                </div>
+                                                <div class="card-footer">
+                                                    <a href="@categoryUrl">
+                                                        <button type="button" class="collapsible">
+                                                            @if(!string.IsNullOrEmpty(shopTitle))
+                                                            {
+                                                                @shopTitle
+                                                            }
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="card-footer">
-                                            <a href="#">
-                                                <button type="button" class="collapsible">
-                                                    @if(!string.IsNullOrEmpty(shopTitle))
-                                                    {
-                                                        @shopTitle
-                                                    }
-                                                    else if (!string.IsNullOrEmpty(entertainmentDetailsTitle))
-                                                    {
-                                                        @entertainmentDetailsTitle
-                                                    }
-                                                </button>
-                                            </a>
+                                    }
+                                }
+                            }
+                        }
+                        foreach (var list in new List<IEnumerable<IPublishedContent>> { dineList }.Where(l => l != null))
+                        {
+                            foreach (var item in list)
+                            {
+                                var logo = item.Value<IPublishedContent>("shopLogo");;
+                                var shopTitle = item.Value<string>("shopTitle");
+                                var dineCategory = item.Value<IEnumerable<IPublishedContent>>("dineCategory");
+                                if(dineCategory != null)
+                                {
+                                    var categoryUrl = dineCategory.FirstOrDefault()?.Url;
+                                    if (logo != null)
+                                    {
+                                        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <img class="card-img-top" src="@logo.Url()" alt="Card image cap">
+                                                </div>
+                                                <div class="card-footer">
+                                                    <a href="@categoryUrl">
+                                                        <button type="button" class="collapsible">
+                                                            @if(!string.IsNullOrEmpty(shopTitle))
+                                                            {
+                                                                @shopTitle
+                                                            }
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    }
+                                }
+                            }
+                        }
+                        foreach (var list in new List<IEnumerable<IPublishedContent>> { entertainList }.Where(l => l != null))
+                        {
+                            foreach (var item in list)
+                            {
+                                var logo = item.Value<IPublishedContent>("entertainmentDetailsImage");
+                                var entertainmentDetailsTitle = item.Value<string>("entertainmentDetailsTitle");
+                                if (entertainList != null)
+                                {
+                                    foreach (var itemEntertain in entertainList)
+                                    {
+                                        var entertainmentUrl = itemEntertain.Url();
+                                        if (entertainmentUrl.Contains("/en/entertain/"))
+                                        {
+                                            entertainmentUrl = "/en/entertain";
+                                        }
+                                        
+                                        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <img class="card-img-top" src="@logo.Url()" alt="Card image cap">
+                                                </div>
+                                                <div class="card-footer">
+                                                    <a href="@entertainmentUrl" class="collapsible">
+                                                        @if (!string.IsNullOrEmpty(entertainmentDetailsTitle))
+                                                        {
+                                                            @entertainmentDetailsTitle
+                                                        }
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
                             }
                         }
                     }
                 </div>
             </div>
         </section>
-        
-        if (dnCategoryList != null && dnCategoryList.Any())
-        {
-            <div class="container">
-                <h2>Dine Categories</h2>
-                <div class="row">
-                    @foreach (var category in dnCategoryList)
-                    {
-                        <div class="col-12">
-                            <div>@category</div>
-                        </div>
-                    }
-                </div>
-            </div>
-        }
-        if (dineList != null && dineList.Any())
-        {
-            <div class="container">
-                <h2>Dine List</h2>
-                <div class="row">
-                    @foreach (var item in dineList)
-                    {
-                        var dineTitle = item.Value<string>("dineCategory");
-                        if (dnCategoryList.Any(category => category.Equals(dineTitle, StringComparison.OrdinalIgnoreCase)))
-                        {
-                            <div class="col-12">
-                                <div>@dineTitle</div>
-                            </div>
-                        }
-                    }
-                </div>
-            </div>
-        }
-    
-        if (shopList != null && shopList.Any())
-        {
-            <div class="container">
-                <h2>Shop List</h2>
-                <div class="row">
-                    @foreach (var item in shopList)
-                    {
-                        var shopCategory = item.Value<string>("shopCategory");
-                        if (shCategoryList.Any(category => category.Equals(shopCategory, StringComparison.OrdinalIgnoreCase)))
-                        {
-                            <div class="col-12">
-                                <div>@shopCategory</div>
-                            </div>
-                        }
-                    }
-                </div>
-            </div>
-        }
     }
 }
